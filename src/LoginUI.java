@@ -327,10 +327,10 @@ public class LoginUI extends JFrame {
 
         minButton.addMouseListener(new MouseAdapter() {
 
-            @Override
+            /**@Override
             public void mousePressed(MouseEvent e) {
                 minEventHandler();
-            }
+            }**/
 
             @Override
             public void mouseEntered(MouseEvent e) {
@@ -381,7 +381,7 @@ public class LoginUI extends JFrame {
         toaster.error("Saliendo");
     }
     
-    private void minEventHandler(){
+    /**private void minEventHandler(){
         toaster.info("Minimizando");
-    }
+    }**/
 }
