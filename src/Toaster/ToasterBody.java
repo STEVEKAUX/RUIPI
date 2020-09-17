@@ -11,8 +11,11 @@ class ToasterBody extends JPanel {
     private final String message;
     private final Color c;
     private volatile boolean stopDisplaying;
-    private int heightOfToast, stringPosX, stringPosY, yPos;
-    private JPanel panelToToastOn;
+    private final int heightOfToast;
+    private final int stringPosX;
+    private final int stringPosY;
+    private int yPos;
+    private final JPanel panelToToastOn;
 
     public ToasterBody(JPanel panelToToastOn, String message, Color bgColor, int yPos) {
         this.panelToToastOn = panelToToastOn;

@@ -1,3 +1,5 @@
+package View;
+
 
 import Toaster.Toaster;
 import Utils.*;
@@ -9,12 +11,8 @@ import javax.swing.*;
 public class LoginUI extends JFrame {
 
     private final Toaster toaster;
-
-    public static void main(String[] args) {
-        new LoginUI();
-    }
-
-    private LoginUI() {
+    
+    public LoginUI() {
     	
         
     	JPanel mainJPanel = getMainJPanel();
@@ -79,15 +77,15 @@ public class LoginUI extends JFrame {
             }
         };
 
-        /**panel1.addMouseListener(ma);
+        panel1.addMouseListener(ma);
         panel1.addMouseMotionListener(ma);
 
-        addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent e) {
-                System.exit(1);
-            }
-        });**/
+       // addWindowListener(new WindowAdapter() {
+        //    @Override
+        //    public void windowClosing(WindowEvent e) {
+        //        System.exit(1);
+        //    }
+       // });
 
         return panel1;
     }
