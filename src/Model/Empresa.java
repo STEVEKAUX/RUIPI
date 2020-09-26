@@ -14,12 +14,12 @@ public class Empresa {
     private int telefonoEmpresa;
     private String url ;
     private String emailEmpresa;
-    private String fechaEmmpresa;
+    private String fechaEmpresa;
 
     
     //Constructor de Empresa
     public Empresa(int idEmpresa, int nit, String nombreEmpresa, String direccionEmpresa, String ciudadEmpresa, String departamentoEmpresa, int telefonoEmpresa, String url, String emailEmpresa, String fechaEmmpresa) {
-        this.idEmpresa = idEmpresa;
+        //this.idEmpresa = idEmpresa;
         this.nit = nit;
         this.nombreEmpresa = nombreEmpresa;
         this.direccionEmpresa = direccionEmpresa;
@@ -28,18 +28,18 @@ public class Empresa {
         this.telefonoEmpresa = telefonoEmpresa;
         this.url = url;
         this.emailEmpresa = emailEmpresa;
-        this.fechaEmmpresa = fechaEmmpresa;
+        this.fechaEmpresa = fechaEmmpresa;
     }
 
     
     //Setters y Getters
-    public int getIdEmpresa() {
+   public int getIdEmpresa() {
         return idEmpresa;
     }
 
-    /**public void setIdEmpresa(int idEmpresa) {
+    public void setIdEmpresa(int idEmpresa) {
         this.idEmpresa = idEmpresa;
-    }**/
+      }
 
     public int getNit() {
         return nit;
@@ -106,11 +106,11 @@ public class Empresa {
     }
 
     public String getFechaEmmpresa() {
-        return fechaEmmpresa;
+        return fechaEmpresa;
     }
 
     public void setFechaEmmpresa(String fechaEmmpresa) {
-        this.fechaEmmpresa = fechaEmmpresa;
+        this.fechaEmpresa = fechaEmmpresa;
     }
     
 }

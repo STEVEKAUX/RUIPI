@@ -2,45 +2,46 @@
 package Model;
 
 //Declaración de la subclase Usuario que extiende de Persona
-public class Usuario extends Persona {
+public class Usuario {
       
     
     //Declaración de variables de Usuario
     private int idUsuario;
     private String username;
     private String password;
+    private String nombreUsuario;
+    private String apellidoUsuario;
     private String cargo ;
     private String area;
     private String ultimaSesion;
     private String fechaUsuario;
     private int idTipoUsuario;
+
+    
    
     
     //Constructor de la clase Usuario
-    public Usuario(int idPersona, String nombre, String apellido, String fechaNacimiento,
-           String ciudadNacimiento, String departamentoNacimiento, String direccion, String tipoDocumento,
-           int numeroDocumento, String email, String sexo) {
-        
-        super(idPersona, nombre, apellido, fechaNacimiento, ciudadNacimiento, departamentoNacimiento,
-                direccion, tipoDocumento, numeroDocumento, email, sexo);
+    public Usuario(int idUsuario, String username, String password, String nombreUsuario, String apellidoUsuario, String cargo, String area, String ultimaSesion, String fechaUsuario, int idTipoUsuario) {
+        this.idUsuario = idUsuario;
+        this.username = username;
+        this.password = password;
+        this.nombreUsuario = nombreUsuario;
+        this.apellidoUsuario = apellidoUsuario;
+        this.cargo = cargo;
+        this.area = area;
+        this.ultimaSesion = ultimaSesion;
+        this.fechaUsuario = fechaUsuario;
+        this.idTipoUsuario = idTipoUsuario;
     }
 
-    //método abstracto heredado
-     @Override
-    public void modificarDatos() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    
-    
     //Setters y Getters
     public int getIdUsuario() {
         return idUsuario;
     }
 
-    /**public void setIdUsuario(int idUsuario) {
+    public void setIdUsuario(int idUsuario) {
         this.idUsuario = idUsuario;
-    }**/
+    }
 
     public String getUsername() {
         return username;
@@ -58,6 +59,22 @@ public class Usuario extends Persona {
         this.password = password;
     }
 
+    public String getNombreUsuario() {
+        return nombreUsuario;
+    }
+
+    public void setNombreUsuario(String nombreUsuario) {
+        this.nombreUsuario = nombreUsuario;
+    }
+
+    public String getApellidoUsuario() {
+        return apellidoUsuario;
+    }
+
+    public void setApellidoUsuario(String apellidoUsuario) {
+        this.apellidoUsuario = apellidoUsuario;
+    }
+    
     public String getCargo() {
         return cargo;
     }

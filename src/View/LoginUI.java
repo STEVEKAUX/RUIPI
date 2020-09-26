@@ -9,15 +9,30 @@ import java.util.Objects;
 import javax.swing.*;
 
 public class LoginUI extends JFrame {
-
+    
+    //Variables globales
     private final Toaster toaster;
     
+    public String username="";
+    public String password="";
+    
+    TextFieldUsername usernameField;
+    TextFieldPassword passwordField;
+    
+    //Constructor de Login
     public LoginUI() {
+        
+        
+  //Establecemos el icono del proyecto en la barra de tareas y superior del Frame     
+  Toolkit loginFrame = Toolkit.getDefaultToolkit();
+  Image ruipiIcon = loginFrame.getImage("resource/icon.png");
+  setIconImage(ruipiIcon);
+  this.setTitle("RUIPI Inicio de Sesión");
     	
         
     	JPanel mainJPanel = getMainJPanel();
         
-        addMinButton(mainJPanel);
+        //addMinButton(mainJPanel);
         
         addLogo(mainJPanel);
 
@@ -39,16 +54,28 @@ public class LoginUI extends JFrame {
         this.pack();
         this.setVisible(true);
         this.toFront();
-
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        setLocation(screenSize.width / 2 - getWidth() / 2, screenSize.height / 2 - getHeight() / 2);
-
+        
+        //Establecemos la ubicación del Panel 
+       setLocationRelativeTo(null);
         toaster = new Toaster(mainJPanel);
+    }
+    
+    //Obtiene el texto del campo de Nombre de usuario
+    public void getUsername(){
+         username=usernameField.getText().toString();
+                System.out.println(username);
+    }
+    
+    //Obtiene el texto del campo de texto de COntraseña
+    public void getPassword(){
+        password=passwordField.getText().toString();
+                System.out.println(password);
     }
 
     //OBTIENE EL PANE PRINCIPAL
     private JPanel getMainJPanel() {
-        this.setUndecorated(true);
+        this.setUndecorated(false);
+        this.setResizable(false);
 
         Dimension size = new Dimension(800, 400);
 
@@ -80,12 +107,12 @@ public class LoginUI extends JFrame {
         panel1.addMouseListener(ma);
         panel1.addMouseMotionListener(ma);
 
-       // addWindowListener(new WindowAdapter() {
-        //    @Override
-        //    public void windowClosing(WindowEvent e) {
-        //        System.exit(1);
-        //    }
-       // });
+       addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+              System.exit(0);
+          }
+        });
 
         return panel1;
     }
@@ -100,11 +127,12 @@ public class LoginUI extends JFrame {
         separator1.setBounds(400, 45, 1, 308);
     }
     
-     //MINIMIZAR
+     /**
+      //MINIMIZAR
     public void minimize() {                                             
              
     this.setExtendedState(ICONIFIED);{ 
-    }}
+    }}**/
     
     //CONFIRMAR ACCIÓN DE SALIR
     public void close(){
@@ -128,10 +156,10 @@ public class LoginUI extends JFrame {
         panel1.add(label1);
         label1.setBounds(100, 100, 200, 200);
     }
-
+   
    //CAMPO DE TEXTO DE NOMBRE DE USUARIO
     private void addUsernameTextField(JPanel panel1) {
-        TextFieldUsername usernameField = new TextFieldUsername();
+        usernameField=new TextFieldUsername();
 
         usernameField.setBounds(475, 66, 250, 44);
         usernameField.addFocusListener(new FocusListener() {
@@ -156,10 +184,12 @@ public class LoginUI extends JFrame {
 
         panel1.add(usernameField);
     }
-
+    
     //CAMPO DE TEXTO DE CONTRASEÑA
     private void addPasswordTextField(JPanel panel1) {
-        TextFieldPassword passwordField = new TextFieldPassword();
+         passwordField = new TextFieldPassword();
+         passwordField.setText(UIUtils.PLACEHOLDER_TEXT_PASSWORD);
+         passwordField.setForeground(UIUtils.COLOR_OUTLINE);
 
         passwordField.setBounds(475, 126, 250, 44);
         passwordField.addFocusListener(new FocusListener() {
@@ -185,8 +215,10 @@ public class LoginUI extends JFrame {
         passwordField.addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent e) {
-                if (e.getKeyChar() == KeyEvent.VK_ENTER)
+                if (e.getKeyChar() == KeyEvent.VK_ENTER){
                     loginEventHandler();
+                    getUsername();
+                    getPassword();}
             }
         });
 
@@ -217,12 +249,19 @@ public class LoginUI extends JFrame {
                 g2.drawString(UIUtils.BUTTON_TEXT_LOGIN, x2, y2);
             }
         };
-
+        
+  
         loginButton.addMouseListener(new MouseAdapter() {
 
             @Override
             public void mousePressed(MouseEvent e) {
                 loginEventHandler();
+                
+                //Obtener el texto del campo de texto de nombre de usuario
+                getUsername();
+                
+                //Obtener el texto del campo de texto de contraseña
+                getPassword();
             }
 
             @Override
@@ -273,10 +312,10 @@ public class LoginUI extends JFrame {
 
         exitButton.addMouseListener(new MouseAdapter() {
 
-            @Override
+            /**@Override
             public void mousePressed(MouseEvent e) {
                 exitEventHandler();
-            }
+            }**/
 
             @Override
             public void mouseEntered(MouseEvent e) {
@@ -305,7 +344,7 @@ public class LoginUI extends JFrame {
     }
     
     //BOTÓN DE MINIMIZAR
-    private void addMinButton(JPanel panel1) {
+    /**private void addMinButton(JPanel panel1) {
         final Color[] minButtonColors = {UIUtils.COLOR_INTERACTIVE, Color.white};
 
         JLabel minButton = new JLabel() {
@@ -328,7 +367,7 @@ public class LoginUI extends JFrame {
             /**@Override
             public void mousePressed(MouseEvent e) {
                 minEventHandler();
-            }**/
+            }
 
             @Override
             public void mouseEntered(MouseEvent e) {
@@ -343,12 +382,11 @@ public class LoginUI extends JFrame {
                 minButtonColors[1] = Color.white;
                 minButton.repaint();
             }
-            
+           
             @Override
             public void mouseClicked(MouseEvent e) {
                minimize();
             }
-
             
         });
 
@@ -356,8 +394,7 @@ public class LoginUI extends JFrame {
         minButton.setBounds(745, 20, 35, 8);
         minButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         panel1.add(minButton);
-    }
-    
+    }**/ 
 
     /**método retirado porque solo el Administrador puede registrar nuevos usuarios
      * private void addRegisterButton(JPanel panel1) {
@@ -368,18 +405,18 @@ public class LoginUI extends JFrame {
 
     //ALERTAS
     private void addForgotPasswordButton(JPanel panel1) {
-        panel1.add(new HyperlinkText(UIUtils.BUTTON_TEXT_FORGOT_PASS, 475, 176, () -> {
+        panel1.add(new HyperlinkText(UIUtils.BUTTON_TEXT_FORGOT_PASS, 475, 177, () -> {
             toaster.warn("Reestablecer contraseña");
         }));
     }
     private void loginEventHandler() {
         toaster.success("Iniciando sesión");
     }
-    private void exitEventHandler() {
+    /**private void exitEventHandler() {
         toaster.error("Saliendo");
-    }
-    
-    /**private void minEventHandler(){
-        toaster.info("Minimizando");
     }**/
+    
+    /**private void loginErrorEventHandler() {
+        toaster.error("¡Nombre de usuario o contraseña inválidos!");
+        }**/
 }

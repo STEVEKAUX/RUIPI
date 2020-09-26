@@ -13,7 +13,7 @@ import View.LoginUI;
  */
 public class RUIPI {
      public static void main(String[] args) {
-        new LoginUI();
+         LoginUI loginUI = new LoginUI();
     }
 
 }
