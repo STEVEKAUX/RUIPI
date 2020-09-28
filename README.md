@@ -1,2 +1,3 @@
 # RUIPI
-RUIPI (Registro Único de Identificación de Pacientes Indígenas) es un proyecto desarrollado en Java con el fin de proporcionar una forma eficaz de identificar pacientes de Instituciones Prestadoras de Servicios de Salud (IPS) pertenecientes a comunidades vulnerables que carecen de documento de identidad, más específicamente indígenas. 
+In Spanish, RUIPI (Unique Registry for the Identification of Indigenous Patients), is a project developed in Java, which implements the biometric fingerprint reader U.are.U DigitalPersona 4500, in order to provide an efficient way to identify patients from Service Provider Institutions. Health (IPS) belonging to vulnerable communities that lack an identity document, more specifically indigenous communities.
+
