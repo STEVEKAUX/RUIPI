@@ -141,7 +141,7 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="3d" green="33" red="25" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="POR FAVOR INGRESA TU HUELLA"/>
+                <Property name="text" type="java.lang.String" value="INGRESA LA HUELLA A ASOCIAR"/>
               </Properties>
             </Component>
           </SubComponents>

@@ -16,6 +16,9 @@ public class Empresa {
     private String emailEmpresa;
     private String fechaEmpresa;
 
+    public Empresa() {
+    }
+
     
     //Constructor de Empresa
     public Empresa(int idEmpresa, int nit, String nombreEmpresa, String direccionEmpresa, String ciudadEmpresa, String departamentoEmpresa, int telefonoEmpresa, String url, String emailEmpresa, String fechaEmmpresa) {

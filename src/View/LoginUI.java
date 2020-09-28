@@ -1,39 +1,44 @@
 package View;
 
-
+import Connector.Conexion;
+import Connector.UsuarioDAO;
+import Model.Usuario;
 import Toaster.Toaster;
 import Utils.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.sql.Connection;
 import java.util.Objects;
 import javax.swing.*;
 
 public class LoginUI extends JFrame {
-    
+
     //Variables globales
+    Conexion con = new Conexion();
+    Connection access;
+    
+    UsuarioDAO udao = new UsuarioDAO();
+    Usuario u = new Usuario();
     private final Toaster toaster;
-    
-    public String username="";
-    public String password="";
-    
-    TextFieldUsername usernameField;
-    TextFieldPassword passwordField;
-    
+
+    public String username = "";
+    public String password = "";
+
+    TextFieldUsername txtUsernameField;
+    TextFieldPassword txtPasswordField;
+
     //Constructor de Login
     public LoginUI() {
-        
-        
-  //Establecemos el icono del proyecto en la barra de tareas y superior del Frame     
-  Toolkit loginFrame = Toolkit.getDefaultToolkit();
-  Image ruipiIcon = loginFrame.getImage("resource/icon.png");
-  setIconImage(ruipiIcon);
-  this.setTitle("RUIPI Inicio de Sesión");
-    	
-        
-    	JPanel mainJPanel = getMainJPanel();
-        
+
+        //Establecemos el icono del proyecto en la barra de tareas y superior del Frame     
+        Toolkit loginFrame = Toolkit.getDefaultToolkit();
+        Image ruipiIcon = loginFrame.getImage("resource/icon.png");
+        setIconImage(ruipiIcon);
+        this.setTitle("RUIPI Inicio de Sesión");
+
+        JPanel mainJPanel = getMainJPanel();
+
         //addMinButton(mainJPanel);
-        
         addLogo(mainJPanel);
 
         addSeparator(mainJPanel);
@@ -43,33 +48,35 @@ public class LoginUI extends JFrame {
         addPasswordTextField(mainJPanel);
 
         addLoginButton(mainJPanel);
-        
+
         addExitButton(mainJPanel);
 
         addForgotPasswordButton(mainJPanel);
 
         //addRegisterButton(mainJPanel);
-
         this.add(mainJPanel);
         this.pack();
         this.setVisible(true);
         this.toFront();
-        
+
         //Establecemos la ubicación del Panel 
-       setLocationRelativeTo(null);
+        setLocationRelativeTo(null);
         toaster = new Toaster(mainJPanel);
     }
-    
+
     //Obtiene el texto del campo de Nombre de usuario
-    public void getUsername(){
-         username=usernameField.getText().toString();
-                System.out.println(username);
+    public String getUsername() {
+        username = txtUsernameField.getText().toString();
+        System.out.println(username);
+        
+        return username;
     }
-    
+
     //Obtiene el texto del campo de texto de COntraseña
-    public void getPassword(){
-        password=passwordField.getText().toString();
-                System.out.println(password);
+    public String getPassword() {
+        password = txtPasswordField.getText().toString();
+        System.out.println(password);
+        return password;
     }
 
     //OBTIENE EL PANE PRINCIPAL
@@ -107,16 +114,17 @@ public class LoginUI extends JFrame {
         panel1.addMouseListener(ma);
         panel1.addMouseMotionListener(ma);
 
-       addWindowListener(new WindowAdapter() {
+        addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-              System.exit(0);
-          }
+                access=(Connection) con.disconnect();
+                System.exit(0);
+                //close();
+            }
         });
 
         return panel1;
     }
-   
 
     //AGREGA EL SEPARADOR CENTRAL
     private void addSeparator(JPanel panel1) {
@@ -126,105 +134,100 @@ public class LoginUI extends JFrame {
         panel1.add(separator1);
         separator1.setBounds(400, 45, 1, 308);
     }
-    
-     /**
-      //MINIMIZAR
-    public void minimize() {                                             
-             
-    this.setExtendedState(ICONIFIED);{ 
-    }}**/
-    
+
+    /**
+     * //MINIMIZAR public void minimize() {      *
+     * this.setExtendedState(ICONIFIED);{ 
+    }}*
+     */
     //CONFIRMAR ACCIÓN DE SALIR
-    public void close(){
-        Object [] opciones ={"Aceptar","Cancelar"};
-        int eleccion = JOptionPane.showOptionDialog(rootPane,"¿Realmente desea salir de la aplicación?","Saliendo de RUIPI",
-        JOptionPane.YES_NO_OPTION,
-        JOptionPane.QUESTION_MESSAGE,null,opciones,"Aceptar");
-        if (eleccion == JOptionPane.YES_OPTION)
-        {
-        System.exit(0);
-        }else{
+    public void close() {
+        Object[] opciones = {"Aceptar", "Cancelar"};
+        int eleccion = JOptionPane.showOptionDialog(rootPane, "¿Realmente desea salir de la aplicación?", "Saliendo de RUIPI",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE, null, opciones, "Aceptar");
+        if (eleccion == JOptionPane.YES_OPTION) {
+            System.exit(0);
+        } else {
         }
-           }
+    }
 
     //AGREGA EL LOGO DE RUIPI
-   private void addLogo(JPanel panel1) {
+    private void addLogo(JPanel panel1) {
         JLabel label1 = new JLabel();
         label1.setFocusable(false);
-        label1.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource
-        ("ruipi2.png")).getFile()));
+        label1.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("ruipi2.png")).getFile()));
         panel1.add(label1);
         label1.setBounds(100, 100, 200, 200);
     }
-   
-   //CAMPO DE TEXTO DE NOMBRE DE USUARIO
-    private void addUsernameTextField(JPanel panel1) {
-        usernameField=new TextFieldUsername();
 
-        usernameField.setBounds(475, 66, 250, 44);
-        usernameField.addFocusListener(new FocusListener() {
+    //CAMPO DE TEXTO DE NOMBRE DE USUARIO
+    private void addUsernameTextField(JPanel panel1) {
+        txtUsernameField = new TextFieldUsername();
+
+        txtUsernameField.setBounds(475, 66, 250, 44);
+        txtUsernameField.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
-                if (usernameField.getText().equals(UIUtils.PLACEHOLDER_TEXT_USERNAME)) {
-                    usernameField.setText("");
+                if (txtUsernameField.getText().equals(UIUtils.PLACEHOLDER_TEXT_USERNAME)) {
+                    txtUsernameField.setText("");
                 }
-                usernameField.setForeground(Color.white);
-                usernameField.setBorderColor(UIUtils.COLOR_INTERACTIVE);
+                txtUsernameField.setForeground(Color.white);
+                txtUsernameField.setBorderColor(UIUtils.COLOR_INTERACTIVE);
             }
 
             @Override
             public void focusLost(FocusEvent e) {
-                if (usernameField.getText().isEmpty()) {
-                    usernameField.setText(UIUtils.PLACEHOLDER_TEXT_USERNAME);
+                if (txtUsernameField.getText().isEmpty()) {
+                    txtUsernameField.setText(UIUtils.PLACEHOLDER_TEXT_USERNAME);
                 }
-                usernameField.setForeground(UIUtils.COLOR_OUTLINE);
-                usernameField.setBorderColor(UIUtils.COLOR_OUTLINE);
+                txtUsernameField.setForeground(UIUtils.COLOR_OUTLINE);
+                txtUsernameField.setBorderColor(UIUtils.COLOR_OUTLINE);
             }
         });
 
-        panel1.add(usernameField);
+        panel1.add(txtUsernameField);
     }
-    
+
     //CAMPO DE TEXTO DE CONTRASEÑA
     private void addPasswordTextField(JPanel panel1) {
-         passwordField = new TextFieldPassword();
-         passwordField.setText(UIUtils.PLACEHOLDER_TEXT_PASSWORD);
-         passwordField.setForeground(UIUtils.COLOR_OUTLINE);
+        txtPasswordField = new TextFieldPassword();
+        txtPasswordField.setText(UIUtils.PLACEHOLDER_TEXT_PASSWORD);
+        txtPasswordField.setForeground(UIUtils.COLOR_OUTLINE);
 
-        passwordField.setBounds(475, 126, 250, 44);
-        passwordField.addFocusListener(new FocusListener() {
+        txtPasswordField.setBounds(475, 126, 250, 44);
+        txtPasswordField.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
-                if (passwordField.getText().equals(UIUtils.PLACEHOLDER_TEXT_PASSWORD)) {
-                    passwordField.setText("");
+                if (txtPasswordField.getText().equals(UIUtils.PLACEHOLDER_TEXT_PASSWORD)) {
+                    txtPasswordField.setText("");
                 }
-                passwordField.setForeground(Color.white);
-                passwordField.setBorderColor(UIUtils.COLOR_INTERACTIVE);
+                txtPasswordField.setForeground(Color.white);
+                txtPasswordField.setBorderColor(UIUtils.COLOR_INTERACTIVE);
             }
 
             @Override
             public void focusLost(FocusEvent e) {
-                if (passwordField.getText().isEmpty()) {
-                    passwordField.setText(UIUtils.PLACEHOLDER_TEXT_PASSWORD);
+                if (txtPasswordField.getText().isEmpty()) {
+                    txtPasswordField.setText(UIUtils.PLACEHOLDER_TEXT_PASSWORD);
                 }
-                passwordField.setForeground(UIUtils.COLOR_OUTLINE);
-                passwordField.setBorderColor(UIUtils.COLOR_OUTLINE);
+                txtPasswordField.setForeground(UIUtils.COLOR_OUTLINE);
+                txtPasswordField.setBorderColor(UIUtils.COLOR_OUTLINE);
             }
         });
 
-        passwordField.addKeyListener(new KeyAdapter() {
+        txtPasswordField.addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent e) {
-                if (e.getKeyChar() == KeyEvent.VK_ENTER){
-                    loginEventHandler();
-                    getUsername();
-                    getPassword();}
+                if (e.getKeyChar() == KeyEvent.VK_ENTER) {
+                    validar();
+                }
             }
         });
 
-        panel1.add(passwordField);
+        panel1.add(txtPasswordField);
     }
-    
+
     //BOTÓN DE INICIO DE SESIÓN 
     private void addLoginButton(JPanel panel1) {
         final Color[] loginButtonColors = {UIUtils.COLOR_INTERACTIVE, Color.white};
@@ -249,19 +252,13 @@ public class LoginUI extends JFrame {
                 g2.drawString(UIUtils.BUTTON_TEXT_LOGIN, x2, y2);
             }
         };
-        
-  
+
         loginButton.addMouseListener(new MouseAdapter() {
 
             @Override
             public void mousePressed(MouseEvent e) {
-                loginEventHandler();
-                
-                //Obtener el texto del campo de texto de nombre de usuario
-                getUsername();
-                
-                //Obtener el texto del campo de texto de contraseña
-                getPassword();
+                validar();
+
             }
 
             @Override
@@ -277,6 +274,8 @@ public class LoginUI extends JFrame {
                 loginButtonColors[1] = Color.white;
                 loginButton.repaint();
             }
+
+           
         });
 
         loginButton.setBackground(UIUtils.COLOR_BACKGROUND);
@@ -284,7 +283,7 @@ public class LoginUI extends JFrame {
         loginButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         panel1.add(loginButton);
     }
-    
+
     // BOTON DE SALIR
     private void addExitButton(JPanel panel1) {
         final Color[] exitButtonColors = {UIUtils.COLOR_INTERACTIVE2, Color.white};
@@ -312,11 +311,11 @@ public class LoginUI extends JFrame {
 
         exitButton.addMouseListener(new MouseAdapter() {
 
-            /**@Override
-            public void mousePressed(MouseEvent e) {
-                exitEventHandler();
-            }**/
-
+            /**
+             * @Override public void mousePressed(MouseEvent e) {
+             * exitEventHandler();
+            }*
+             */
             @Override
             public void mouseEntered(MouseEvent e) {
                 exitButtonColors[0] = UIUtils.COLOR_INTERACTIVE_DARKER2;
@@ -330,93 +329,111 @@ public class LoginUI extends JFrame {
                 exitButtonColors[1] = Color.white;
                 exitButton.repaint();
             }
-            
+
             @Override
             public void mouseClicked(MouseEvent e) {
+                access=(Connection) con.disconnect();
                 close();
             }
         });
 
-        exitButton.setBackground(UIUtils. COLOR_BACKGROUND);
+        exitButton.setBackground(UIUtils.COLOR_BACKGROUND);
         exitButton.setBounds(475, 287, 250, 44);
         exitButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         panel1.add(exitButton);
     }
-    
+
     //BOTÓN DE MINIMIZAR
-    /**private void addMinButton(JPanel panel1) {
-        final Color[] minButtonColors = {UIUtils.COLOR_INTERACTIVE, Color.white};
-
-        JLabel minButton = new JLabel() {
-            @Override
-            protected void paintComponent(Graphics g) {
-                Graphics2D g2 = UIUtils.get2dGraphics(g);
-                super.paintComponent(g2);
-
-                Insets insets = getInsets();
-                int w = getWidth() - insets.left - insets.right;
-                int h = getHeight() - insets.top - insets.bottom;
-                g2.setColor(minButtonColors[0]);
-                g2.fillRoundRect(insets.left, insets.top, w, h, UIUtils.ROUNDNESS, UIUtils.ROUNDNESS);
-
-            }
-        };
-
-        minButton.addMouseListener(new MouseAdapter() {
-
-            /**@Override
-            public void mousePressed(MouseEvent e) {
-                minEventHandler();
-            }
-
-            @Override
-            public void mouseEntered(MouseEvent e) {
-                minButtonColors[0] = UIUtils.COLOR_INTERACTIVE_DARKER;
-                minButtonColors[1] = UIUtils.OFFWHITE;
-                minButton.repaint();
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-                minButtonColors[0] = UIUtils.COLOR_INTERACTIVE;
-                minButtonColors[1] = Color.white;
-                minButton.repaint();
-            }
-           
-            @Override
-            public void mouseClicked(MouseEvent e) {
-               minimize();
-            }
-            
-        });
-
-        minButton.setBackground(UIUtils. COLOR_BACKGROUND);
-        minButton.setBounds(745, 20, 35, 8);
-        minButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        panel1.add(minButton);
-    }**/ 
-
-    /**método retirado porque solo el Administrador puede registrar nuevos usuarios
-     * private void addRegisterButton(JPanel panel1) {
-        panel1.add(new HyperlinkText(UIUtils.BUTTON_TEXT_REGISTER, 613, 150, () -> {
-            toaster.success("Regristrarme en RUIPI");
-        }));
-    }**/
-
+    /**
+     * private void addMinButton(JPanel panel1) { final Color[] minButtonColors
+     * = {UIUtils.COLOR_INTERACTIVE, Color.white};
+     *
+     * JLabel minButton = new JLabel() {
+     *
+     * @Override protected void paintComponent(Graphics g) { Graphics2D g2 =
+     * UIUtils.get2dGraphics(g); super.paintComponent(g2);
+     *
+     * Insets insets = getInsets(); int w = getWidth() - insets.left -
+     * insets.right; int h = getHeight() - insets.top - insets.bottom;
+     * g2.setColor(minButtonColors[0]); g2.fillRoundRect(insets.left,
+     * insets.top, w, h, UIUtils.ROUNDNESS, UIUtils.ROUNDNESS);
+     *
+     * }
+     * };
+     *
+     * minButton.addMouseListener(new MouseAdapter() {
+     *
+     * /**@Override public void mousePressed(MouseEvent e) { minEventHandler();
+     * }
+     *
+     * @Override public void mouseEntered(MouseEvent e) { minButtonColors[0] =
+     * UIUtils.COLOR_INTERACTIVE_DARKER; minButtonColors[1] = UIUtils.OFFWHITE;
+     * minButton.repaint(); }
+     *
+     * @Override public void mouseExited(MouseEvent e) { minButtonColors[0] =
+     * UIUtils.COLOR_INTERACTIVE; minButtonColors[1] = Color.white;
+     * minButton.repaint(); }
+     *
+     * @Override public void mouseClicked(MouseEvent e) { minimize(); }
+     *
+     * });
+     *
+     * minButton.setBackground(UIUtils. COLOR_BACKGROUND);
+     * minButton.setBounds(745, 20, 35, 8);
+     * minButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+     * panel1.add(minButton);
+    }*
+     */
+    /**
+     * método retirado porque solo el Administrador puede registrar nuevos
+     * usuarios private void addRegisterButton(JPanel panel1) { panel1.add(new
+     * HyperlinkText(UIUtils.BUTTON_TEXT_REGISTER, 613, 150, () -> {
+     * toaster.success("Regristrarme en RUIPI"); }));
+    }*
+     */
     //ALERTAS
     private void addForgotPasswordButton(JPanel panel1) {
         panel1.add(new HyperlinkText(UIUtils.BUTTON_TEXT_FORGOT_PASS, 475, 177, () -> {
             toaster.warn("Reestablecer contraseña");
         }));
     }
+
     private void loginEventHandler() {
         toaster.success("Iniciando sesión");
     }
-    /**private void exitEventHandler() {
-        toaster.error("Saliendo");
-    }**/
+
+    private void loginErrorEventHandler() {
+        toaster.error("¡Hay campos vacíos!");
+    }
+
     
-    /**private void loginErrorEventHandler() {
-        toaster.error("¡Nombre de usuario o contraseña inválidos!");
-        }**/
+      private void dataErrorEventHandler() { 
+          toaster.error("¡Datos inválidos!");
+        }
+     
+      
+       public void validar() {
+                String username = getUsername();
+                String password = getPassword();
+
+                if (getUsername().equals("") || getPassword().equals("") || getUsername().equals("Nombre de Usuario") || getPassword().equals("contraseña")) {
+                    loginErrorEventHandler();
+                    txtUsernameField.requestFocus();
+
+                } else {
+                    u=udao.validarUsuario(username, password);
+                    if(u.getUsername() != null && u.getPassword() != null){
+                        Home h = new Home();
+                        loginEventHandler();
+                        h.setVisible(true);
+                        
+                        dispose();
+                        
+                    }else{
+                        dataErrorEventHandler();
+                        txtPasswordField.requestFocus();
+                    }
+
+                }
+            }
 }

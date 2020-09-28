@@ -87,7 +87,7 @@ class ToasterBody extends JPanel {
                 setBounds((panelToToastOn.getWidth() - toastWidth) / 2, getBounds().y - i1, toastWidth, heightOfToast);
                 repaint();
                 try {
-                    Thread.sleep(10);
+                    Thread.sleep(20);
                 } catch (Exception ignored) {
                 }
             }

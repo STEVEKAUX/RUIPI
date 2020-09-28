@@ -32,11 +32,12 @@ public class Conexion {
 	public Connection getConnection(){
 		return con;
 	}
-	public void disconnect(){
+	public Conexion disconnect(){
             con=null;
 		if(con==null){
                     System.out.println("¡Conexión Terminada!");   
                 }
+            return (Conexion) con;
 	}
 }
 

@@ -6,19 +6,21 @@
 package View;
 
 //Variables globales
-
+import Connector.Conexion;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.sql.Connection;
 import javax.swing.JInternalFrame;
-
-
+import javax.swing.JOptionPane;
 
 public class Home extends javax.swing.JFrame {
-    
+
     //Variables globales
+    Conexion con = new Conexion();
+    Connection access;
 
     //Constructror de Home
     public Home() {
@@ -26,13 +28,11 @@ public class Home extends javax.swing.JFrame {
         this.setExtendedState(MAXIMIZED_BOTH);
         this.setResizable(true);
         setLocationRelativeTo(null);
-        
-        
 
         Toolkit loginFrame = Toolkit.getDefaultToolkit();
-  Image ruipiIcon = loginFrame.getImage("resource/icon.png");
-  setIconImage(ruipiIcon);
-  this.setTitle("RUIPI Inicio");
+        Image ruipiIcon = loginFrame.getImage("resource/icon.png");
+        setIconImage(ruipiIcon);
+        this.setTitle("RUIPI Inicio");
     }
 
     /**
@@ -54,6 +54,11 @@ public class Home extends javax.swing.JFrame {
         btnConfig = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(108, 216, 158));
         jPanel1.setForeground(new java.awt.Color(37, 51, 61));
@@ -175,39 +180,57 @@ public class Home extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
- 
-    
-    public void windowCentered(JInternalFrame frame){
+
+    public void windowCentered(JInternalFrame frame) {
         jDesktopPane1.add(frame);
-        
+
         Dimension screenSize = jDesktopPane1.getSize();
-        Dimension formP=frame.getSize();
-        frame.setLocation((screenSize.width - formP.width) / 2, ((screenSize.height) - formP.height)/ 2);
+        Dimension formP = frame.getSize();
+        frame.setLocation((screenSize.width - formP.width) / 2, ((screenSize.height) - formP.height) / 2);
         frame.show();
     }
-    
-    
+
+
     private void btnPacientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPacientesActionPerformed
-        formPatients fp= new formPatients();
-        windowCentered(fp);   
+        formPatients fp = new formPatients();
+        windowCentered(fp);
     }//GEN-LAST:event_btnPacientesActionPerformed
-        
-    
+
+
     private void btnCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSesionActionPerformed
-        // TODO add your handling code here:
+        access = (Connection) con.disconnect();
+        close();
+
     }//GEN-LAST:event_btnCerrarSesionActionPerformed
 
-    
+
     private void btnConfigActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfigActionPerformed
-       formSettings fs= new formSettings();
+        formSettings fs = new formSettings();
         windowCentered(fs);
     }//GEN-LAST:event_btnConfigActionPerformed
 
-    
+
     private void btnUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuariosActionPerformed
-        formUsers fu= new formUsers();
+        formUsers fu = new formUsers();
         windowCentered(fu);
     }//GEN-LAST:event_btnUsuariosActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+       access = (Connection) con.disconnect();
+        //close();
+        
+    }//GEN-LAST:event_formWindowClosing
+
+    public void close() {
+        Object[] opciones = {"Aceptar", "Cancelar"};
+        int eleccion = JOptionPane.showOptionDialog(rootPane, "¿Realmente desea salir de la aplicación?", "Saliendo de RUIPI",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE, null, opciones, "Aceptar");
+        if (eleccion == JOptionPane.YES_OPTION) {
+            System.exit(0);
+        } else {
+        }
+    }
 
     /**
      * @param args the command line arguments

@@ -21,6 +21,9 @@ public  class Paciente {
     private int edad;
     private String etnia;
     private String fechaPaciente;
+
+    public Paciente() {
+    }
     
     
     //Constructor de la clase Paciente

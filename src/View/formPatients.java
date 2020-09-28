@@ -13,6 +13,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import java.sql.ResultSet;
+import static javax.swing.JOptionPane.QUESTION_MESSAGE;
 
 /**
  *
@@ -30,7 +31,9 @@ public class formPatients extends javax.swing.JInternalFrame {
     public formPatients() {
         setQueryInsert();
         initComponents();
+        txtNombrePaciente.requestFocus(); //NO CAMBIA EL FOCO AL txtNombrePaciente!!!
         //toaster = new Toaster(new JPanel);    MODIFICAR!!
+        camposVacios();
 
     }
 
@@ -75,16 +78,15 @@ public class formPatients extends javax.swing.JInternalFrame {
         txtEdad = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
-        txtEH = new javax.swing.JTextField();
-        btnNuevoP = new javax.swing.JButton();
+        txtFCreacion = new javax.swing.JTextField();
         btnGuardarP = new javax.swing.JButton();
-        btnActualizarP = new javax.swing.JButton();
-        btnBuscarP = new javax.swing.JButton();
-        btnIdentificarP = new javax.swing.JButton();
-        btnEliminarP = new javax.swing.JButton();
         jLabel19 = new javax.swing.JLabel();
         btnAsociarHuella = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        comboEtnia = new javax.swing.JComboBox<>();
+        jPanel4 = new javax.swing.JPanel();
+        btnEliminarP = new javax.swing.JButton();
+        btnIdentificarP = new javax.swing.JButton();
+        btnBuscarAct = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla = new javax.swing.JTable();
@@ -108,7 +110,8 @@ public class formPatients extends javax.swing.JInternalFrame {
         jLabel1.setForeground(new java.awt.Color(108, 216, 158));
         jLabel1.setText("ID Paciente");
 
-        txtIdPaciente.setBackground(new java.awt.Color(255, 255, 255));
+        txtIdPaciente.setEditable(false);
+        txtIdPaciente.setBackground(new java.awt.Color(187, 187, 187));
         txtIdPaciente.setToolTipText("");
         txtIdPaciente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -116,14 +119,19 @@ public class formPatients extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(108, 216, 158));
         jLabel2.setText("Nombres*");
 
         txtNombrePaciente.setBackground(new java.awt.Color(255, 255, 255));
         txtNombrePaciente.setToolTipText("");
+        txtNombrePaciente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNombrePacienteActionPerformed(evt);
+            }
+        });
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(108, 216, 158));
         jLabel3.setText("Apellidos*");
 
@@ -221,19 +229,8 @@ public class formPatients extends javax.swing.JInternalFrame {
         jLabel16.setForeground(new java.awt.Color(108, 216, 158));
         jLabel16.setText("Fecha de Creación");
 
-        txtEH.setBackground(new java.awt.Color(255, 255, 255));
-        txtEH.setToolTipText("");
-
-        btnNuevoP.setBackground(new java.awt.Color(108, 216, 158));
-        btnNuevoP.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        btnNuevoP.setForeground(new java.awt.Color(37, 51, 61));
-        btnNuevoP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/add_user_20px.png"))); // NOI18N
-        btnNuevoP.setText("Nuevo");
-        btnNuevoP.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNuevoPActionPerformed(evt);
-            }
-        });
+        txtFCreacion.setBackground(new java.awt.Color(255, 255, 255));
+        txtFCreacion.setToolTipText("");
 
         btnGuardarP.setBackground(new java.awt.Color(108, 216, 158));
         btnGuardarP.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
@@ -246,46 +243,7 @@ public class formPatients extends javax.swing.JInternalFrame {
             }
         });
 
-        btnActualizarP.setBackground(new java.awt.Color(108, 216, 158));
-        btnActualizarP.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        btnActualizarP.setForeground(new java.awt.Color(37, 51, 61));
-        btnActualizarP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edit_20px.png"))); // NOI18N
-        btnActualizarP.setText("Actualizar");
-        btnActualizarP.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnActualizarPActionPerformed(evt);
-            }
-        });
-
-        btnBuscarP.setBackground(new java.awt.Color(108, 216, 158));
-        btnBuscarP.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        btnBuscarP.setForeground(new java.awt.Color(37, 51, 61));
-        btnBuscarP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/search_20px.png"))); // NOI18N
-        btnBuscarP.setText("Buscar");
-        btnBuscarP.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscarPActionPerformed(evt);
-            }
-        });
-
-        btnIdentificarP.setBackground(new java.awt.Color(108, 216, 158));
-        btnIdentificarP.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        btnIdentificarP.setForeground(new java.awt.Color(37, 51, 61));
-        btnIdentificarP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fingerprint_20px.png"))); // NOI18N
-        btnIdentificarP.setText("Identificar");
-        btnIdentificarP.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnIdentificarPActionPerformed(evt);
-            }
-        });
-
-        btnEliminarP.setBackground(new java.awt.Color(108, 216, 158));
-        btnEliminarP.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnEliminarP.setForeground(new java.awt.Color(37, 51, 61));
-        btnEliminarP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/delete_user_20px.png"))); // NOI18N
-        btnEliminarP.setText("Eliminar");
-
-        jLabel19.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel19.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel19.setForeground(new java.awt.Color(108, 216, 158));
         jLabel19.setText("Asociar Huella*");
 
@@ -299,46 +257,95 @@ public class formPatients extends javax.swing.JInternalFrame {
             }
         });
 
-        jComboBox1.setBackground(new java.awt.Color(255, 255, 255));
-        jComboBox1.setForeground(new java.awt.Color(37, 51, 61));
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIONAR", "Arhuaco", "Kogui", "Wiwa" }));
+        comboEtnia.setBackground(new java.awt.Color(255, 255, 255));
+        comboEtnia.setForeground(new java.awt.Color(37, 51, 61));
+        comboEtnia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIONAR", "Arhuaco", "Kogui", "Wiwa" }));
+
+        jPanel4.setBackground(new java.awt.Color(37, 51, 61));
+
+        btnEliminarP.setBackground(new java.awt.Color(108, 216, 158));
+        btnEliminarP.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnEliminarP.setForeground(new java.awt.Color(37, 51, 61));
+        btnEliminarP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/delete_user_20px.png"))); // NOI18N
+        btnEliminarP.setText("Eliminar");
+
+        btnIdentificarP.setBackground(new java.awt.Color(108, 216, 158));
+        btnIdentificarP.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        btnIdentificarP.setForeground(new java.awt.Color(37, 51, 61));
+        btnIdentificarP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fingerprint_20px.png"))); // NOI18N
+        btnIdentificarP.setText("Identificar");
+        btnIdentificarP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIdentificarPActionPerformed(evt);
+            }
+        });
+
+        btnBuscarAct.setBackground(new java.awt.Color(108, 216, 158));
+        btnBuscarAct.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        btnBuscarAct.setForeground(new java.awt.Color(37, 51, 61));
+        btnBuscarAct.setIcon(new javax.swing.ImageIcon(getClass().getResource("/search_20px.png"))); // NOI18N
+        btnBuscarAct.setText("Buscar y Actualizar");
+        btnBuscarAct.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addComponent(btnBuscarAct, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnIdentificarP, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnEliminarP, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(btnEliminarP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnIdentificarP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnBuscarAct))
+        );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addContainerGap(40, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap(47, Short.MAX_VALUE)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel1)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtFNacimiento)
+                            .addComponent(txtApellidoPaaciente)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel1)
-                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtFNacimiento)
-                                    .addComponent(txtApellidoPaaciente)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(txtNombrePaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txtIdPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(0, 2, Short.MAX_VALUE))))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel19))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtDNacimiento)
-                                    .addComponent(txtCNacimiento)
-                                    .addComponent(btnAsociarHuella, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                                    .addComponent(txtNombrePaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtIdPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 2, Short.MAX_VALUE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel19))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtDNacimiento)
+                            .addComponent(txtCNacimiento)
+                            .addComponent(btnAsociarHuella, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel8)
                             .addComponent(jLabel7)
@@ -346,7 +353,12 @@ public class formPatients extends javax.swing.JInternalFrame {
                             .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(btnGuardarP)
+                        .addGap(37, 37, 37)))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtRH, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
                             .addComponent(txtSexo)
@@ -354,36 +366,24 @@ public class formPatients extends javax.swing.JInternalFrame {
                             .addComponent(txtDireccion, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(txtTipoDoc, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(txtNumDoc, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel16)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtEH, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                                .addComponent(txtFCreacion, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel13)
                                     .addComponent(jLabel14)
                                     .addComponent(jLabel15))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 107, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(txtEdad, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
                                     .addComponent(comboGestante, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnGuardarP)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnNuevoP)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnActualizarP)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnBuscarP)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnIdentificarP)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnEliminarP)))
-                .addContainerGap(46, Short.MAX_VALUE))
+                                    .addComponent(comboEtnia, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -415,7 +415,7 @@ public class formPatients extends javax.swing.JInternalFrame {
                             .addComponent(jLabel9)
                             .addComponent(txtNumDoc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel15)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(comboEtnia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
@@ -423,7 +423,7 @@ public class formPatients extends javax.swing.JInternalFrame {
                             .addComponent(jLabel10)
                             .addComponent(txtEmailPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel16)
-                            .addComponent(txtEH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtFCreacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
@@ -436,22 +436,19 @@ public class formPatients extends javax.swing.JInternalFrame {
                             .addComponent(txtDNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel12)
                             .addComponent(txtRH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(btnActualizarP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnNuevoP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnGuardarP, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(btnIdentificarP, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(btnEliminarP, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(btnAsociarHuella, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnBuscarP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(btnGuardarP, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel19)
-                        .addGap(14, 14, 14))))
+                        .addGap(14, 14, 14))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
 
         jPanel3.setBackground(new java.awt.Color(37, 51, 61));
@@ -484,17 +481,11 @@ public class formPatients extends javax.swing.JInternalFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1)
-                .addContainerGap())
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -539,25 +530,27 @@ public class formPatients extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtIdPacienteActionPerformed
 
-    private void btnNuevoPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoPActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnNuevoPActionPerformed
-
     private void btnAsociarHuellaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsociarHuellaActionPerformed
+        camposVacios();
+        btnGuardarP.setEnabled(false);
+        
         if (isOpen == false) {
             formEnterFinger asociarHuella = new formEnterFinger(this);
             asociarHuella.setVisible(true);
             isOpen = true;
-        } else {
             
+            
+        } else {
+
             //toaster.error("¡Nombre de usuario o contraseña inválidos!");
-            JOptionPane.showMessageDialog(null, "Ya hay una vetana del Lector abierta");
+            JOptionPane.showMessageDialog(null, "Ya hay una ventana del 'Lector de Huellas' abierta");
         }
-
-
+       
+        
     }//GEN-LAST:event_btnAsociarHuellaActionPerformed
 
     private void btnGuardarPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarPActionPerformed
+        
         if (tipoQuery) {
             Insert();
 
@@ -567,7 +560,11 @@ public class formPatients extends javax.swing.JInternalFrame {
         }
         txtNombrePaciente.setText("");
         id_paciente = 0;
+        huellaPaciente=null;
         isOpen = false;
+        camposVacios();
+        btnAsociarOn();
+        
     }//GEN-LAST:event_btnGuardarPActionPerformed
 
 
@@ -580,13 +577,15 @@ public class formPatients extends javax.swing.JInternalFrame {
         } else {
 
             //toaster.error("¡Nombre de usuario o contraseña inválidos!");
-            JOptionPane.showMessageDialog(null, "Ya hay una ventana del Lector abierta");
+            JOptionPane.showMessageDialog(null, "Ya hay una ventana del 'Lector de Huellas' abierta");
         }
 
     }//GEN-LAST:event_btnIdentificarPActionPerformed
 
-    private void btnBuscarPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarPActionPerformed
-        String nombreBuscar = JOptionPane.showInputDialog(null, "Nombre del paciente");
+    private void btnBuscarActActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActActionPerformed
+        camposVacios();
+        
+        String nombreBuscar = JOptionPane.showInputDialog(null, "Nombre o ID del paciente", "BÚSQUEDA DE PACIENTES", QUESTION_MESSAGE );
 
         Conexion cn = new Conexion();
         Connection cnn = cn.getConnection();
@@ -610,23 +609,20 @@ public class formPatients extends javax.swing.JInternalFrame {
         } catch (SQLException ex) {
             Logger.getLogger(formPatients.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_btnBuscarPActionPerformed
+    }//GEN-LAST:event_btnBuscarActActionPerformed
 
-    private void btnActualizarPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarPActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnActualizarPActionPerformed
+    private void txtNombrePacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombrePacienteActionPerformed
+            }//GEN-LAST:event_txtNombrePacienteActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnActualizarP;
     private javax.swing.JButton btnAsociarHuella;
-    private javax.swing.JButton btnBuscarP;
+    private javax.swing.JButton btnBuscarAct;
     private javax.swing.JButton btnEliminarP;
     private javax.swing.JButton btnGuardarP;
     private javax.swing.JButton btnIdentificarP;
-    private javax.swing.JButton btnNuevoP;
+    private javax.swing.JComboBox<String> comboEtnia;
     private javax.swing.JComboBox<String> comboGestante;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -647,15 +643,16 @@ public class formPatients extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tabla;
     private javax.swing.JTextField txtApellidoPaaciente;
     private javax.swing.JTextField txtCNacimiento;
     private javax.swing.JTextField txtDNacimiento;
     private javax.swing.JTextField txtDireccion;
-    private javax.swing.JTextField txtEH;
     private javax.swing.JTextField txtEdad;
     private javax.swing.JTextField txtEmailPaciente;
+    private javax.swing.JTextField txtFCreacion;
     private javax.swing.JTextField txtFNacimiento;
     private javax.swing.JTextField txtIdPaciente;
     private javax.swing.JTextField txtNombrePaciente;
@@ -683,8 +680,8 @@ public class formPatients extends javax.swing.JInternalFrame {
         return sizeHuella;
     }
 
-    public void setSizeHuella(Integer i) {
-        sizeHuella = i;
+    public void setSizeHuella(Integer size) {
+        sizeHuella = size;
     }
 
     private void setQueryInsert() {
@@ -694,12 +691,14 @@ public class formPatients extends javax.swing.JInternalFrame {
     private void Insert() {
         Conexion cn = new Conexion();
         Connection cnn = cn.getConnection();
+        //poner el if con em Jopane message
         try {
             System.out.println("INSERT");
             PreparedStatement ps = cnn.prepareStatement("INSERT INTO Paciente (huella, nombre_paciente) VALUES(?,?)");
             ps.setBinaryStream(1, huellaPaciente, sizeHuella);
             ps.setString(2, txtNombrePaciente.getText());
             ps.execute();
+            JOptionPane.showMessageDialog(null, "El registro del paciente '" + txtNombrePaciente.getText() + "' se guardó con éxito.");
         } catch (SQLException ex) {
             Logger.getLogger(formPatients.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -709,14 +708,54 @@ public class formPatients extends javax.swing.JInternalFrame {
     private void Update() {
         Conexion cn = new Conexion();
         Connection cnn = cn.getConnection();
-        try {
-            System.out.println("UPDATE");
-            PreparedStatement ps = cnn.prepareStatement("UPDATE Paciente SET huella=? WHERE id_paciente=?");
-            ps.setBinaryStream(1, huellaPaciente, sizeHuella);
-            ps.setInt(2, id_paciente);
-            ps.execute();
-        } catch (SQLException ex) {
-            Logger.getLogger(formPatients.class.getName()).log(Level.SEVERE, null, ex);
+
+        if ("".equals(txtNombrePaciente.getText())) {
+
+            JOptionPane.showMessageDialog(null, "Los campos con '*' son obligatorios");
+        } else {
+
+            try {
+
+                System.out.println("UPDATE");
+                PreparedStatement ps = cnn.prepareStatement("UPDATE Paciente SET huella=? WHERE id_paciente=?");
+                ps.setBinaryStream(1, huellaPaciente, sizeHuella);
+                ps.setInt(2, id_paciente);
+                ps.execute();
+                JOptionPane.showMessageDialog(null, "La actualización del paciente '" + txtNombrePaciente.getText() + "' se guardó con éxito.");
+            } catch (SQLException ex) {
+                Logger.getLogger(formPatients.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
+
+    }
+
+    public void camposVacios() {
+        boolean i = true;
+        if (i) {
+            try {
+                if ("".equals(txtNombrePaciente.getText())) {
+                    btnGuardarP.setEnabled(false);
+                    
+                } else {
+                    btnGuardarP.setEnabled(true);
+                    i = false;
+                    
+                }
+
+            } catch (Exception e) {
+            }
         }
     }
+    
+    public void btnAsociarOff(){
+        
+        btnAsociarHuella.setEnabled(false);
+    }
+    
+    public void btnAsociarOn(){
+        
+        btnAsociarHuella.setEnabled(true);
+    }
 }
+

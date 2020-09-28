@@ -1,38 +1,43 @@
-
 package Model;
 
 //Declaración de la subclase Usuario que extiende de Persona
 public class Usuario {
-      
-    
+
     //Declaración de variables de Usuario
     private int idUsuario;
     private String username;
     private String password;
+    private String emailUsuario;
     private String nombreUsuario;
     private String apellidoUsuario;
-    private String cargo ;
+    private String cargo;
     private String area;
     private String ultimaSesion;
     private String fechaUsuario;
+    private String idEmpresa;
     private int idTipoUsuario;
 
-    
-   
-    
+    public Usuario() {
+    }
+
     //Constructor de la clase Usuario
-    public Usuario(int idUsuario, String username, String password, String nombreUsuario, String apellidoUsuario, String cargo, String area, String ultimaSesion, String fechaUsuario, int idTipoUsuario) {
+    public Usuario(int idUsuario, String username, String password, String nombreUsuario, String apellidoUsuario,
+            String cargo, String area, String ultimaSesion, String fechaUsuario, String idEmpresa, int idTipoUsuario) {
         this.idUsuario = idUsuario;
         this.username = username;
         this.password = password;
+        this.emailUsuario = emailUsuario;
         this.nombreUsuario = nombreUsuario;
         this.apellidoUsuario = apellidoUsuario;
         this.cargo = cargo;
         this.area = area;
         this.ultimaSesion = ultimaSesion;
         this.fechaUsuario = fechaUsuario;
+        this.idEmpresa = idEmpresa;
         this.idTipoUsuario = idTipoUsuario;
     }
+
+    
 
     //Setters y Getters
     public int getIdUsuario() {
@@ -59,6 +64,14 @@ public class Usuario {
         this.password = password;
     }
 
+    public String getEmailUsuario() {
+        return emailUsuario;
+    }
+
+    public void setEmailUsuario(String emailUsuario) {
+        this.emailUsuario = emailUsuario;
+    }
+
     public String getNombreUsuario() {
         return nombreUsuario;
     }
@@ -74,7 +87,7 @@ public class Usuario {
     public void setApellidoUsuario(String apellidoUsuario) {
         this.apellidoUsuario = apellidoUsuario;
     }
-    
+
     public String getCargo() {
         return cargo;
     }
@@ -106,6 +119,14 @@ public class Usuario {
     public void setFechaUsuario(String fechaUsuario) {
         this.fechaUsuario = fechaUsuario;
     }
+    
+    public String getIdEmpresa() {
+        return idEmpresa;
+    }
+
+    public void setIdEmpresa(String idEmpresa) {
+        this.idEmpresa = idEmpresa;
+    }
 
     public int getIdTipoUsuario() {
         return idTipoUsuario;
@@ -115,6 +136,4 @@ public class Usuario {
         this.idTipoUsuario = idTipoUsuario;
     }
 
-   
-    
 }

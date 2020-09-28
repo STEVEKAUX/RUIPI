@@ -32,6 +32,8 @@ import javax.swing.SwingUtilities;
  */
 public class formEnterFinger extends javax.swing.JFrame {
 
+    //variable global
+    
   
     //Varible que permite iniciar el dispositivo de lector de huella conectado
     // con sus distintos metodos.
@@ -182,6 +184,12 @@ public class formEnterFinger extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         this.fp = fp;
         
+        //Establecemos el icono del proyecto en la barra de tareas y superior del Frame  
+        Toolkit loginFrame = Toolkit.getDefaultToolkit();
+        Image ruipiIcon = loginFrame.getImage("resource/icon.png");
+        setIconImage(ruipiIcon);
+        this.setTitle("RUIPI Lector de Huellas");
+        
     }
     
     /**
@@ -227,7 +235,7 @@ public class formEnterFinger extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(37, 51, 61));
-        jLabel1.setText("POR FAVOR INGRESA TU HUELLA");
+        jLabel1.setText("INGRESA LA HUELLA A ASOCIAR");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -284,13 +292,20 @@ public class formEnterFinger extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGuardarHuellaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarHuellaActionPerformed
+        
         ByteArrayInputStream datosHuella = new ByteArrayInputStream(template.serialize());
         fp.setHuellaPaciente(datosHuella);
         Integer tamañoHuella=template.serialize().length;
         fp.setSizeHuella(tamañoHuella);
         fp.isOpen=true;
-        dispose();    
+        dispose();
+        fp.isOpen=false;
+        fp.btnAsociarOn();
         
+        fp.camposVacios();
+       datosHuella=null;
+       
+       
     }//GEN-LAST:event_btnGuardarHuellaActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing

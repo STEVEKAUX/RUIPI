@@ -21,6 +21,7 @@ import com.digitalpersona.onetouch.processing.DPFPImageQualityException;
 import com.digitalpersona.onetouch.verification.DPFPVerification;
 import com.digitalpersona.onetouch.verification.DPFPVerificationResult;
 import java.awt.Image;
+import java.awt.Toolkit;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -158,7 +159,7 @@ public class formIdentifity extends javax.swing.JFrame {
                     Reclutador.clear();
                     stop();
                     setTemplate(null);
-                    JOptionPane.showMessageDialog(this, "La Plantilla de la Huella no pudo ser creada, Repita el Proceso", "Inscripcion de Huellas Dactilares", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "La Plantilla de la Huella NO pudo ser creada, Repita el Proceso", "Inscripcion de Huellas Dactilares", JOptionPane.ERROR_MESSAGE);
                     start();
                     break;
             }
@@ -206,6 +207,11 @@ public class formIdentifity extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         this.fp = fp;
 
+        //Establecemos el icono del proyecto en la barra de tareas y superior del Frame  
+        Toolkit loginFrame = Toolkit.getDefaultToolkit();
+        Image ruipiIcon = loginFrame.getImage("resource/icon.png");
+        setIconImage(ruipiIcon);
+        this.setTitle("RUIPI Lector de Huellas");
     }
 
     /**
@@ -240,7 +246,7 @@ public class formIdentifity extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(37, 51, 61));
-        jLabel1.setText("POR FAVOR INGRESA TU HUELLA");
+        jLabel1.setText("INGRESA LA HUELLA A IDENTIFICAR");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -297,7 +303,7 @@ public class formIdentifity extends javax.swing.JFrame {
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         stop();
-        fp.isOpen=false;
+        fp.isOpen = false;
     }//GEN-LAST:event_formWindowClosing
 
 
@@ -330,7 +336,7 @@ public class formIdentifity extends javax.swing.JFrame {
             PreparedStatement ps = cnn.prepareStatement("SELECT * FROM Paciente");
 
             ResultSet rs = ps.executeQuery();
-            boolean existe = false; 
+            boolean existe = false;
             while (rs.next()) {
                 byte huellas[] = rs.getBytes("huella");
                 String nombre = rs.getString("nombre_paciente");
@@ -343,18 +349,19 @@ public class formIdentifity extends javax.swing.JFrame {
                 // Compara las caracteriticas de la huella recientemente capturda con la
                 // alguna plantilla guardada en la base de datos que coincide con ese tipo
                 DPFPVerificationResult result = Verificador.verify(featuresverificacion, getTemplate());
-                
-                if(result.isVerified()){
-                    JOptionPane.showMessageDialog(null, "El paciente: "+nombre+" se encuenta registrado en RUIPI");
-                    existe=true;
+
+                if (result.isVerified()) {
+                    JOptionPane.showMessageDialog(null, "El paciente '" + nombre + "' ya está registrado en RUIPI");
+                    existe = true;
                 }
             }
-            
+
             setTemplate(null);
-            if(!existe){
-                JOptionPane.showMessageDialog(null, "El paciente no se encuenta registrado en RUIPI");
+            if (!existe) {
+               
+                JOptionPane.showMessageDialog(null, "El paciente NO está registrado en RUIPI","NO HAY REGISTRO", JOptionPane.ERROR_MESSAGE);
             }
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(formPatients.class.getName()).log(Level.SEVERE, null, ex);
         }
