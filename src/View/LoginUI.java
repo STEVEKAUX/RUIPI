@@ -24,8 +24,8 @@ public class LoginUI extends JFrame {
     public String username = "";
     public String password = "";
 
-    TextFieldUsername txtUsernameField;
-    TextFieldPassword txtPasswordField;
+    public TextFieldUsername txtUsernameField;
+    public TextFieldPassword txtPasswordField;
 
     //Constructor de Login
     public LoginUI() {

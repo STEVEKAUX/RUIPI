@@ -269,10 +269,10 @@ public class Home extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCerrarSesion;
-    private javax.swing.JButton btnConfig;
-    private javax.swing.JButton btnPacientes;
-    private javax.swing.JButton btnUsuarios;
+    public javax.swing.JButton btnCerrarSesion;
+    public javax.swing.JButton btnConfig;
+    public javax.swing.JButton btnPacientes;
+    public javax.swing.JButton btnUsuarios;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;

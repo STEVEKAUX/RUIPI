@@ -12,13 +12,13 @@ import java.sql.*;
  *
  * @author lenov
  */
-public class UsuarioDAO {
+public class UsuarioDAO extends Conexion {
     
     PreparedStatement ps;
     ResultSet rs;
     
     
-    Conexion con = new Conexion();
+    Conexion conn = new Conexion();
     Connection access;
     
     
@@ -29,7 +29,7 @@ public class UsuarioDAO {
         String query="SELECT * FROM Usuario WHERE password=? and username=?";
         
         try {
-            access=con.getConnection();
+            access=conn.getConnection();
             ps=access.prepareStatement(query);
             ps.setString(1, username);
              ps.setString(2, password);

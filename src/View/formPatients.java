@@ -33,7 +33,7 @@ public class formPatients extends javax.swing.JInternalFrame {
         initComponents();
         txtNombrePaciente.requestFocus(); //NO CAMBIA EL FOCO AL txtNombrePaciente!!!
         //toaster = new Toaster(new JPanel);    MODIFICAR!!
-        camposVacios();
+        emptyFields();
 
     }
 
@@ -79,17 +79,18 @@ public class formPatients extends javax.swing.JInternalFrame {
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         txtFCreacion = new javax.swing.JTextField();
-        btnGuardarP = new javax.swing.JButton();
+        btnSaveP = new javax.swing.JButton();
         jLabel19 = new javax.swing.JLabel();
-        btnAsociarHuella = new javax.swing.JButton();
+        btnAssociate = new javax.swing.JButton();
         comboEtnia = new javax.swing.JComboBox<>();
         jPanel4 = new javax.swing.JPanel();
-        btnEliminarP = new javax.swing.JButton();
-        btnIdentificarP = new javax.swing.JButton();
-        btnBuscarAct = new javax.swing.JButton();
+        btnDeleteP = new javax.swing.JButton();
+        btnIdentify = new javax.swing.JButton();
+        btnSearchUpdateP = new javax.swing.JButton();
+        btnClearP = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tabla = new javax.swing.JTable();
+        tableP = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(37, 51, 61));
         setBorder(null);
@@ -232,14 +233,14 @@ public class formPatients extends javax.swing.JInternalFrame {
         txtFCreacion.setBackground(new java.awt.Color(255, 255, 255));
         txtFCreacion.setToolTipText("");
 
-        btnGuardarP.setBackground(new java.awt.Color(108, 216, 158));
-        btnGuardarP.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        btnGuardarP.setForeground(new java.awt.Color(37, 51, 61));
-        btnGuardarP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/save_20px.png"))); // NOI18N
-        btnGuardarP.setText("Guardar");
-        btnGuardarP.addActionListener(new java.awt.event.ActionListener() {
+        btnSaveP.setBackground(new java.awt.Color(108, 216, 158));
+        btnSaveP.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        btnSaveP.setForeground(new java.awt.Color(37, 51, 61));
+        btnSaveP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/save_20px.png"))); // NOI18N
+        btnSaveP.setText("Guardar");
+        btnSaveP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGuardarPActionPerformed(evt);
+                btnSavePActionPerformed(evt);
             }
         });
 
@@ -247,13 +248,13 @@ public class formPatients extends javax.swing.JInternalFrame {
         jLabel19.setForeground(new java.awt.Color(108, 216, 158));
         jLabel19.setText("Asociar Huella*");
 
-        btnAsociarHuella.setBackground(new java.awt.Color(108, 216, 158));
-        btnAsociarHuella.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnAsociarHuella.setForeground(new java.awt.Color(37, 51, 61));
-        btnAsociarHuella.setIcon(new javax.swing.ImageIcon(getClass().getResource("/in_finger_20px.png"))); // NOI18N
-        btnAsociarHuella.addActionListener(new java.awt.event.ActionListener() {
+        btnAssociate.setBackground(new java.awt.Color(108, 216, 158));
+        btnAssociate.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnAssociate.setForeground(new java.awt.Color(37, 51, 61));
+        btnAssociate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/in_finger_20px.png"))); // NOI18N
+        btnAssociate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAsociarHuellaActionPerformed(evt);
+                btnAssociateActionPerformed(evt);
             }
         });
 
@@ -263,51 +264,61 @@ public class formPatients extends javax.swing.JInternalFrame {
 
         jPanel4.setBackground(new java.awt.Color(37, 51, 61));
 
-        btnEliminarP.setBackground(new java.awt.Color(108, 216, 158));
-        btnEliminarP.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnEliminarP.setForeground(new java.awt.Color(37, 51, 61));
-        btnEliminarP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/delete_user_20px.png"))); // NOI18N
-        btnEliminarP.setText("Eliminar");
+        btnDeleteP.setBackground(new java.awt.Color(108, 216, 158));
+        btnDeleteP.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        btnDeleteP.setForeground(new java.awt.Color(37, 51, 61));
+        btnDeleteP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/delete_user_20px.png"))); // NOI18N
+        btnDeleteP.setText("Eliminar");
 
-        btnIdentificarP.setBackground(new java.awt.Color(108, 216, 158));
-        btnIdentificarP.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        btnIdentificarP.setForeground(new java.awt.Color(37, 51, 61));
-        btnIdentificarP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fingerprint_20px.png"))); // NOI18N
-        btnIdentificarP.setText("Identificar");
-        btnIdentificarP.addActionListener(new java.awt.event.ActionListener() {
+        btnIdentify.setBackground(new java.awt.Color(108, 216, 158));
+        btnIdentify.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        btnIdentify.setForeground(new java.awt.Color(37, 51, 61));
+        btnIdentify.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fingerprint_20px.png"))); // NOI18N
+        btnIdentify.setText("Identificar");
+        btnIdentify.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnIdentificarPActionPerformed(evt);
+                btnIdentifyActionPerformed(evt);
             }
         });
 
-        btnBuscarAct.setBackground(new java.awt.Color(108, 216, 158));
-        btnBuscarAct.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        btnBuscarAct.setForeground(new java.awt.Color(37, 51, 61));
-        btnBuscarAct.setIcon(new javax.swing.ImageIcon(getClass().getResource("/search_20px.png"))); // NOI18N
-        btnBuscarAct.setText("Buscar y Actualizar");
-        btnBuscarAct.addActionListener(new java.awt.event.ActionListener() {
+        btnSearchUpdateP.setBackground(new java.awt.Color(108, 216, 158));
+        btnSearchUpdateP.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        btnSearchUpdateP.setForeground(new java.awt.Color(37, 51, 61));
+        btnSearchUpdateP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/search_20px.png"))); // NOI18N
+        btnSearchUpdateP.setText("Buscar y Actualizar");
+        btnSearchUpdateP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscarActActionPerformed(evt);
+                btnSearchUpdatePActionPerformed(evt);
             }
         });
+
+        btnClearP.setBackground(new java.awt.Color(108, 216, 158));
+        btnClearP.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        btnClearP.setForeground(new java.awt.Color(37, 51, 61));
+        btnClearP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/clear_20px.png"))); // NOI18N
+        btnClearP.setText("Limpiar");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addComponent(btnBuscarAct, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnSearchUpdateP, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnIdentificarP, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnIdentify, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnEliminarP, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(btnDeleteP, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnClearP)
+                .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(btnEliminarP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnIdentificarP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnBuscarAct))
+                .addComponent(btnDeleteP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnIdentify, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnSearchUpdateP)
+                .addComponent(btnClearP))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -315,7 +326,7 @@ public class formPatients extends javax.swing.JInternalFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(40, Short.MAX_VALUE)
+                .addContainerGap(36, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -342,7 +353,7 @@ public class formPatients extends javax.swing.JInternalFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtDNacimiento)
                             .addComponent(txtCNacimiento)
-                            .addComponent(btnAsociarHuella, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE))))
+                            .addComponent(btnAssociate, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -355,7 +366,7 @@ public class formPatients extends javax.swing.JInternalFrame {
                             .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(btnGuardarP)
+                        .addComponent(btnSaveP)
                         .addGap(37, 37, 37)))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -366,11 +377,11 @@ public class formPatients extends javax.swing.JInternalFrame {
                             .addComponent(txtDireccion, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(txtTipoDoc, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(txtNumDoc, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel16)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(txtFCreacion, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -383,7 +394,7 @@ public class formPatients extends javax.swing.JInternalFrame {
                                     .addComponent(comboGestante, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(comboEtnia, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                     .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -440,8 +451,8 @@ public class formPatients extends javax.swing.JInternalFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnAsociarHuella, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnGuardarP, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnAssociate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnSaveP, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel19)
@@ -454,9 +465,9 @@ public class formPatients extends javax.swing.JInternalFrame {
         jPanel3.setBackground(new java.awt.Color(37, 51, 61));
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(108, 216, 158)));
 
-        tabla.setBackground(new java.awt.Color(255, 255, 255));
-        tabla.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        tabla.setModel(new javax.swing.table.DefaultTableModel(
+        tableP.setBackground(new java.awt.Color(255, 255, 255));
+        tableP.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        tableP.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -472,9 +483,9 @@ public class formPatients extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(tabla);
-        if (tabla.getColumnModel().getColumnCount() > 0) {
-            tabla.getColumnModel().getColumn(14).setResizable(false);
+        jScrollPane1.setViewportView(tableP);
+        if (tableP.getColumnModel().getColumnCount() > 0) {
+            tableP.getColumnModel().getColumn(14).setResizable(false);
         }
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -530,9 +541,10 @@ public class formPatients extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtIdPacienteActionPerformed
 
-    private void btnAsociarHuellaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsociarHuellaActionPerformed
-        camposVacios();
-        btnGuardarP.setEnabled(false);
+    private void btnAssociateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAssociateActionPerformed
+        emptyFields();
+        btnSearchUpdateOff();
+        btnSaveP.setEnabled(false);
         
         if (isOpen == false) {
             formEnterFinger asociarHuella = new formEnterFinger(this);
@@ -547,9 +559,10 @@ public class formPatients extends javax.swing.JInternalFrame {
         }
        
         
-    }//GEN-LAST:event_btnAsociarHuellaActionPerformed
+    }//GEN-LAST:event_btnAssociateActionPerformed
 
-    private void btnGuardarPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarPActionPerformed
+    private void btnSavePActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSavePActionPerformed
+        btnSearchUpdateOn();    
         
         if (tipoQuery) {
             Insert();
@@ -562,13 +575,13 @@ public class formPatients extends javax.swing.JInternalFrame {
         id_paciente = 0;
         huellaPaciente=null;
         isOpen = false;
-        camposVacios();
+        emptyFields();
         btnAsociarOn();
         
-    }//GEN-LAST:event_btnGuardarPActionPerformed
+    }//GEN-LAST:event_btnSavePActionPerformed
 
 
-    private void btnIdentificarPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIdentificarPActionPerformed
+    private void btnIdentifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIdentifyActionPerformed
         System.out.println(isOpen);
         if (isOpen == false) {
             new formIdentifity(this).setVisible(true);
@@ -580,10 +593,10 @@ public class formPatients extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "Ya hay una ventana del 'Lector de Huellas' abierta");
         }
 
-    }//GEN-LAST:event_btnIdentificarPActionPerformed
+    }//GEN-LAST:event_btnIdentifyActionPerformed
 
-    private void btnBuscarActActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActActionPerformed
-        camposVacios();
+    private void btnSearchUpdatePActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchUpdatePActionPerformed
+        //emptyFields();
         
         String nombreBuscar = JOptionPane.showInputDialog(null, "Nombre o ID del paciente", "BÚSQUEDA DE PACIENTES", QUESTION_MESSAGE );
 
@@ -609,20 +622,21 @@ public class formPatients extends javax.swing.JInternalFrame {
         } catch (SQLException ex) {
             Logger.getLogger(formPatients.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_btnBuscarActActionPerformed
+    }//GEN-LAST:event_btnSearchUpdatePActionPerformed
 
     private void txtNombrePacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombrePacienteActionPerformed
             }//GEN-LAST:event_txtNombrePacienteActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAsociarHuella;
-    private javax.swing.JButton btnBuscarAct;
-    private javax.swing.JButton btnEliminarP;
-    private javax.swing.JButton btnGuardarP;
-    private javax.swing.JButton btnIdentificarP;
-    private javax.swing.JComboBox<String> comboEtnia;
-    private javax.swing.JComboBox<String> comboGestante;
+    public javax.swing.JButton btnAssociate;
+    public javax.swing.JButton btnClearP;
+    public javax.swing.JButton btnDeleteP;
+    public javax.swing.JButton btnIdentify;
+    public javax.swing.JButton btnSaveP;
+    public javax.swing.JButton btnSearchUpdateP;
+    public javax.swing.JComboBox<String> comboEtnia;
+    public javax.swing.JComboBox<String> comboGestante;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -641,25 +655,25 @@ public class formPatients extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
+    public javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tabla;
-    private javax.swing.JTextField txtApellidoPaaciente;
-    private javax.swing.JTextField txtCNacimiento;
-    private javax.swing.JTextField txtDNacimiento;
-    private javax.swing.JTextField txtDireccion;
-    private javax.swing.JTextField txtEdad;
-    private javax.swing.JTextField txtEmailPaciente;
-    private javax.swing.JTextField txtFCreacion;
-    private javax.swing.JTextField txtFNacimiento;
-    private javax.swing.JTextField txtIdPaciente;
-    private javax.swing.JTextField txtNombrePaciente;
-    private javax.swing.JTextField txtNumDoc;
-    private javax.swing.JTextField txtRH;
-    private javax.swing.JTextField txtSexo;
-    private javax.swing.JTextField txtTipoDoc;
+    public javax.swing.JTable tableP;
+    public javax.swing.JTextField txtApellidoPaaciente;
+    public javax.swing.JTextField txtCNacimiento;
+    public javax.swing.JTextField txtDNacimiento;
+    public javax.swing.JTextField txtDireccion;
+    public javax.swing.JTextField txtEdad;
+    public javax.swing.JTextField txtEmailPaciente;
+    public javax.swing.JTextField txtFCreacion;
+    public javax.swing.JTextField txtFNacimiento;
+    public javax.swing.JTextField txtIdPaciente;
+    public javax.swing.JTextField txtNombrePaciente;
+    public javax.swing.JTextField txtNumDoc;
+    public javax.swing.JTextField txtRH;
+    public javax.swing.JTextField txtSexo;
+    public javax.swing.JTextField txtTipoDoc;
     // End of variables declaration//GEN-END:variables
 
     /**
@@ -730,15 +744,15 @@ public class formPatients extends javax.swing.JInternalFrame {
 
     }
 
-    public void camposVacios() {
+    public void emptyFields() {
         boolean i = true;
         if (i) {
             try {
                 if ("".equals(txtNombrePaciente.getText())) {
-                    btnGuardarP.setEnabled(false);
+                    btnSaveP.setEnabled(false);
                     
                 } else {
-                    btnGuardarP.setEnabled(true);
+                    btnSaveP.setEnabled(true);
                     i = false;
                     
                 }
@@ -750,12 +764,22 @@ public class formPatients extends javax.swing.JInternalFrame {
     
     public void btnAsociarOff(){
         
-        btnAsociarHuella.setEnabled(false);
+        btnAssociate.setEnabled(false);
     }
     
     public void btnAsociarOn(){
         
-        btnAsociarHuella.setEnabled(true);
+        btnAssociate.setEnabled(true);
+    }
+    
+     public void btnSearchUpdateOff(){
+        
+        btnSearchUpdateP.setEnabled(false);
+    }
+    
+    public void btnSearchUpdateOn(){
+        
+        btnSearchUpdateP.setEnabled(true);
     }
 }
 

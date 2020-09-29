@@ -107,9 +107,9 @@ public class formEnterFinger extends javax.swing.JFrame {
      try{
      System.out.println("Las Caracteristicas de la Huella han sido creada");
      Reclutador.addFeatures(featuresinscripcion);// Agregar las caracteristicas de la huella a la plantilla a crear
-     Reclutador.addFeatures(featuresinscripcion);// Agregar las caracteristicas de la huella a la plantilla a crear
-     Reclutador.addFeatures(featuresinscripcion);// Agregar las caracteristicas de la huella a la plantilla a crear
-     Reclutador.addFeatures(featuresinscripcion);// Agregar las caracteristicas de la huella a la plantilla a crear
+     //Reclutador.addFeatures(featuresinscripcion);// Agregar las caracteristicas de la huella a la plantilla a crear
+     //Reclutador.addFeatures(featuresinscripcion);// Agregar las caracteristicas de la huella a la plantilla a crear
+     //Reclutador.addFeatures(featuresinscripcion);// Agregar las caracteristicas de la huella a la plantilla a crear
      
      // Dibuja la huella dactilar capturada.
      Image image=CrearImagenHuella(sample);
@@ -162,7 +162,7 @@ public class formEnterFinger extends javax.swing.JFrame {
      }
     
     public  void EstadoHuellas(){
-	     System.out.println("Muestra de Huellas Necesarias para Guardar Template "+ Reclutador.getFeaturesNeeded());
+	     System.out.println("Muestra de Huellas Necesarias para Guardar Template: "+ Reclutador.getFeaturesNeeded());
     }
     
     public  void stop(){
@@ -235,7 +235,7 @@ public class formEnterFinger extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(37, 51, 61));
-        jLabel1.setText("INGRESA LA HUELLA A ASOCIAR");
+        jLabel1.setText("INGRESA 4 VECES LA HUELLA A ASOCIAR ");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -302,7 +302,9 @@ public class formEnterFinger extends javax.swing.JFrame {
         fp.isOpen=false;
         fp.btnAsociarOn();
         
-        fp.camposVacios();
+        
+        
+        fp.emptyFields();
        datosHuella=null;
        
        
