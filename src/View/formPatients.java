@@ -562,6 +562,7 @@ public class formPatients extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnAssociateActionPerformed
 
     private void btnSavePActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSavePActionPerformed
+       
         btnSearchUpdateOn();    
         
         if (tipoQuery) {
