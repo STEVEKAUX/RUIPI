@@ -1,8 +1,8 @@
 package View;
 
 import Connector.Conexion;
-import Connector.UsuarioDAO;
-import Model.Usuario;
+import Connector.UserDAO;
+import Model.User;
 import Toaster.Toaster;
 import Utils.*;
 import java.awt.*;
@@ -17,8 +17,8 @@ public class LoginUI extends JFrame {
     Conexion con = new Conexion();
     Connection access;
     
-    UsuarioDAO udao = new UsuarioDAO();
-    Usuario u = new Usuario();
+    UserDAO udao = new UserDAO();
+    User u = new User();
     private final Toaster toaster;
 
     public String username = "";
@@ -67,7 +67,7 @@ public class LoginUI extends JFrame {
     //Obtiene el texto del campo de Nombre de usuario
     public String getUsername() {
         username = txtUsernameField.getText().toString();
-        System.out.println(username);
+       
         
         return username;
     }
@@ -75,7 +75,7 @@ public class LoginUI extends JFrame {
     //Obtiene el texto del campo de texto de COntraseña
     public String getPassword() {
         password = txtPasswordField.getText().toString();
-        System.out.println(password);
+        
         return password;
     }
 

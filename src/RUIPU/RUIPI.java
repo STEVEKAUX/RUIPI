@@ -14,6 +14,11 @@ import View.LoginUI;
 public class RUIPI {
      public static void main(String[] args) {
          LoginUI loginUI = new LoginUI();
+         /**User u = new User();
+         UserDAO uDao = new UserDAO();
+         formPatients fp = new formPatients();
+         PController pc= new PController(u, uDao, fp);**/
+         
     }
 
 }

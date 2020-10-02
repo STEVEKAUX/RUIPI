@@ -9,12 +9,12 @@ package View;
  *
  * @author lenov
  */
-public class formSettings extends javax.swing.JInternalFrame {
+public class FormSettings extends javax.swing.JInternalFrame {
 
     /**
-     * Creates new form formSettings
+     * Creates new form formUsers
      */
-    public formSettings() {
+    public FormSettings() {
         initComponents();
     }
 
@@ -27,6 +27,7 @@ public class formSettings extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        setBorder(null);
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
@@ -36,11 +37,11 @@ public class formSettings extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 394, Short.MAX_VALUE)
+            .addGap(0, 396, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 274, Short.MAX_VALUE)
+            .addGap(0, 276, Short.MAX_VALUE)
         );
 
         pack();

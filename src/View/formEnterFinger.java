@@ -107,9 +107,9 @@ public class formEnterFinger extends javax.swing.JFrame {
      try{
      System.out.println("Las Caracteristicas de la Huella han sido creada");
      Reclutador.addFeatures(featuresinscripcion);// Agregar las caracteristicas de la huella a la plantilla a crear
-     //Reclutador.addFeatures(featuresinscripcion);// Agregar las caracteristicas de la huella a la plantilla a crear
-     //Reclutador.addFeatures(featuresinscripcion);// Agregar las caracteristicas de la huella a la plantilla a crear
-     //Reclutador.addFeatures(featuresinscripcion);// Agregar las caracteristicas de la huella a la plantilla a crear
+     Reclutador.addFeatures(featuresinscripcion);// Agregar las caracteristicas de la huella a la plantilla a crear
+     Reclutador.addFeatures(featuresinscripcion);// Agregar las caracteristicas de la huella a la plantilla a crear
+     Reclutador.addFeatures(featuresinscripcion);// Agregar las caracteristicas de la huella a la plantilla a crear
      
      // Dibuja la huella dactilar capturada.
      Image image=CrearImagenHuella(sample);
@@ -178,11 +178,13 @@ public class formEnterFinger extends javax.swing.JFrame {
     
     public formEnterFinger(formPatients fp) {
         initComponents();
-    
+        //this.setAlwaysOnTop(true);
+        //fp.setEnabled(false);
         Iniciar();
         start();
         setLocationRelativeTo(null);
         this.fp = fp;
+        //fp.clearTable();
         
         //Establecemos el icono del proyecto en la barra de tareas y superior del Frame  
         Toolkit loginFrame = Toolkit.getDefaultToolkit();
@@ -293,6 +295,8 @@ public class formEnterFinger extends javax.swing.JFrame {
 
     private void btnGuardarHuellaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarHuellaActionPerformed
         
+        
+        
         ByteArrayInputStream datosHuella = new ByteArrayInputStream(template.serialize());
         fp.setHuellaPaciente(datosHuella);
         Integer tamañoHuella=template.serialize().length;
@@ -300,19 +304,24 @@ public class formEnterFinger extends javax.swing.JFrame {
         fp.isOpen=true;
         dispose();
         fp.isOpen=false;
-        fp.btnAsociarOn();
+        //fp.btnAsociarOn();
+        fp.disableButtons(true, false, false);
+        //fp.setEnabled(true);
         
-        
-        
-        fp.emptyFields();
-       datosHuella=null;
+        //fp.emptyFields();
+        //datosHuella=null;
        
        
     }//GEN-LAST:event_btnGuardarHuellaActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        //fp.btnSearchUpdateOn();
+        fp.disableButtons(false, true, true);
+        huella=null;
         stop();
         fp.isOpen=false;
+        //fp.setEnabled(true);
+        
     }//GEN-LAST:event_formWindowClosing
 
 
