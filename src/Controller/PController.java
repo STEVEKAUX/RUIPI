@@ -7,7 +7,7 @@ package Controller;
 
 import Connector.UserDAO;
 import Model.User;
-import View.formPatients;
+import View.FormPatients;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -19,10 +19,10 @@ public class PController implements ActionListener{
     
     private UserDAO udao;
     private User u;
-    private formPatients fp;
+    private FormPatients fp;
 
     
-    public PController(User u, UserDAO udao, formPatients fp){
+    public PController(User u, UserDAO udao, FormPatients fp){
         
         this.u=u;
         this.udao=udao;

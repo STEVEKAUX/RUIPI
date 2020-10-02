@@ -9,12 +9,12 @@ package View;
  *
  * @author lenov
  */
-public class FormSettings extends javax.swing.JInternalFrame {
+public class formSettings extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form formUsers
      */
-    public FormSettings() {
+    public formSettings() {
         initComponents();
     }
 

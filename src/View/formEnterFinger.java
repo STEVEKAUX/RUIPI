@@ -30,7 +30,7 @@ import javax.swing.SwingUtilities;
  *
  * @author lenov
  */
-public class formEnterFinger extends javax.swing.JFrame {
+public class FormEnterFinger extends javax.swing.JFrame {
 
     //variable global
     
@@ -53,7 +53,7 @@ public class formEnterFinger extends javax.swing.JFrame {
     public static String TEMPLATE_PROPERTY = "template";
     public DPFPFeatureSet featuresinscripcion;
     public DPFPFeatureSet featuresverificacion;
-    private final formPatients fp;
+    private final FormPatients fp;
  
     
     protected void Iniciar(){
@@ -176,7 +176,7 @@ public class formEnterFinger extends javax.swing.JFrame {
     }
     
     
-    public formEnterFinger(formPatients fp) {
+    public FormEnterFinger(FormPatients fp) {
         initComponents();
         //this.setAlwaysOnTop(true);
         //fp.setEnabled(false);

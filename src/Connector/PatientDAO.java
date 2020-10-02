@@ -5,12 +5,9 @@
  */
 package Connector;
 
-import Model.Patient;
-import java.util.List;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.ArrayList;
 
 /**
  *
@@ -23,34 +20,34 @@ public class PatientDAO {
     PreparedStatement ps;
     ResultSet rs;
     
-
-   public List toList() {
-        
-        List <Patient> listP = new ArrayList<>();
-        String query ="SELECT * FROM paciente";
-        try {
-            conn=con.getConnection();
-            ps=conn.prepareStatement(query);
-            rs=ps.executeQuery();
-            
-            while(rs.next()){
-                Patient p = new Patient();
-                p.setIdPaciente(rs.getInt(1));
-                p.setNombre(rs.getString(2));
-                
-                listP.add(p);
-                
-            }
-            
-        } catch (Exception e) {
-        }
-        
-        return listP;
-       
-    }
-
-    public void delete() {
-        
-    }
+//
+//   public List toList() {
+//        
+//        List <Patient> listP = new ArrayList<>();
+//        String query ="SELECT * FROM paciente";
+//        try {
+//            conn=con.getConnection();
+//            ps=conn.prepareStatement(query);
+//            rs=ps.executeQuery();
+//            
+//            while(rs.next()){
+//                Patient p = new Patient();
+//                p.setIdPaciente(rs.getInt(1));
+//                p.setNombre(rs.getString(2));
+//                
+//                listP.add(p);
+//                
+//            }
+//            
+//        } catch (Exception e) {
+//        }
+//        
+//        return listP;
+//       
+//    }
+//
+//    public void delete() {
+//        
+//    }
     
 }

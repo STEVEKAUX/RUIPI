@@ -424,7 +424,7 @@ public class LoginUI extends JFrame {
                     u=udao.validarUsuario(username, password);
                     if(u.getUsername() != null && u.getPassword() != null){
                         Home h = new Home();
-                        loginEventHandler();
+                        //loginEventHandler();
                         h.setVisible(true);
                         
                         dispose();

@@ -21,7 +21,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author lenov
  */
-public class formPatients extends javax.swing.JInternalFrame {
+public class FormPatients extends javax.swing.JInternalFrame {
 
     private ByteArrayInputStream huellaPaciente;
     Integer sizeHuella;
@@ -34,7 +34,7 @@ public class formPatients extends javax.swing.JInternalFrame {
   
    
 
-    public formPatients() {
+    public FormPatients() {
         setQueryInsert();
         initComponents();
         //  emptyFields();
@@ -541,7 +541,7 @@ public class formPatients extends javax.swing.JInternalFrame {
         disableButtons(false, false, false);
 
         if (isOpen == false) {
-            formEnterFinger asociarHuella = new formEnterFinger(this);
+            FormEnterFinger asociarHuella = new FormEnterFinger(this);
             asociarHuella.setVisible(true);
             isOpen = true;
 
@@ -611,7 +611,7 @@ public class formPatients extends javax.swing.JInternalFrame {
                     }
 
                 } catch (SQLException ex) {
-                    Logger.getLogger(formPatients.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(FormPatients.class.getName()).log(Level.SEVERE, null, ex);
                     //JOptionPane.showMessageDialog(this, "El paciente NO está registrado en RUIPI","NO HAY REGISTRO", JOptionPane.ERROR_MESSAGE);
 
                 }
@@ -678,7 +678,7 @@ public class formPatients extends javax.swing.JInternalFrame {
             }
 
         } catch (SQLException ex) {
-            Logger.getLogger(formPatients.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FormPatients.class.getName()).log(Level.SEVERE, null, ex);
             //JOptionPane.showMessageDialog(this, "El paciente NO está registrado en RUIPI","NO HAY REGISTRO", JOptionPane.ERROR_MESSAGE);
 
         }
@@ -711,7 +711,7 @@ public class formPatients extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "El paciente '" + txtNombrePaciente.getText() + "' se guardó con éxito","Paciente Registrado en RUIPI", JOptionPane.INFORMATION_MESSAGE);
             clearFields();
         } catch (SQLException ex) {
-            Logger.getLogger(formPatients.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FormPatients.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
@@ -737,7 +737,7 @@ public class formPatients extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(null, "La actualización del paciente '" + txtNombrePaciente.getText() + "' se guardó con éxito","Paciente Actualizado",JOptionPane.INFORMATION_MESSAGE);
                 clearFields();
             } catch (SQLException ex) {
-                Logger.getLogger(formPatients.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(FormPatients.class.getName()).log(Level.SEVERE, null, ex);
             }
 
         }
