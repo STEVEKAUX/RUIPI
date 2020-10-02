@@ -16,6 +16,9 @@ public class User {
     private String fechaUsuario;
     private String idEmpresa;
     private int idTipoUsuario;
+    private String nombre_tipo_usuario;
+
+    
 
     public User() {
     }
@@ -136,4 +139,11 @@ public class User {
         this.idTipoUsuario = idTipoUsuario;
     }
 
+    public String getNombre_tipo_usuario() {
+        return nombre_tipo_usuario;
+    }
+
+    public void setNombre_tipo_usuario(String nombre_tipo_usuario) {
+        this.nombre_tipo_usuario = nombre_tipo_usuario;
+    }
 }

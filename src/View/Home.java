@@ -13,6 +13,8 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 
@@ -33,7 +35,7 @@ public class Home extends javax.swing.JFrame {
         Image ruipiIcon = loginFrame.getImage("resource/icon.png");
         setIconImage(ruipiIcon);
         this.setTitle("RUIPI Inicio");
-        setUsernameTypeU();
+        setUOnline();
     }
 
     /**
@@ -172,12 +174,10 @@ public class Home extends javax.swing.JFrame {
         lblUsername.setBackground(new java.awt.Color(108, 216, 158));
         lblUsername.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         lblUsername.setForeground(new java.awt.Color(37, 51, 61));
-        lblUsername.setText("Usuario");
 
         lblUserType.setBackground(new java.awt.Color(108, 216, 158));
         lblUserType.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         lblUserType.setForeground(new java.awt.Color(37, 51, 61));
-        lblUserType.setText("Tipo Usuario");
 
         jLabel2.setBackground(new java.awt.Color(108, 216, 158));
         jLabel2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
@@ -238,7 +238,6 @@ public class Home extends javax.swing.JFrame {
         frame.show();
     }
 
-    
     public void close() {
         Object[] opciones = {"Aceptar", "Cancelar"};
         int eleccion = JOptionPane.showOptionDialog(rootPane, "¿Realmente desea salir de la aplicación?", "Saliendo de RUIPI",
@@ -249,11 +248,31 @@ public class Home extends javax.swing.JFrame {
         } else {
         }
     }
-    
+
     //Establece el nombre de usuario y el tipo de usuario que inició sesiónn en la parte baja del frame
-     public void setUsernameTypeU(){
-         //TODO
-     }
+    public void setUOnline() {
+
+        Conexion cn = new Conexion();
+        Connection cnn = cn.getConnection();
+        PreparedStatement ps;
+        ResultSet rs;
+        String query = "SELECT u.username, u.idtipo_usuario, t.nombre_tipo_usuario FROM usuario AS u "
+                + "INNER JOIN tipo_usuario AS t ON u.idtipo_usuario=t.id_tipo_usuario";
+        try {
+
+            ps = cnn.prepareStatement(query);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                lblUsername.setText(rs.getString("username"));
+                lblUserType.setText(rs.getString("nombre_tipo_usuario"));
+            }
+
+        } catch (Exception e) {
+
+        }
+
+    }
 
     private void btnPacientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPacientesActionPerformed
         FormPatients fp = new FormPatients();
@@ -281,11 +300,10 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_btnUsuariosActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-       access = (Connection) con.disconnect();
+        access = (Connection) con.disconnect();
         //close();
-        
-    }//GEN-LAST:event_formWindowClosing
 
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments

@@ -272,7 +272,6 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="3d" green="33" red="25" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Usuario"/>
           </Properties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
@@ -289,7 +288,6 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="3d" green="33" red="25" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Tipo Usuario"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">
