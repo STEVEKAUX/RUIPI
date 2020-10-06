@@ -16,9 +16,9 @@ public class LoginUI extends JFrame {
     //Variables globales
     Conexion con = new Conexion();
     Connection access;
-    
+
     UserDAO udao = new UserDAO();
-    User u = new User();
+    User u ;
     private final Toaster toaster;
 
     public String username = "";
@@ -65,17 +65,16 @@ public class LoginUI extends JFrame {
     }
 
     //Obtiene el texto del campo de Nombre de usuario
-    public String getUsername() {
+    public String getUsernameField() {
         username = txtUsernameField.getText().toString();
-       
-        
+
         return username;
     }
 
     //Obtiene el texto del campo de texto de COntraseña
-    public String getPassword() {
+    public String getPasswordField() {
         password = txtPasswordField.getText().toString();
-        
+
         return password;
     }
 
@@ -117,7 +116,7 @@ public class LoginUI extends JFrame {
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                access=(Connection) con.disconnect();
+                access = (Connection) con.disconnect();
                 System.exit(0);
                 //close();
             }
@@ -136,9 +135,8 @@ public class LoginUI extends JFrame {
     }
 
     /**
-     * //MINIMIZAR public void minimize() {      *
-     * this.setExtendedState(ICONIFIED);{ 
-    }}*
+     * //MINIMIZAR public void minimize() { *
+     * this.setExtendedState(ICONIFIED);{ }}*
      */
     //CONFIRMAR ACCIÓN DE SALIR
     public void close() {
@@ -220,7 +218,7 @@ public class LoginUI extends JFrame {
             @Override
             public void keyTyped(KeyEvent e) {
                 if (e.getKeyChar() == KeyEvent.VK_ENTER) {
-                    validar();
+                    validateLogin();
                 }
             }
         });
@@ -257,7 +255,7 @@ public class LoginUI extends JFrame {
 
             @Override
             public void mousePressed(MouseEvent e) {
-                validar();
+                validateLogin();
 
             }
 
@@ -275,7 +273,6 @@ public class LoginUI extends JFrame {
                 loginButton.repaint();
             }
 
-           
         });
 
         loginButton.setBackground(UIUtils.COLOR_BACKGROUND);
@@ -313,8 +310,7 @@ public class LoginUI extends JFrame {
 
             /**
              * @Override public void mousePressed(MouseEvent e) {
-             * exitEventHandler();
-            }*
+             * exitEventHandler(); }*
              */
             @Override
             public void mouseEntered(MouseEvent e) {
@@ -332,7 +328,7 @@ public class LoginUI extends JFrame {
 
             @Override
             public void mouseClicked(MouseEvent e) {
-                access=(Connection) con.disconnect();
+                access = (Connection) con.disconnect();
                 close();
             }
         });
@@ -381,15 +377,13 @@ public class LoginUI extends JFrame {
      * minButton.setBackground(UIUtils. COLOR_BACKGROUND);
      * minButton.setBounds(745, 20, 35, 8);
      * minButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-     * panel1.add(minButton);
-    }*
+     * panel1.add(minButton); }*
      */
     /**
      * método retirado porque solo el Administrador puede registrar nuevos
      * usuarios private void addRegisterButton(JPanel panel1) { panel1.add(new
      * HyperlinkText(UIUtils.BUTTON_TEXT_REGISTER, 613, 150, () -> {
-     * toaster.success("Regristrarme en RUIPI"); }));
-    }*
+     * toaster.success("Regristrarme en RUIPI"); })); }*
      */
     //ALERTAS
     private void addForgotPasswordButton(JPanel panel1) {
@@ -406,34 +400,48 @@ public class LoginUI extends JFrame {
         toaster.error("¡Hay campos vacíos!");
     }
 
-    
-      private void dataErrorEventHandler() { 
-          toaster.error("¡Datos inválidos!");
-        }
-     
-      
-       public void validar() {
-                String username = getUsername();
-                String password = getPassword();
+    private void dataErrorEventHandler() {
+        toaster.error("¡Datos inválidos!"); 
+    }
 
-                if (getUsername().equals("") || getPassword().equals("") || getUsername().equals("Nombre de Usuario") || getPassword().equals("contraseña")) {
-                    loginErrorEventHandler();
-                    txtUsernameField.requestFocus();
+    public void validateLogin() {
+        String username = getUsernameField();
+        String password = getPasswordField();
 
-                } else {
-                    u=udao.validarUsuario(username, password);
-                    if(u.getUsername() != null && u.getPassword() != null){
-                        Home h = new Home();
-                        //loginEventHandler();
-                        h.setVisible(true);
-                        
-                        dispose();
-                        
-                    }else{
-                        dataErrorEventHandler();
-                        txtPasswordField.requestFocus();
-                    }
+        if (getUsernameField().equals("") || getPasswordField().equals("") || getUsernameField().equals("Nombre de Usuario") || getPasswordField().equals("contraseña")) {
+            loginErrorEventHandler();
+            txtUsernameField.requestFocus();
 
+        } else {
+            u = udao.userValidator(username, password);
+          
+            if (u.getUsername() != null && u.getPassword() != null) {   
+                   
+                Home h = new Home();
+                //loginEventHandler();
+                h.setVisible(true);
+                h.lblUsername.setText(getUsernameField());
+                switch (u.getIdTipoUsuario()) {
+                    case 1:
+                        h.lblUserType.setText("Superusuario");
+                        break;
+                    case 2:
+                        h.lblUserType.setText("Usuario Estándar");
+                        break;
+                    case 3:
+                        h.lblUserType.setText("Usuario Básico");
+                        break;
+                    default:
+                        break;
                 }
+
+                dispose();
+
+            } else {
+                dataErrorEventHandler();
+                txtPasswordField.requestFocus();
             }
+
+        }
+    }
 }

@@ -35,7 +35,7 @@ public class Home extends javax.swing.JFrame {
         Image ruipiIcon = loginFrame.getImage("resource/icon.png");
         setIconImage(ruipiIcon);
         this.setTitle("RUIPI Inicio");
-        setUOnline();
+        //setUOnline();
     }
 
     /**
@@ -57,8 +57,8 @@ public class Home extends javax.swing.JFrame {
         btnConfig = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         lblUsername = new javax.swing.JLabel();
-        lblUserType = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        lblUserType = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -175,36 +175,37 @@ public class Home extends javax.swing.JFrame {
         lblUsername.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         lblUsername.setForeground(new java.awt.Color(37, 51, 61));
 
-        lblUserType.setBackground(new java.awt.Color(108, 216, 158));
-        lblUserType.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        lblUserType.setForeground(new java.awt.Color(37, 51, 61));
-
         jLabel2.setBackground(new java.awt.Color(108, 216, 158));
         jLabel2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(37, 51, 61));
         jLabel2.setText(":");
 
+        lblUserType.setBackground(new java.awt.Color(108, 216, 158));
+        lblUserType.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        lblUserType.setForeground(new java.awt.Color(37, 51, 61));
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
+                .addComponent(lblUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel2)
-                .addGap(12, 12, 12)
-                .addComponent(lblUserType, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(lblUserType, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(0, 0, 0)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblUsername)
-                    .addComponent(lblUserType)
-                    .addComponent(jLabel2))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblUserType, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lblUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel2)))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -250,29 +251,52 @@ public class Home extends javax.swing.JFrame {
     }
 
     //Establece el nombre de usuario y el tipo de usuario que inició sesiónn en la parte baja del frame
-    public void setUOnline() {
-
-        Conexion cn = new Conexion();
-        Connection cnn = cn.getConnection();
-        PreparedStatement ps;
-        ResultSet rs;
-        String query = "SELECT u.username, u.idtipo_usuario, t.nombre_tipo_usuario FROM usuario AS u "
-                + "INNER JOIN tipo_usuario AS t ON u.idtipo_usuario=t.id_tipo_usuario";
-        try {
-
-            ps = cnn.prepareStatement(query);
-            rs = ps.executeQuery();
-
-            while (rs.next()) {
-                lblUsername.setText(rs.getString("username"));
-                lblUserType.setText(rs.getString("nombre_tipo_usuario"));
-            }
-
-        } catch (Exception e) {
-
-        }
-
-    }
+//    public void setUOnline() {
+//
+//        Conexion cn = new Conexion();
+//        Connection cnn = cn.getConnection();
+//        PreparedStatement ps;
+//        ResultSet rs;
+//        Home h = null;
+//        String query = "SELECT u.username, u.idtipo_usuario, t.nombre_tipo_usuario FROM usuario AS u "
+//                + "INNER JOIN tipo_usuario AS t ON u.idtipo_usuario=t.id_tipo_usuario";
+//        try {
+//
+//            ps = cnn.prepareStatement(query);
+//            rs = ps.executeQuery();
+//
+//            while (rs.next()) {
+//                lblUsername.setText(rs.getString("username"));
+//                lblUserType.setText(rs.getString("nombre_tipo_usuario"));
+//                
+//                
+//            }
+//            //REVISAR CASOS PARA TIPOS DE USUARIO
+////            switch(rs.getInt("idtipo_usuario")){
+////                case 1: System.out.println(rs.getInt("idtipo_usuario"));;
+////                break;
+////                case 2: h.btnConfig.setEnabled(false);
+////                break;
+////                case 3: h.btnConfig.setEnabled(false);
+////                break;
+////            }
+//
+//        } catch (Exception e) {
+//
+//       }
+//
+//    }
+    
+//    public void privileges(){
+//        Conexion cn = new Conexion();
+//        Connection cnn = cn.getConnection();
+//        PreparedStatement ps;
+//        ResultSet rs;
+//        String query="SELECT u.idtipo_usuario, t.nombre_tipo_usuario FROM usuario AS u" 
+//                +"INNER JOIN tipo_usuario AS t ON u.idtipo_usuario=t.id_tipo_usuario";
+//        
+//        
+//    }
 
     private void btnPacientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPacientesActionPerformed
         FormPatients fp = new FormPatients();
@@ -351,7 +375,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JLabel lblUserType;
+    public javax.swing.JLabel lblUserType;
     public javax.swing.JLabel lblUsername;
     // End of variables declaration//GEN-END:variables
 }

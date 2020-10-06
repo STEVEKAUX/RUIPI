@@ -14,7 +14,7 @@ public class User {
     private String area;
     private String ultimaSesion;
     private String fechaUsuario;
-    private String idEmpresa;
+    private int idEmpresa;
     private int idTipoUsuario;
     private String nombre_tipo_usuario;
 
@@ -25,7 +25,7 @@ public class User {
 
     //Constructor de la clase User
     public User(int idUsuario, String username, String password, String nombreUsuario, String apellidoUsuario,
-            String cargo, String area, String ultimaSesion, String fechaUsuario, String idEmpresa, int idTipoUsuario) {
+            String cargo, String area, String ultimaSesion, String fechaUsuario, int idEmpresa, int idTipoUsuario) {
         this.idUsuario = idUsuario;
         this.username = username;
         this.password = password;
@@ -123,11 +123,11 @@ public class User {
         this.fechaUsuario = fechaUsuario;
     }
     
-    public String getIdEmpresa() {
+    public int getIdEmpresa() {
         return idEmpresa;
     }
 
-    public void setIdEmpresa(String idEmpresa) {
+    public void setIdEmpresa(int idEmpresa) {
         this.idEmpresa = idEmpresa;
     }
 

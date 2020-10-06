@@ -120,6 +120,7 @@ public class FormPatients extends javax.swing.JInternalFrame {
         txtIdPaciente.setEditable(false);
         txtIdPaciente.setBackground(new java.awt.Color(187, 187, 187));
         txtIdPaciente.setToolTipText("");
+        txtIdPaciente.setRequestFocusEnabled(false);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(108, 216, 158));

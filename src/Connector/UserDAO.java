@@ -22,19 +22,21 @@ public class UserDAO {
     Connection access;
     
     
-    public User validarUsuario(String username, String password){
+    public User userValidator(String username, String password){
         
         User user = new User();
         
-        String query="SELECT * FROM Usuario WHERE password=? and username=?";
+        String query="SELECT id_usuario, nombre_usuario, apellidos_usuario, username, password, email_usuario, cargo, area, "
+                + "ultima_sesion, fecha_usuario, id_empresa, idtipo_usuario FROM Usuario WHERE password=? and username=?";
         
         try {
             access=con.getConnection();
             ps=access.prepareStatement(query);
-            ps.setString(1, username);
-             ps.setString(2, password);
-            rs=ps.executeQuery();
+            ps.setString(1, password);
+            ps.setString(2, username);
             
+            rs=ps.executeQuery();
+                       
             while(rs.next()){
                 user.setIdTipoUsuario(rs.getInt(1));
                 user.setNombreUsuario(rs.getString(2));
@@ -46,8 +48,8 @@ public class UserDAO {
                 user.setArea(rs.getString(8));
                 user.setUltimaSesion(rs.getString(9));
                 user.setFechaUsuario(rs.getString(10));
-                user.setIdEmpresa(rs.getString(11));
-                user.setIdTipoUsuario(rs.getInt(11));
+                user.setIdEmpresa(rs.getInt(11));
+                user.setIdTipoUsuario(rs.getInt(12));
                 
             }
         } catch (Exception e) {
