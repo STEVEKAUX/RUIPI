@@ -63,9 +63,7 @@ public class FormPatients extends javax.swing.JInternalFrame {
         jLabel4 = new javax.swing.JLabel();
         txtFNacimiento = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        txtCNacimiento = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        txtDNacimiento = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         txtDireccion = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
@@ -75,9 +73,7 @@ public class FormPatients extends javax.swing.JInternalFrame {
         jLabel10 = new javax.swing.JLabel();
         txtEmailPaciente = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
-        txtSexo = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
-        txtRH = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
         comboGestante = new javax.swing.JComboBox<>();
         jLabel14 = new javax.swing.JLabel();
@@ -94,6 +90,10 @@ public class FormPatients extends javax.swing.JInternalFrame {
         btnSearchUpdateP = new javax.swing.JButton();
         btnDeleteP = new javax.swing.JButton();
         txtPYDT = new javax.swing.JTextField();
+        comboMunicipio = new javax.swing.JComboBox<>();
+        comboComunidad = new javax.swing.JComboBox<>();
+        comboRh = new javax.swing.JComboBox<>();
+        comboSexo = new javax.swing.JComboBox<>();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableP = new javax.swing.JTable();
@@ -145,17 +145,11 @@ public class FormPatients extends javax.swing.JInternalFrame {
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(108, 216, 158));
-        jLabel5.setText("Ciudad Nacimiento");
-
-        txtCNacimiento.setBackground(new java.awt.Color(255, 255, 255));
-        txtCNacimiento.setToolTipText("");
+        jLabel5.setText("Municipio");
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(108, 216, 158));
-        jLabel6.setText("Dpto Nacimiento");
-
-        txtDNacimiento.setBackground(new java.awt.Color(255, 255, 255));
-        txtDNacimiento.setToolTipText("");
+        jLabel6.setText("Comunidad");
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(108, 216, 158));
@@ -189,21 +183,16 @@ public class FormPatients extends javax.swing.JInternalFrame {
         jLabel11.setForeground(new java.awt.Color(108, 216, 158));
         jLabel11.setText("Sexo");
 
-        txtSexo.setBackground(new java.awt.Color(255, 255, 255));
-        txtSexo.setToolTipText("");
-
         jLabel12.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(108, 216, 158));
         jLabel12.setText("RH");
-
-        txtRH.setBackground(new java.awt.Color(255, 255, 255));
-        txtRH.setToolTipText("");
 
         jLabel13.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(108, 216, 158));
         jLabel13.setText("Gestante");
 
         comboGestante.setBackground(new java.awt.Color(255, 255, 255));
+        comboGestante.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         comboGestante.setForeground(new java.awt.Color(37, 51, 61));
         comboGestante.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIONAR", "SI", "NO" }));
 
@@ -216,6 +205,7 @@ public class FormPatients extends javax.swing.JInternalFrame {
         jLabel15.setText("Etnia");
 
         comboEtnia.setBackground(new java.awt.Color(255, 255, 255));
+        comboEtnia.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         comboEtnia.setForeground(new java.awt.Color(37, 51, 61));
         comboEtnia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIONAR", "Arhuaco", "Kogui", "Wiwa" }));
 
@@ -318,6 +308,25 @@ public class FormPatients extends javax.swing.JInternalFrame {
         txtPYDT.setEditable(false);
         txtPYDT.setBackground(new java.awt.Color(187, 187, 187));
 
+        comboMunicipio.setBackground(new java.awt.Color(255, 255, 255));
+        comboMunicipio.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        comboMunicipio.setForeground(new java.awt.Color(37, 51, 61));
+        comboMunicipio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIONAR", "Santa Marta", "Aracataca", "Dibulla", "Cienaga", "Fundación", "Rioacha" }));
+
+        comboComunidad.setBackground(new java.awt.Color(255, 255, 255));
+        comboComunidad.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        comboComunidad.setForeground(new java.awt.Color(37, 51, 61));
+        comboComunidad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIONAR", "---------------------", "Gonawindua", "Gogzezhi", "Uleizhi", "Chivilongui", "Bunkwimake", "---------------------", "Gunmako", "Serankwa", "Dwanawimaku", "---------------------", "Pueblo Viejo", "Seiviaka", "Kasakumake", "Atigumake", "Gomake", "Parquesito", "Dumingueka", "---------------------", "Cherwa", "Sanantonio", "---------------------", "Kankawarwa", "Kantinurwa", "Vindiva", "Bunkwamake", "Singuney", "---------------------", "Carrizal" }));
+
+        comboRh.setBackground(new java.awt.Color(255, 255, 255));
+        comboRh.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        comboRh.setForeground(new java.awt.Color(37, 51, 61));
+        comboRh.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIONAR", "A+", "A-", "AB+", "AB-", "B+", "B-", "O+", "O-" }));
+
+        comboSexo.setBackground(new java.awt.Color(255, 255, 255));
+        comboSexo.setForeground(new java.awt.Color(37, 51, 61));
+        comboSexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIONAR\t", "Masculino", "Femenino", "Otro" }));
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -348,9 +357,9 @@ public class FormPatients extends javax.swing.JInternalFrame {
                             .addComponent(jLabel19))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtDNacimiento)
-                            .addComponent(txtCNacimiento)
-                            .addComponent(btnAssociate, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE))))
+                            .addComponent(btnAssociate, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)
+                            .addComponent(comboComunidad, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(comboMunicipio, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -367,37 +376,42 @@ public class FormPatients extends javax.swing.JInternalFrame {
                         .addGap(37, 37, 37)))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtRH, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
-                            .addComponent(txtSexo)
-                            .addComponent(txtEmailPaciente)
-                            .addComponent(txtDireccion, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtTipoDoc, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtNumDoc, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel16)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtFCreacion, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel13)
-                                    .addComponent(jLabel15)
-                                    .addComponent(jLabel14))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(comboGestante, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(comboEtnia, javax.swing.GroupLayout.Alignment.TRAILING, 0, 180, Short.MAX_VALUE)
-                                    .addComponent(txtPYDT, javax.swing.GroupLayout.Alignment.TRAILING))
-                                .addGap(1, 1, 1))))
-                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(36, Short.MAX_VALUE))
+                                    .addComponent(txtEmailPaciente, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
+                                    .addComponent(txtDireccion, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(txtTipoDoc, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(txtNumDoc, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(jLabel16)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(txtFCreacion, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel13)
+                                            .addComponent(jLabel15)
+                                            .addComponent(jLabel14))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(comboGestante, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(comboEtnia, javax.swing.GroupLayout.Alignment.TRAILING, 0, 180, Short.MAX_VALUE)
+                                            .addComponent(txtPYDT, javax.swing.GroupLayout.Alignment.TRAILING))
+                                        .addGap(1, 1, 1))))
+                            .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(36, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(comboRh, 0, 180, Short.MAX_VALUE)
+                            .addComponent(comboSexo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(36, Short.MAX_VALUE)
+                .addContainerGap(28, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(comboGestante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -436,16 +450,16 @@ public class FormPatients extends javax.swing.JInternalFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
-                            .addComponent(txtCNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel11)
-                            .addComponent(txtSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(comboMunicipio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(comboSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6)
-                            .addComponent(txtDNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel12)
-                            .addComponent(txtRH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
+                            .addComponent(comboComunidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(comboRh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -794,18 +808,16 @@ public class FormPatients extends javax.swing.JInternalFrame {
         txtNombrePaciente.setText("");
         txtApellidoPaciente.setText("");
         txtFNacimiento.setText("");
-        txtCNacimiento.setText("");
-        txtDNacimiento.setText("");
+        comboMunicipio.setSelectedIndex(0);
+        comboComunidad.setSelectedIndex(0);
         txtDireccion.setText("");
         txtTipoDoc.setText("");
         txtNumDoc.setText("");
         txtEmailPaciente.setText("");
-        txtSexo.setText("");
-        txtRH.setText("");
+        comboSexo.setSelectedIndex(0);
+        comboRh.setSelectedIndex(0);
         comboGestante.setSelectedIndex(0);
         comboEtnia.setSelectedIndex(0);
-        //txtComunidad.setText("");
-        //txtMunicipio.setText("");
         txtPYDT.setText("");
         huellaPaciente = null;
         //btnSavePOff();
@@ -862,8 +874,12 @@ public class FormPatients extends javax.swing.JInternalFrame {
     public javax.swing.JButton btnNewP;
     public javax.swing.JButton btnSaveP;
     public javax.swing.JButton btnSearchUpdateP;
+    private javax.swing.JComboBox<String> comboComunidad;
     public javax.swing.JComboBox<String> comboEtnia;
     public javax.swing.JComboBox<String> comboGestante;
+    private javax.swing.JComboBox<String> comboMunicipio;
+    private javax.swing.JComboBox<String> comboRh;
+    private javax.swing.JComboBox<String> comboSexo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -888,8 +904,6 @@ public class FormPatients extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     public javax.swing.JTable tableP;
     public javax.swing.JTextField txtApellidoPaciente;
-    public javax.swing.JTextField txtCNacimiento;
-    public javax.swing.JTextField txtDNacimiento;
     public javax.swing.JTextField txtDireccion;
     public javax.swing.JTextField txtEmailPaciente;
     public javax.swing.JTextField txtFCreacion;
@@ -898,8 +912,6 @@ public class FormPatients extends javax.swing.JInternalFrame {
     public javax.swing.JTextField txtNombrePaciente;
     public javax.swing.JTextField txtNumDoc;
     private javax.swing.JTextField txtPYDT;
-    public javax.swing.JTextField txtRH;
-    public javax.swing.JTextField txtSexo;
     public javax.swing.JTextField txtTipoDoc;
     // End of variables declaration//GEN-END:variables
 
