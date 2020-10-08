@@ -7,14 +7,12 @@ package View;
 
 //Variables globales
 import Connector.Conexion;
-import java.awt.Color;
+import Utils.UIUtils;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 
@@ -23,6 +21,7 @@ public class Home extends javax.swing.JFrame {
     //Variables globales
     Conexion con = new Conexion();
     Connection access;
+    UIUtils utils= new UIUtils();
 
     //Constructror de Home
     public Home() {
@@ -49,7 +48,7 @@ public class Home extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jDesktopPane1 =  new javax.swing.JDesktopPane() { @Override protected void paintComponent(Graphics g) { super.paintComponent(g); g.setColor(new Color(37,51,61)); g.fillRect(0, 0, getWidth(), getHeight()); } };
+        jDesktopPane1 =  new javax.swing.JDesktopPane() { @Override protected void paintComponent(Graphics g) { super.paintComponent(g); g.setColor(UIUtils.COLOR_BACKGROUND); g.fillRect(0, 0, getWidth(), getHeight()); } };
         ;
         btnUsuarios = new javax.swing.JButton();
         btnPacientes = new javax.swing.JButton();
@@ -97,6 +96,16 @@ public class Home extends javax.swing.JFrame {
         btnUsuarios.setForeground(new java.awt.Color(37, 51, 61));
         btnUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/user_20px.png"))); // NOI18N
         btnUsuarios.setText("Usuarios");
+        btnUsuarios.setToolTipText("");
+        btnUsuarios.setBorder(null);
+        btnUsuarios.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnUsuariosMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnUsuariosMouseExited(evt);
+            }
+        });
         btnUsuarios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUsuariosActionPerformed(evt);
@@ -108,6 +117,15 @@ public class Home extends javax.swing.JFrame {
         btnPacientes.setForeground(new java.awt.Color(37, 51, 61));
         btnPacientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/patients_25px.png"))); // NOI18N
         btnPacientes.setText("Pacientes");
+        btnPacientes.setBorder(null);
+        btnPacientes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnPacientesMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnPacientesMouseExited(evt);
+            }
+        });
         btnPacientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPacientesActionPerformed(evt);
@@ -119,6 +137,15 @@ public class Home extends javax.swing.JFrame {
         btnCerrarSesion.setForeground(new java.awt.Color(37, 51, 61));
         btnCerrarSesion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/exit_20px.png"))); // NOI18N
         btnCerrarSesion.setText("Cerrar Sesión");
+        btnCerrarSesion.setBorder(null);
+        btnCerrarSesion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnCerrarSesionMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnCerrarSesionMouseExited(evt);
+            }
+        });
         btnCerrarSesion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCerrarSesionActionPerformed(evt);
@@ -130,6 +157,15 @@ public class Home extends javax.swing.JFrame {
         btnConfig.setForeground(new java.awt.Color(37, 51, 61));
         btnConfig.setIcon(new javax.swing.ImageIcon(getClass().getResource("/settings_20px.png"))); // NOI18N
         btnConfig.setText("Configuración");
+        btnConfig.setBorder(null);
+        btnConfig.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnConfigMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnConfigMouseExited(evt);
+            }
+        });
         btnConfig.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnConfigActionPerformed(evt);
@@ -146,15 +182,15 @@ public class Home extends javax.swing.JFrame {
         jDesktopPane1Layout.setHorizontalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                .addContainerGap(32, Short.MAX_VALUE)
+                .addContainerGap(40, Short.MAX_VALUE)
                 .addComponent(btnUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                 .addComponent(btnPacientes, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
-                .addComponent(btnConfig)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
-                .addComponent(btnCerrarSesion)
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addComponent(btnConfig, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addComponent(btnCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(40, Short.MAX_VALUE))
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -174,6 +210,7 @@ public class Home extends javax.swing.JFrame {
         lblUsername.setBackground(new java.awt.Color(108, 216, 158));
         lblUsername.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         lblUsername.setForeground(new java.awt.Color(37, 51, 61));
+        lblUsername.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
 
         jLabel2.setBackground(new java.awt.Color(108, 216, 158));
         jLabel2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
@@ -327,6 +364,38 @@ public class Home extends javax.swing.JFrame {
         //close();
 
     }//GEN-LAST:event_formWindowClosing
+
+    private void btnUsuariosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUsuariosMouseEntered
+       btnUsuarios.setBackground(UIUtils.COLOR_INTERACTIVE_DARKER);
+    }//GEN-LAST:event_btnUsuariosMouseEntered
+
+    private void btnPacientesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPacientesMouseEntered
+       btnPacientes.setBackground(UIUtils.COLOR_INTERACTIVE_DARKER);
+    }//GEN-LAST:event_btnPacientesMouseEntered
+
+    private void btnConfigMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConfigMouseEntered
+        btnConfig.setBackground(UIUtils.COLOR_INTERACTIVE_DARKER);
+    }//GEN-LAST:event_btnConfigMouseEntered
+
+    private void btnCerrarSesionMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCerrarSesionMouseEntered
+        btnCerrarSesion.setBackground(UIUtils.COLOR_INTERACTIVE_DARKER);
+    }//GEN-LAST:event_btnCerrarSesionMouseEntered
+
+    private void btnUsuariosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUsuariosMouseExited
+        btnUsuarios.setBackground(UIUtils.COLOR_INTERACTIVE);
+    }//GEN-LAST:event_btnUsuariosMouseExited
+
+    private void btnPacientesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPacientesMouseExited
+       btnPacientes.setBackground(UIUtils.COLOR_INTERACTIVE);
+    }//GEN-LAST:event_btnPacientesMouseExited
+
+    private void btnConfigMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConfigMouseExited
+        btnConfig.setBackground(UIUtils.COLOR_INTERACTIVE);
+    }//GEN-LAST:event_btnConfigMouseExited
+
+    private void btnCerrarSesionMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCerrarSesionMouseExited
+        btnCerrarSesion.setBackground(UIUtils.COLOR_INTERACTIVE);
+    }//GEN-LAST:event_btnCerrarSesionMouseExited
 
     /**
      * @param args the command line arguments
