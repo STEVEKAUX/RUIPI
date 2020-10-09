@@ -81,7 +81,7 @@ public class FormPatients extends javax.swing.JInternalFrame {
         jLabel15 = new javax.swing.JLabel();
         comboEtnia = new javax.swing.JComboBox<>();
         jLabel16 = new javax.swing.JLabel();
-        txtFCreacion = new javax.swing.JTextField();
+        txtTel = new javax.swing.JTextField();
         btnSaveP = new javax.swing.JButton();
         jLabel19 = new javax.swing.JLabel();
         btnAssociate = new javax.swing.JButton();
@@ -95,6 +95,7 @@ public class FormPatients extends javax.swing.JInternalFrame {
         comboComunidad = new javax.swing.JComboBox<>();
         comboRh = new javax.swing.JComboBox<>();
         comboSexo = new javax.swing.JComboBox<>();
+        btnHC = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableP = new javax.swing.JTable();
@@ -210,10 +211,10 @@ public class FormPatients extends javax.swing.JInternalFrame {
 
         jLabel16.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(108, 216, 158));
-        jLabel16.setText("Fecha de Creación");
+        jLabel16.setText("Teléfono o Celular");
 
-        txtFCreacion.setBackground(new java.awt.Color(255, 255, 255));
-        txtFCreacion.setToolTipText("");
+        txtTel.setBackground(new java.awt.Color(255, 255, 255));
+        txtTel.setToolTipText("");
 
         btnSaveP.setBackground(new java.awt.Color(108, 216, 158));
         btnSaveP.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
@@ -379,6 +380,25 @@ public class FormPatients extends javax.swing.JInternalFrame {
         comboSexo.setForeground(new java.awt.Color(37, 51, 61));
         comboSexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIONAR\t", "Masculino", "Femenino", "Otro" }));
 
+        btnHC.setBackground(new java.awt.Color(108, 216, 158));
+        btnHC.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        btnHC.setForeground(new java.awt.Color(37, 51, 61));
+        btnHC.setText("Asociar Historia Clínica");
+        btnHC.setBorder(null);
+        btnHC.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnHCMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnHCMouseExited(evt);
+            }
+        });
+        btnHC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHCActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -451,10 +471,6 @@ public class FormPatients extends javax.swing.JInternalFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(jLabel16)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(txtFCreacion, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel13)
                                             .addComponent(jLabel15)
@@ -464,7 +480,13 @@ public class FormPatients extends javax.swing.JInternalFrame {
                                             .addComponent(comboGestante, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(comboEtnia, javax.swing.GroupLayout.Alignment.TRAILING, 0, 180, Short.MAX_VALUE)
                                             .addComponent(txtPYDT, javax.swing.GroupLayout.Alignment.TRAILING))
-                                        .addGap(1, 1, 1)))))
+                                        .addGap(1, 1, 1))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                        .addComponent(jLabel16)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(btnHC, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(txtTel, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE))))))
                         .addContainerGap(40, Short.MAX_VALUE))))
         );
         jPanel2Layout.setVerticalGroup(
@@ -472,7 +494,6 @@ public class FormPatients extends javax.swing.JInternalFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap(34, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(comboGestante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
@@ -505,21 +526,23 @@ public class FormPatients extends javax.swing.JInternalFrame {
                             .addComponent(jLabel10)
                             .addComponent(txtEmailPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel16)
-                            .addComponent(txtFCreacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(comboMunicipio, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel5)
-                                .addComponent(jLabel11)
-                                .addComponent(comboSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel12)
-                            .addComponent(comboComunidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(comboRh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
+                            .addComponent(txtTel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(comboGestante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(comboMunicipio, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel5)
+                        .addComponent(jLabel11)
+                        .addComponent(comboSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnHC, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel12)
+                    .addComponent(comboComunidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboRh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -911,7 +934,8 @@ public class FormPatients extends javax.swing.JInternalFrame {
         clearFields();
         //disableButtons(false, true, true);
     }//GEN-LAST:event_btnNewPActionPerformed
-
+    
+    
     private void tablePMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablePMouseClicked
         if (evt.getClickCount() == 2) {
 
@@ -972,10 +996,23 @@ public class FormPatients extends javax.swing.JInternalFrame {
         btnDeleteP.setBackground(UIUtils.COLOR_INTERACTIVE);
     }//GEN-LAST:event_btnDeletePMouseExited
 
+    private void btnHCMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHCMouseEntered
+        btnHC.setBackground(UIUtils.COLOR_INTERACTIVE_DARKER);
+    }//GEN-LAST:event_btnHCMouseEntered
+
+    private void btnHCMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHCMouseExited
+        btnHC.setBackground(UIUtils.COLOR_INTERACTIVE);
+    }//GEN-LAST:event_btnHCMouseExited
+
+    private void btnHCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHCActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnHCActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btnAssociate;
     public javax.swing.JButton btnDeleteP;
+    private javax.swing.JButton btnHC;
     public javax.swing.JButton btnIdentify;
     public javax.swing.JButton btnNewP;
     public javax.swing.JButton btnSaveP;
@@ -1012,12 +1049,12 @@ public class FormPatients extends javax.swing.JInternalFrame {
     public javax.swing.JTextField txtApellidoPaciente;
     public javax.swing.JTextField txtDireccion;
     public javax.swing.JTextField txtEmailPaciente;
-    public javax.swing.JTextField txtFCreacion;
     public javax.swing.JTextField txtFNacimiento;
     public javax.swing.JTextField txtIdPaciente;
     public javax.swing.JTextField txtNombrePaciente;
     public javax.swing.JTextField txtNumDoc;
     private javax.swing.JTextField txtPYDT;
+    public javax.swing.JTextField txtTel;
     public javax.swing.JTextField txtTipoDoc;
     // End of variables declaration//GEN-END:variables
 
