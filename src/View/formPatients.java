@@ -32,8 +32,6 @@ public class FormPatients extends javax.swing.JInternalFrame {
     int id_paciente;
     DefaultTableModel modt;
     Patient p = new Patient();
-  
-   
 
     public FormPatients() {
         setQueryInsert();
@@ -41,7 +39,7 @@ public class FormPatients extends javax.swing.JInternalFrame {
         //  emptyFields();
         disableButtons(false, true, true);
         modt = (DefaultTableModel) tableP.getModel();
-        
+
     }
 
     /**
@@ -383,6 +381,7 @@ public class FormPatients extends javax.swing.JInternalFrame {
         btnHC.setBackground(new java.awt.Color(108, 216, 158));
         btnHC.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         btnHC.setForeground(new java.awt.Color(37, 51, 61));
+        btnHC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hc_20px.png"))); // NOI18N
         btnHC.setText("Asociar Historia Clínica");
         btnHC.setBorder(null);
         btnHC.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -531,11 +530,11 @@ public class FormPatients extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(comboMunicipio, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnHC, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel5)
                         .addComponent(jLabel11)
-                        .addComponent(comboSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnHC, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(comboSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
@@ -653,7 +652,7 @@ public class FormPatients extends javax.swing.JInternalFrame {
 
     public void saveP() {
         clearTable();
-        
+
         if (emptyFields()) {
             //btnSearchUpdateOn();
             if (tipoQuery) {
@@ -680,7 +679,7 @@ public class FormPatients extends javax.swing.JInternalFrame {
 
         if (nombreBuscar != null) {
             if (nombreBuscar.isEmpty()) {
-                JOptionPane.showMessageDialog(null, "No se ingresó una coincidencia a buscar","Búsqueda Cancelada",JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "No se ingresó una coincidencia a buscar", "Búsqueda Cancelada", JOptionPane.ERROR_MESSAGE);
             } else {
 
                 Conexion cn = new Conexion();
@@ -804,7 +803,7 @@ public class FormPatients extends javax.swing.JInternalFrame {
             ps.setBinaryStream(1, huellaPaciente, sizeHuella);
             ps.setString(2, txtNombrePaciente.getText());
             ps.execute();
-            JOptionPane.showMessageDialog(null, "El paciente '" + txtNombrePaciente.getText() + "' se guardó con éxito","Paciente Registrado en RUIPI", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "El paciente '" + txtNombrePaciente.getText() + "' se guardó con éxito", "Paciente Registrado en RUIPI", JOptionPane.INFORMATION_MESSAGE);
             clearFields();
         } catch (SQLException ex) {
             Logger.getLogger(FormPatients.class.getName()).log(Level.SEVERE, null, ex);
@@ -830,7 +829,7 @@ public class FormPatients extends javax.swing.JInternalFrame {
                 ps.setString(2, txtNombrePaciente.getText());
                 ps.setInt(3, id_paciente);
                 ps.execute();
-                JOptionPane.showMessageDialog(null, "La actualización del paciente '" + txtNombrePaciente.getText() + "' se guardó con éxito","Paciente Actualizado",JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, "La actualización del paciente '" + txtNombrePaciente.getText() + "' se guardó con éxito", "Paciente Actualizado", JOptionPane.INFORMATION_MESSAGE);
                 clearFields();
             } catch (SQLException ex) {
                 Logger.getLogger(FormPatients.class.getName()).log(Level.SEVERE, null, ex);
@@ -934,15 +933,15 @@ public class FormPatients extends javax.swing.JInternalFrame {
         clearFields();
         //disableButtons(false, true, true);
     }//GEN-LAST:event_btnNewPActionPerformed
-    
-    
+
+
     private void tablePMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablePMouseClicked
         if (evt.getClickCount() == 2) {
 
             txtIdPaciente.setText((tableP.getValueAt(tableP.getSelectedRow(), 0).toString()));
-            id_paciente=Integer.valueOf(txtIdPaciente.getText());
+            id_paciente = Integer.valueOf(txtIdPaciente.getText());
             txtNombrePaciente.setText((tableP.getValueAt(tableP.getSelectedRow(), 1).toString()));
-            
+
             tipoQuery = false;
             disableButtons(false, true, false);
         }
