@@ -73,7 +73,7 @@ public class LoginUI extends JFrame {
 
     //Obtiene el texto del campo de texto de COntraseña
     public String getPasswordField() {
-        password = txtPasswordField.getText().toString();
+        password = String.valueOf(txtPasswordField.getPassword());
 
         return password;
     }
@@ -197,7 +197,7 @@ public class LoginUI extends JFrame {
         txtPasswordField.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
-                if (txtPasswordField.getText().equals(UIUtils.PLACEHOLDER_TEXT_PASSWORD)) {
+                if (String.valueOf(txtPasswordField.getPassword()).equals(UIUtils.PLACEHOLDER_TEXT_PASSWORD)) {
                     txtPasswordField.setText("");
                 }
                 txtPasswordField.setForeground(Color.white);
@@ -206,7 +206,7 @@ public class LoginUI extends JFrame {
 
             @Override
             public void focusLost(FocusEvent e) {
-                if (txtPasswordField.getText().isEmpty()) {
+                if (String.valueOf(txtPasswordField.getPassword()).isEmpty()) {
                     txtPasswordField.setText(UIUtils.PLACEHOLDER_TEXT_PASSWORD);
                 }
                 txtPasswordField.setForeground(UIUtils.COLOR_OUTLINE);
