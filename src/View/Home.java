@@ -5,7 +5,7 @@
  */
 package View;
 
-//Variables globales
+//imports
 import Connector.Conexion;
 import Utils.UIUtils;
 import java.awt.Dimension;
@@ -18,12 +18,12 @@ import javax.swing.JOptionPane;
 
 public class Home extends javax.swing.JFrame {
 
-    //Variables globales
+    // global variables
     Conexion con = new Conexion();
     Connection access;
     UIUtils utils= new UIUtils();
 
-    //Constructror de Home
+    // Home Constructror
     public Home() {
         initComponents();
         this.setExtendedState(MAXIMIZED_BOTH);
@@ -60,6 +60,7 @@ public class Home extends javax.swing.JFrame {
         lblUserType = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(1300, 700));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
@@ -132,7 +133,7 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
-        btnCerrarSesion.setBackground(new java.awt.Color(108, 216, 158));
+        btnCerrarSesion.setBackground(new java.awt.Color(252, 87, 118));
         btnCerrarSesion.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         btnCerrarSesion.setForeground(new java.awt.Color(37, 51, 61));
         btnCerrarSesion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/exit_20px.png"))); // NOI18N
@@ -281,7 +282,8 @@ public class Home extends javax.swing.JFrame {
                 JOptionPane.YES_NO_OPTION,
                 JOptionPane.QUESTION_MESSAGE, null, opciones, "Aceptar");
         if (eleccion == JOptionPane.YES_OPTION) {
-            System.exit(0);
+            this.dispose();
+            LoginUI lg = new LoginUI();
         } else {
         }
     }
@@ -344,6 +346,7 @@ public class Home extends javax.swing.JFrame {
     private void btnCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSesionActionPerformed
         access = (Connection) con.disconnect();
         close();
+        
 
     }//GEN-LAST:event_btnCerrarSesionActionPerformed
 
@@ -378,7 +381,7 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_btnConfigMouseEntered
 
     private void btnCerrarSesionMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCerrarSesionMouseEntered
-        btnCerrarSesion.setBackground(UIUtils.COLOR_INTERACTIVE_DARKER);
+        btnCerrarSesion.setBackground(UIUtils.COLOR_INTERACTIVE_DARKER2);
     }//GEN-LAST:event_btnCerrarSesionMouseEntered
 
     private void btnUsuariosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUsuariosMouseExited
@@ -394,7 +397,7 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_btnConfigMouseExited
 
     private void btnCerrarSesionMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCerrarSesionMouseExited
-        btnCerrarSesion.setBackground(UIUtils.COLOR_INTERACTIVE);
+        btnCerrarSesion.setBackground(UIUtils.COLOR_INTERACTIVE2);
     }//GEN-LAST:event_btnCerrarSesionMouseExited
 
     /**
@@ -424,9 +427,13 @@ public class Home extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
+       
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new Home().setVisible(true);
             }

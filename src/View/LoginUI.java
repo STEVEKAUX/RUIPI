@@ -66,7 +66,7 @@ public class LoginUI extends JFrame {
 
     //Obtiene el texto del campo de Nombre de usuario
     public String getUsernameField() {
-        username = txtUsernameField.getText().toString();
+        username = txtUsernameField.getText();
 
         return username;
     }
@@ -139,7 +139,7 @@ public class LoginUI extends JFrame {
      * this.setExtendedState(ICONIFIED);{ }}*
      */
     //CONFIRMAR ACCIÓN DE SALIR
-    public void close() {
+    public void closeApp() {
         Object[] opciones = {"Aceptar", "Cancelar"};
         int eleccion = JOptionPane.showOptionDialog(rootPane, "¿Realmente desea salir de la aplicación?", "Saliendo de RUIPI",
                 JOptionPane.YES_NO_OPTION,
@@ -329,7 +329,7 @@ public class LoginUI extends JFrame {
             @Override
             public void mouseClicked(MouseEvent e) {
                 access = (Connection) con.disconnect();
-                close();
+                closeApp();
             }
         });
 
@@ -405,15 +405,15 @@ public class LoginUI extends JFrame {
     }
 
     public void validateLogin() {
-        String username = getUsernameField();
-        String password = getPasswordField();
+        String uf = getUsernameField();
+        String pf = getPasswordField();
 
         if (getUsernameField().equals("") || getPasswordField().equals("") || getUsernameField().equals("Nombre de Usuario") || getPasswordField().equals("contraseña")) {
             loginErrorEventHandler();
             txtUsernameField.requestFocus();
 
         } else {
-            u = udao.userValidator(username, password);
+            u = udao.userValidator(uf, pf);
           
             if (u.getUsername() != null && u.getPassword() != null) {   
                    
@@ -431,8 +431,8 @@ public class LoginUI extends JFrame {
                     case 3:
                         h.lblUserType.setText("Usuario Básico");
                         break;
-                    default:
-                        break;
+                    default: {
+                    }
                 }
 
                 dispose();

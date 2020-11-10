@@ -22,7 +22,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author lenov
  */
-public class FormPatients extends javax.swing.JInternalFrame {
+public final class FormPatients extends javax.swing.JInternalFrame {
 
     private ByteArrayInputStream huellaPaciente;
     Integer sizeHuella;
@@ -299,7 +299,7 @@ public class FormPatients extends javax.swing.JInternalFrame {
             }
         });
 
-        btnDeleteP.setBackground(new java.awt.Color(108, 216, 158));
+        btnDeleteP.setBackground(new java.awt.Color(252, 87, 118));
         btnDeleteP.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         btnDeleteP.setForeground(new java.awt.Color(37, 51, 61));
         btnDeleteP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/delete_user_20px.png"))); // NOI18N
@@ -390,11 +390,6 @@ public class FormPatients extends javax.swing.JInternalFrame {
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 btnHCMouseExited(evt);
-            }
-        });
-        btnHC.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnHCActionPerformed(evt);
             }
         });
 
@@ -968,7 +963,7 @@ public class FormPatients extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnNewPMouseEntered
 
     private void btnDeletePMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDeletePMouseEntered
-        btnDeleteP.setBackground(UIUtils.COLOR_INTERACTIVE_DARKER);
+        btnDeleteP.setBackground(UIUtils.COLOR_INTERACTIVE_DARKER2);
     }//GEN-LAST:event_btnDeletePMouseEntered
 
     private void btnAssociateMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAssociateMouseExited
@@ -992,7 +987,7 @@ public class FormPatients extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnNewPMouseExited
 
     private void btnDeletePMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDeletePMouseExited
-        btnDeleteP.setBackground(UIUtils.COLOR_INTERACTIVE);
+        btnDeleteP.setBackground(UIUtils.COLOR_INTERACTIVE2);
     }//GEN-LAST:event_btnDeletePMouseExited
 
     private void btnHCMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHCMouseEntered
@@ -1002,10 +997,6 @@ public class FormPatients extends javax.swing.JInternalFrame {
     private void btnHCMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHCMouseExited
         btnHC.setBackground(UIUtils.COLOR_INTERACTIVE);
     }//GEN-LAST:event_btnHCMouseExited
-
-    private void btnHCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHCActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnHCActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

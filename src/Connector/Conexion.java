@@ -29,9 +29,11 @@ public class Conexion {
 			System.out.println("¡Ocurre una SQLException: "+e.getMessage()+"!");
 		}
 	}
+        //Obtiene la conexión
 	public Connection getConnection(){
 		return con;
 	}
+        //Desconecta la base de datos
 	public Conexion disconnect(){
             con=null;
 		if(con==null){
