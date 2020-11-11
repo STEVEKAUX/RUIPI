@@ -10,9 +10,8 @@ import Connector.Conexion;
 import Utils.UIUtils;
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.Image;
-import java.awt.Toolkit;
 import java.sql.Connection;
+import javax.swing.ImageIcon;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 
@@ -21,7 +20,7 @@ public class Home extends javax.swing.JFrame {
     // global variables
     Conexion con = new Conexion();
     Connection access;
-    UIUtils utils= new UIUtils();
+    UIUtils utils = new UIUtils();
 
     // Home Constructror
     public Home() {
@@ -30,11 +29,13 @@ public class Home extends javax.swing.JFrame {
         this.setResizable(true);
         setLocationRelativeTo(null);
 
-        Toolkit loginFrame = Toolkit.getDefaultToolkit();
-        Image ruipiIcon = loginFrame.getImage("resource/icon.png");
-        setIconImage(ruipiIcon);
-        this.setTitle("RUIPI Inicio");
+//        Toolkit loginFrame = Toolkit.getDefaultToolkit();
+//        Image ruipiIcon = loginFrame.getImage("resource/icon.png");
+//        setIconImage(ruipiIcon);
+        this.setIconImage(new ImageIcon(getClass().getResource("/icon.png")).getImage());
+        this.setTitle("RUIPI Menú Principal");
         //setUOnline();
+
     }
 
     /**
@@ -324,7 +325,6 @@ public class Home extends javax.swing.JFrame {
 //       }
 //
 //    }
-    
 //    public void privileges(){
 //        Conexion cn = new Conexion();
 //        Connection cnn = cn.getConnection();
@@ -346,7 +346,7 @@ public class Home extends javax.swing.JFrame {
     private void btnCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSesionActionPerformed
         access = (Connection) con.disconnect();
         close();
-        
+
 
     }//GEN-LAST:event_btnCerrarSesionActionPerformed
 
@@ -369,11 +369,11 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowClosing
 
     private void btnUsuariosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUsuariosMouseEntered
-       btnUsuarios.setBackground(UIUtils.COLOR_INTERACTIVE_DARKER);
+        btnUsuarios.setBackground(UIUtils.COLOR_INTERACTIVE_DARKER);
     }//GEN-LAST:event_btnUsuariosMouseEntered
 
     private void btnPacientesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPacientesMouseEntered
-       btnPacientes.setBackground(UIUtils.COLOR_INTERACTIVE_DARKER);
+        btnPacientes.setBackground(UIUtils.COLOR_INTERACTIVE_DARKER);
     }//GEN-LAST:event_btnPacientesMouseEntered
 
     private void btnConfigMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConfigMouseEntered
@@ -389,7 +389,7 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_btnUsuariosMouseExited
 
     private void btnPacientesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPacientesMouseExited
-       btnPacientes.setBackground(UIUtils.COLOR_INTERACTIVE);
+        btnPacientes.setBackground(UIUtils.COLOR_INTERACTIVE);
     }//GEN-LAST:event_btnPacientesMouseExited
 
     private void btnConfigMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConfigMouseExited
@@ -427,7 +427,7 @@ public class Home extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
-       
+
         //</editor-fold>
         //</editor-fold>
 

@@ -104,6 +104,7 @@ public final class FormPatients extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setMaximizable(true);
         setTitle("Gestión de Pacientes");
+        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/patients_25px.png"))); // NOI18N
         setMinimumSize(new java.awt.Dimension(800, 450));
 
         jPanel1.setBackground(new java.awt.Color(37, 51, 61));

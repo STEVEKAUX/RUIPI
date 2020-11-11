@@ -32,6 +32,7 @@ public class formSettings extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setMaximizable(true);
         setTitle("Configuración de la Empresa");
+        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/settings_20px.png"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

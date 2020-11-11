@@ -32,6 +32,7 @@ public class formUsers extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setMaximizable(true);
         setTitle("Gestión de Usuarios");
+        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/user_20px.png"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

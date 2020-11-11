@@ -211,9 +211,10 @@ public class FormIdentify extends javax.swing.JFrame {
               
 
         //Establecemos el icono del proyecto en la barra de tareas y superior del Frame  
-        Toolkit loginFrame = Toolkit.getDefaultToolkit();
-        Image ruipiIcon = loginFrame.getImage("resource/icon.png");
-        setIconImage(ruipiIcon);
+//        Toolkit loginFrame = Toolkit.getDefaultToolkit();
+//        Image ruipiIcon = loginFrame.getImage("resource/icon.png");
+//        setIconImage(ruipiIcon);
+        this.setIconImage(new ImageIcon(getClass().getResource("/icon.png")).getImage());
         this.setTitle("RUIPI Lector de Huellas");
     }
 

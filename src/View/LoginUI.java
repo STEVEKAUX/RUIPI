@@ -8,7 +8,6 @@ import Utils.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.sql.Connection;
-import java.util.Objects;
 import javax.swing.*;
 
 public class LoginUI extends JFrame {
@@ -31,9 +30,10 @@ public class LoginUI extends JFrame {
     public LoginUI() {
 
         //Establecemos el icono del proyecto en la barra de tareas y superior del Frame     
-        Toolkit loginFrame = Toolkit.getDefaultToolkit();
-        Image ruipiIcon = loginFrame.getImage("resource/icon.png");
-        setIconImage(ruipiIcon);
+//        Toolkit loginFrame = Toolkit.getDefaultToolkit();
+//        Image ruipiIcon = loginFrame.getImage("resource/icon.png");
+//        setIconImage(ruipiIcon);
+        this.setIconImage(new ImageIcon(getClass().getResource("/icon.png")).getImage());
         this.setTitle("RUIPI Inicio de Sesión");
 
         JPanel mainJPanel = getMainJPanel();
@@ -154,7 +154,8 @@ public class LoginUI extends JFrame {
     private void addLogo(JPanel panel1) {
         JLabel label1 = new JLabel();
         label1.setFocusable(false);
-        label1.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("ruipi2.png")).getFile()));
+       // label1.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("ruipi2.png")).getFile()));
+        label1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruipi2.png")));
         panel1.add(label1);
         label1.setBounds(100, 100, 200, 200);
     }
