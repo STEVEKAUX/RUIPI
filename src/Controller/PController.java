@@ -7,7 +7,7 @@ package Controller;
 
 import Connector.UserDAO;
 import Model.User;
-import View.FormPatients;
+import View.FormPatientsManagement;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -17,10 +17,10 @@ public class PController implements ActionListener {
     //Declara las variables globales
     private UserDAO udao;
     private User u;
-    private FormPatients fp;
+    private FormPatientsManagement fp;
 
     //Contructor de la clase PController
-    public PController(User u, UserDAO udao, FormPatients fp) {
+    public PController(User u, UserDAO udao, FormPatientsManagement fp) {
 
         this.u = u;
         this.udao = udao;

@@ -337,7 +337,7 @@ public class Home extends javax.swing.JFrame {
 //    }
 
     private void btnPacientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPacientesActionPerformed
-        FormPatients fp = new FormPatients();
+        FormPatientsManagement fp = new FormPatientsManagement();
         windowCentered(fp);
         fp.txtNombrePaciente.requestFocus();
     }//GEN-LAST:event_btnPacientesActionPerformed

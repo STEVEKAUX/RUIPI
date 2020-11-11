@@ -56,7 +56,7 @@ public class FormIdentify extends javax.swing.JFrame {
     public static String TEMPLATE_PROPERTY = "template";
     public DPFPFeatureSet featuresinscripcion;
     public DPFPFeatureSet featuresverificacion;
-    private final FormPatients fp;
+    private final FormPatientsManagement fp;
 
     protected void Iniciar() {
         Lector.addDataListener(new DPFPDataAdapter() {
@@ -199,7 +199,7 @@ public class FormIdentify extends javax.swing.JFrame {
         //EnviarTexto("Utilizando el Lector de Huella Dactilar ");
     }
 
-    public FormIdentify(FormPatients fp) {
+    public FormIdentify(FormPatientsManagement fp) {
         initComponents();
         //this.setAlwaysOnTop(true);
         Iniciar();
@@ -380,7 +380,7 @@ public class FormIdentify extends javax.swing.JFrame {
             }
 
         } catch (SQLException ex) {
-            Logger.getLogger(FormPatients.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FormPatientsManagement.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }

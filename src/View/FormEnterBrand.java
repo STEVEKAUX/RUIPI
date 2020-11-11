@@ -46,7 +46,7 @@ public class FormEnterBrand extends javax.swing.JFrame {
     public static String TEMPLATE_PROPERTY = "template";
     public DPFPFeatureSet featuresinscripcion;
     public DPFPFeatureSet featuresverificacion;
-    private final FormPatients fp;
+    private final FormPatientsManagement fp;
 
     //Inicia la lectura de la huella
     protected void Iniciar() {
@@ -198,7 +198,7 @@ public class FormEnterBrand extends javax.swing.JFrame {
     }
 
     //Constructor de la clase FormEnterBrand
-    public FormEnterBrand(FormPatients fp) {
+    public FormEnterBrand(FormPatientsManagement fp) {
         initComponents();
         //this.setAlwaysOnTop(true);
         //fp.setEnabled(false);
