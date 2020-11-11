@@ -9,17 +9,15 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-/**
- *
- * @author lenov
- */
+//Crea la clase PatientDAO
 public class PatientDAO {
-    
+
+    //crealas variables globales
     Connection conn;
-    Conexion con=new Conexion();
+    Conexion con = new Conexion();
     PreparedStatement ps;
     ResultSet rs;
-    
+
 //
 //   public List toList() {
 //        
@@ -49,5 +47,4 @@ public class PatientDAO {
 //    public void delete() {
 //        
 //    }
-    
 }

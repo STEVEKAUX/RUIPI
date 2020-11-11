@@ -11,23 +11,21 @@ import View.FormPatients;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-/**
- *
- * @author lenov
- */
-public class PController implements ActionListener{
-    
+//Crea la clase PController
+public class PController implements ActionListener {
+
+    //Declara las variables globales
     private UserDAO udao;
     private User u;
     private FormPatients fp;
 
-    
-    public PController(User u, UserDAO udao, FormPatients fp){
-        
-        this.u=u;
-        this.udao=udao;
-        this.fp=fp;
-        
+    //Contructor de la clase PController
+    public PController(User u, UserDAO udao, FormPatients fp) {
+
+        this.u = u;
+        this.udao = udao;
+        this.fp = fp;
+
         //this.fp.btnAssociate.addActionListener(this);
         //this.fp.btnSaveP.addActionListener(this);
         //this.fp.btnSearchUpdateP.addActionListener(this);
@@ -35,13 +33,14 @@ public class PController implements ActionListener{
         //this.fp.btnDeleteP.addActionListener(this);
         //this.fp.btnNewP.addActionListener(this);
     }
-    
+
     @Override
     public void actionPerformed(ActionEvent e) {
-        
-        /**if(e.getSource()==fp.btnNewP){
-            fp.clearFields();  
-        }**/
+
+        /**
+         * if(e.getSource()==fp.btnNewP){ fp.clearFields();  
+        }*
+         */
     }
-    
+
 }

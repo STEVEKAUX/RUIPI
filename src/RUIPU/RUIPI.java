@@ -7,10 +7,7 @@ package RUIPU;
 
 import View.LoginUI;
 
-/**
- *
- * @author lenov
- */
+//Crea la clase con principal RUIPI con el método Main de la aplicación
 public class RUIPI {
      public static void main(String[] args) {
          LoginUI loginUI = new LoginUI();

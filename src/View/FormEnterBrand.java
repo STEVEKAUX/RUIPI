@@ -1,4 +1,3 @@
-
 package View;
 
 import com.digitalpersona.onetouch.DPFPDataPurpose;
@@ -20,21 +19,15 @@ import com.digitalpersona.onetouch.processing.DPFPFeatureExtraction;
 import com.digitalpersona.onetouch.processing.DPFPImageQualityException;
 import com.digitalpersona.onetouch.verification.DPFPVerification;
 import java.awt.Image;
-import java.awt.Toolkit;
 import java.io.ByteArrayInputStream;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
-/**
- *
- * @author lenov
- */
-public class FormEnterFinger extends javax.swing.JFrame {
+//Crea la clase FormEnterBrand
+public class FormEnterBrand extends javax.swing.JFrame {
 
-    //variable global
-    
-  
+    //variables globales
     //Varible que permite iniciar el dispositivo de lector de huella conectado
     // con sus distintos metodos.
     private DPFPCapture Lector = DPFPGlobal.getCaptureFactory().createCapture();
@@ -54,129 +47,158 @@ public class FormEnterFinger extends javax.swing.JFrame {
     public DPFPFeatureSet featuresinscripcion;
     public DPFPFeatureSet featuresverificacion;
     private final FormPatients fp;
- 
-    
-    protected void Iniciar(){
-    Lector.addDataListener(new DPFPDataAdapter() {
-     @Override public void dataAcquired(final DPFPDataEvent e) {
-     SwingUtilities.invokeLater(new Runnable() {	public void run() {
-         System.out.println("La Huella Digital ha sido Capturada");
-     ProcesarCaptura(e.getSample());
-     }});}
-    });
 
-    Lector.addReaderStatusListener(new DPFPReaderStatusAdapter() {
-     @Override public void readerConnected(final DPFPReaderStatusEvent e) {
-     SwingUtilities.invokeLater(new Runnable() {	public void run() {
-     System.out.println("El Sensor de Huella Digital esta Activado o Conectado");
-     }});}
-     @Override public void readerDisconnected(final DPFPReaderStatusEvent e) {
-     SwingUtilities.invokeLater(new Runnable() {	public void run() {
-     System.out.println("El Sensor de Huella Digital esta Desactivado o no Conectado");
-     }});}
-    });
+    //Inicia la lectura de la huella
+    protected void Iniciar() {
+        Lector.addDataListener(new DPFPDataAdapter() {
+            @Override
+            public void dataAcquired(final DPFPDataEvent e) {
+                SwingUtilities.invokeLater(new Runnable() {
+                    public void run() {
+                        System.out.println("La Huella Digital ha sido Capturada");
+                        ProcesarCaptura(e.getSample());
+                    }
+                });
+            }
+        });
 
-    Lector.addSensorListener(new DPFPSensorAdapter() {
-     @Override public void fingerTouched(final DPFPSensorEvent e) {
-     SwingUtilities.invokeLater(new Runnable() {	public void run() {
-     System.out.println("El dedo ha sido colocado sobre el Lector de Huella");
-     }});}
-     @Override public void fingerGone(final DPFPSensorEvent e) {
-     SwingUtilities.invokeLater(new Runnable() {	public void run() {
-     System.out.println("El dedo ha sido quitado del Lector de Huella");
-     }});}
-    });
+        Lector.addReaderStatusListener(new DPFPReaderStatusAdapter() {
+            @Override
+            public void readerConnected(final DPFPReaderStatusEvent e) {
+                SwingUtilities.invokeLater(new Runnable() {
+                    public void run() {
+                        System.out.println("El Sensor de Huella Digital esta Activado o Conectado");
+                    }
+                });
+            }
 
-    Lector.addErrorListener(new DPFPErrorAdapter(){
-     public void errorReader(final DPFPErrorEvent e){
-     SwingUtilities.invokeLater(new Runnable() {  public void run() {
-     System.out.println("Error: "+e.getError());
-     }});}
-    });}
-    
-    
-    public  void ProcesarCaptura(DPFPSample sample){
-    // Procesar la muestra de la huella y crear un conjunto de características con el propósito de inscripción.
-    featuresinscripcion = extraerCaracteristicas(sample, DPFPDataPurpose.DATA_PURPOSE_ENROLLMENT);
+            @Override
+            public void readerDisconnected(final DPFPReaderStatusEvent e) {
+                SwingUtilities.invokeLater(new Runnable() {
+                    public void run() {
+                        System.out.println("El Sensor de Huella Digital esta Desactivado o no Conectado");
+                    }
+                });
+            }
+        });
 
-    // Procesar la muestra de la huella y crear un conjunto de características con el propósito de verificacion.
-    featuresverificacion = extraerCaracteristicas(sample, DPFPDataPurpose.DATA_PURPOSE_VERIFICATION);
+        Lector.addSensorListener(new DPFPSensorAdapter() {
+            @Override
+            public void fingerTouched(final DPFPSensorEvent e) {
+                SwingUtilities.invokeLater(new Runnable() {
+                    public void run() {
+                        System.out.println("El dedo ha sido colocado sobre el Lector de Huella");
+                    }
+                });
+            }
 
-    // Comprobar la calidad de la muestra de la huella y lo añade a su reclutador si es bueno
-    if (featuresinscripcion != null)
-     try{
-     System.out.println("Las Caracteristicas de la Huella han sido creada");
-     Reclutador.addFeatures(featuresinscripcion);// Agregar las caracteristicas de la huella a la plantilla a crear
-     Reclutador.addFeatures(featuresinscripcion);// Agregar las caracteristicas de la huella a la plantilla a crear
-     Reclutador.addFeatures(featuresinscripcion);// Agregar las caracteristicas de la huella a la plantilla a crear
-     Reclutador.addFeatures(featuresinscripcion);// Agregar las caracteristicas de la huella a la plantilla a crear
-     
-     // Dibuja la huella dactilar capturada.
-     Image image=CrearImagenHuella(sample);
-     DibujarHuella(image);
-        
-     }catch (DPFPImageQualityException ex) {
-     System.err.println("Error: "+ex.getMessage());
-     }
+            @Override
+            public void fingerGone(final DPFPSensorEvent e) {
+                SwingUtilities.invokeLater(new Runnable() {
+                    public void run() {
+                        System.out.println("El dedo ha sido quitado del Lector de Huella");
+                    }
+                });
+            }
+        });
 
-     finally {
-     EstadoHuellas();
-     // Comprueba si la plantilla se ha creado.
-	switch(Reclutador.getTemplateStatus())
-        {
-            case TEMPLATE_STATUS_READY:	// informe de éxito y detiene  la captura de huellas
-            stop();
-            setTemplate(Reclutador.getTemplate());
-            btnGuardarHuella.setEnabled(true);
-            
-            break;
-
-	    case TEMPLATE_STATUS_FAILED: // informe de fallas y reiniciar la captura de huellas
-	    Reclutador.clear();
-            stop();
-	    setTemplate(null);
-	    JOptionPane.showMessageDialog(this, "La Plantilla de la Huella no pudo ser creada, Repita el Proceso", "Inscripcion de Huellas Dactilares", JOptionPane.ERROR_MESSAGE);
-	    start();
-	    break;
-	}
-	     }
+        Lector.addErrorListener(new DPFPErrorAdapter() {
+            public void errorReader(final DPFPErrorEvent e) {
+                SwingUtilities.invokeLater(new Runnable() {
+                    public void run() {
+                        System.out.println("Error: " + e.getError());
+                    }
+                });
+            }
+        });
     }
-    
-    public  DPFPFeatureSet extraerCaracteristicas(DPFPSample sample, DPFPDataPurpose purpose){
-     DPFPFeatureExtraction extractor = DPFPGlobal.getFeatureExtractionFactory().createFeatureExtraction();
-    try {
-        return extractor.createFeatureSet(sample, purpose);
-        } catch (DPFPImageQualityException e) {
-        return null;
+
+    //Procesa la captura de la huella ingresada
+    public void ProcesarCaptura(DPFPSample sample) {
+        // Procesar la muestra de la huella y crear un conjunto de características con el propósito de inscripción.
+        featuresinscripcion = extraerCaracteristicas(sample, DPFPDataPurpose.DATA_PURPOSE_ENROLLMENT);
+
+        // Procesar la muestra de la huella y crear un conjunto de características con el propósito de verificacion.
+        featuresverificacion = extraerCaracteristicas(sample, DPFPDataPurpose.DATA_PURPOSE_VERIFICATION);
+
+        // Comprobar la calidad de la muestra de la huella y lo añade a su reclutador si es bueno
+        if (featuresinscripcion != null)
+     try {
+            System.out.println("Las Caracteristicas de la Huella han sido creada");
+            Reclutador.addFeatures(featuresinscripcion);// Agregar las caracteristicas de la huella a la plantilla a crear
+            Reclutador.addFeatures(featuresinscripcion);// Agregar las caracteristicas de la huella a la plantilla a crear
+            Reclutador.addFeatures(featuresinscripcion);// Agregar las caracteristicas de la huella a la plantilla a crear
+            Reclutador.addFeatures(featuresinscripcion);// Agregar las caracteristicas de la huella a la plantilla a crear
+
+            // Dibuja la huella dactilar capturada.
+            Image image = CrearImagenHuella(sample);
+            DibujarHuella(image);
+
+        } catch (DPFPImageQualityException ex) {
+            System.err.println("Error: " + ex.getMessage());
+        } finally {
+            EstadoHuellas();
+            // Comprueba si la plantilla se ha creado.
+            switch (Reclutador.getTemplateStatus()) {
+                case TEMPLATE_STATUS_READY:	// informe de éxito y detiene  la captura de huellas
+                    stop();
+                    setTemplate(Reclutador.getTemplate());
+                    btnGuardarHuella.setEnabled(true);
+
+                    break;
+
+                case TEMPLATE_STATUS_FAILED: // informe de fallas y reiniciar la captura de huellas
+                    Reclutador.clear();
+                    stop();
+                    setTemplate(null);
+                    JOptionPane.showMessageDialog(this, "La Plantilla de la Huella no pudo ser creada, Repita el Proceso", "Inscripcion de Huellas Dactilares", JOptionPane.ERROR_MESSAGE);
+                    start();
+                    break;
+            }
         }
     }
-    
-    public  Image CrearImagenHuella(DPFPSample sample) {
-    return DPFPGlobal.getSampleConversionFactory().createImage(sample);
+
+    //Extrae las características de la huella ingresada 
+    public DPFPFeatureSet extraerCaracteristicas(DPFPSample sample, DPFPDataPurpose purpose) {
+        DPFPFeatureExtraction extractor = DPFPGlobal.getFeatureExtractionFactory().createFeatureExtraction();
+        try {
+            return extractor.createFeatureSet(sample, purpose);
+        } catch (DPFPImageQualityException e) {
+            return null;
+        }
     }
-    
+
+    //Crea una imágen a partir de las características de la huella ingresada
+    public Image CrearImagenHuella(DPFPSample sample) {
+        return DPFPGlobal.getSampleConversionFactory().createImage(sample);
+    }
+
+    //Dibuja la huella en el campo del frame FormEnterBrand
     public void DibujarHuella(Image image) {
-            huellaImg.setIcon(new ImageIcon(
-            image.getScaledInstance(huellaImg.getWidth(), huellaImg.getHeight(),      Image.SCALE_DEFAULT)));
-            repaint();
-     }
-    
-    public  void EstadoHuellas(){
-	     System.out.println("Muestra de Huellas Necesarias para Guardar Template: "+ Reclutador.getFeaturesNeeded());
+        huellaImg.setIcon(new ImageIcon(
+                image.getScaledInstance(huellaImg.getWidth(), huellaImg.getHeight(), Image.SCALE_DEFAULT)));
+        repaint();
     }
-    
-    public  void stop(){
-      Lector.stopCapture();
-      //EnviarTexto("No se está usando el Lector de Huella Dactilar ");
+
+    //Muestra por consola el número de huellas necesarias para crear el template
+    public void EstadoHuellas() {
+        System.out.println("Muestra de Huellas Necesarias para Guardar Template: " + Reclutador.getFeaturesNeeded());
     }
-    
-    public  void start(){        
+
+    //Detiene la captura de la huella
+    public void stop() {
+        Lector.stopCapture();
+        //EnviarTexto("No se está usando el Lector de Huella Dactilar ");
+    }
+
+    //Inicia la captura de la huella
+    public void start() {
         Lector.startCapture();
         //EnviarTexto("Utilizando el Lector de Huella Dactilar ");
     }
-    
-    
-    public FormEnterFinger(FormPatients fp) {
+
+    //Constructor de la clase FormEnterBrand
+    public FormEnterBrand(FormPatients fp) {
         initComponents();
         //this.setAlwaysOnTop(true);
         //fp.setEnabled(false);
@@ -185,16 +207,16 @@ public class FormEnterFinger extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         this.fp = fp;
         //fp.clearTable();
-        
+
         //Establecemos el icono del proyecto en la barra de tareas y superior del Frame  
 //        Toolkit loginFrame = Toolkit.getDefaultToolkit();
 //        Image ruipiIcon = loginFrame.getImage("resource/icon.png");
 //        setIconImage(ruipiIcon);
         this.setIconImage(new ImageIcon(getClass().getResource("/icon.png")).getImage());
         this.setTitle("RUIPI Lector de Huellas");
-        
+
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -295,34 +317,31 @@ public class FormEnterFinger extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGuardarHuellaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarHuellaActionPerformed
-        
-        
-        
+
         ByteArrayInputStream datosHuella = new ByteArrayInputStream(template.serialize());
         fp.setHuellaPaciente(datosHuella);
-        Integer tamañoHuella=template.serialize().length;
+        Integer tamañoHuella = template.serialize().length;
         fp.setSizeHuella(tamañoHuella);
-        fp.isOpen=true;
+        fp.isOpen = true;
         dispose();
-        fp.isOpen=false;
+        fp.isOpen = false;
         //fp.btnAsociarOn();
         fp.disableButtons(true, false, false);
         //fp.setEnabled(true);
-        
+
         //fp.emptyFields();
         //datosHuella=null;
-       
-       
+
     }//GEN-LAST:event_btnGuardarHuellaActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         //fp.btnSearchUpdateOn();
         fp.disableButtons(false, true, true);
-        huella=null;
+        huella = null;
         stop();
-        fp.isOpen=false;
+        fp.isOpen = false;
         //fp.setEnabled(true);
-        
+
     }//GEN-LAST:event_formWindowClosing
 
 
@@ -336,18 +355,18 @@ public class FormEnterFinger extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     /**
-     * @return the template
+     * @return the template devuelve el template creado a partir de las
+     * caracteríssticas de la huella
      */
     public DPFPTemplate getTemplate() {
         return template;
     }
 
     /**
-     * @param template the template to set
+     * @param template the template to set establece el template de la huella
      */
     public void setTemplate(DPFPTemplate template) {
         this.template = template;
     }
-    
-  
+
 }

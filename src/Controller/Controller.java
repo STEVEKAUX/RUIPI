@@ -5,10 +5,7 @@
  */
 package Controller;
 
-/**
- *
- * @author lenov
- */
+//creala clase Controller
 public class Controller {
     
 }

@@ -1,9 +1,9 @@
 package Model;
 
-//Declaración de la subclase User que extiende de Persona
+//Crea la clase User
 public class User {
 
-    //Declaración de variables de User
+    //Declaración de variables globales de User
     private int idUsuario;
     private String username;
     private String password;
@@ -18,8 +18,7 @@ public class User {
     private int idTipoUsuario;
     private String nombre_tipo_usuario;
 
-    
-
+    //Constructor vacío de la clase User
     public User() {
     }
 
@@ -39,8 +38,6 @@ public class User {
         this.idEmpresa = idEmpresa;
         this.idTipoUsuario = idTipoUsuario;
     }
-
-    
 
     //Setters y Getters
     public int getIdUsuario() {
@@ -122,7 +119,7 @@ public class User {
     public void setFechaUsuario(String fechaUsuario) {
         this.fechaUsuario = fechaUsuario;
     }
-    
+
     public int getIdEmpresa() {
         return idEmpresa;
     }

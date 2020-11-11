@@ -1,12 +1,9 @@
-
 package Model;
 
-//Declaración de la Superclase Persona
+//Crea la clase Patient
+public class Patient {
 
-public  class Patient {
-    
-    
-    //Declaración de variables de Persona
+    //Declaración de variables de la clase Patient
     private int idPaciente;
     private String nombre;
     private String apellido;
@@ -17,19 +14,18 @@ public  class Patient {
     private String tipoDocumento;
     private int numeroDocumento;
     private String email;
-    private String sexo; 
+    private String sexo;
     private String rh;
     private boolean gestante;
     private int edad;
     private String etnia;
     private String fechaPaciente;
 
+    //Constructor vacío de la clase Patient
     public Patient() {
     }
-    
-    
+
     //Constructor de la clase Patient
-    
     public Patient(int idPaciente, String nombre, String apellido, String fechaNacimiento, String ciudadNacimiento,
             String departamentoNacimiento, String direccion, String tipoDocumento, int numeroDocumento,
             String email, String sexo, String rh, boolean gestante, int edad, String etnia,
@@ -51,10 +47,8 @@ public  class Patient {
         this.etnia = etnia;
         this.fechaPaciente = fechaPaciente;
     }
-   
-    
-    //Setters y Getters
 
+    //Setters y Getters
     public int getIdPaciente() {
         return idPaciente;
     }

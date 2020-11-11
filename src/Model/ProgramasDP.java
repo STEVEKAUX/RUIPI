@@ -5,10 +5,7 @@
  */
 package Model;
 
-/**
- *
- * @author lenov
- */
+//Crea la clase ProgramasDP
 public class ProgramasDP {
     
 }

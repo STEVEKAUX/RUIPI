@@ -632,7 +632,7 @@ public final class FormPatients extends javax.swing.JInternalFrame {
         disableButtons(false, false, false);
 
         if (isOpen == false) {
-            FormEnterFinger asociarHuella = new FormEnterFinger(this);
+            FormEnterBrand asociarHuella = new FormEnterBrand(this);
             asociarHuella.setVisible(true);
             isOpen = true;
 
