@@ -325,7 +325,7 @@ public class FormEnterBrand extends javax.swing.JFrame {
         fp.isOpen = true;
         dispose();
         fp.isOpen = false;
-        //fp.btnAsociarOn();
+        //fp.btnAsociateOn();
         fp.disableButtons(true, false, false);
         //fp.setEnabled(true);
 

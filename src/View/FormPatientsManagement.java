@@ -18,10 +18,6 @@ import java.sql.ResultSet;
 import static javax.swing.JOptionPane.QUESTION_MESSAGE;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author lenov
- */
 public final class FormPatientsManagement extends javax.swing.JInternalFrame {
 
     private ByteArrayInputStream huellaPaciente;
@@ -206,7 +202,7 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
 
         comboEtnia.setBackground(new java.awt.Color(255, 255, 255));
         comboEtnia.setForeground(new java.awt.Color(37, 51, 61));
-        comboEtnia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIONAR", "Arhuaco", "Kogui", "Wiwa" }));
+        comboEtnia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIONAR", "Arhuaco", "Kogui", "Wiwa", "Otro" }));
 
         jLabel16.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(108, 216, 158));
@@ -624,7 +620,7 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
     //tratando de listar al iniciar
 
-    //método del botón Asociar Huella
+    //método del botón Asociar Huella se encarga de crear la instancia del lector de huellas que asocia la huella del paciente
     public void asociate() {
 
         //btnSearchUpdateOff();
@@ -639,13 +635,15 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
         } else {
 
             //toaster.error("¡Nombre de usuario o contraseña inválidos!");
-            JOptionPane.showMessageDialog(null, "Ya hay una ventana del 'Lector de Huellas' abierta", "Lector en Uso", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Ya hay una ventana del 'Lector de Huellas' abierta", "Lector en uso", JOptionPane.WARNING_MESSAGE);
             btnSearchUpdateOn();
 
         }
 
     }
 
+    //Se encarga de realizar la inserción o la actualización de los datos del paciente
+    //siempre y cuando los campos no estén vaciós dependiendo si es una búsqueda o una inserción de paciente
     public void saveP() {
         clearTable();
 
@@ -668,14 +666,16 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
         }
     }
 
+    //Se encarga de realizar la búsequeda de un paciente por nombre o coinsidencia de letras que contiene su nombre,
+    //una vez encontado el paciente, se llenan los campos con sus datos y se activa la consulta para actualizar datos tipoQuery= UPDATE
     public void searchUpdate() {
         clearTable();
         //emptyFields();
-        String nombreBuscar = JOptionPane.showInputDialog(null, "Ingresa un nombre o parte de él", "Búsqueda de Pacientes", QUESTION_MESSAGE);
+        String nombreBuscar = JOptionPane.showInputDialog(null, "Ingresa un nombre o parte de él", "Búsqueda de pacientes", QUESTION_MESSAGE);
 
         if (nombreBuscar != null) {
             if (nombreBuscar.isEmpty()) {
-                JOptionPane.showMessageDialog(null, "No se ingresó una coincidencia a buscar", "Búsqueda Cancelada", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "No se ingresó una coincidencia a buscar", "Búsqueda cancelada", JOptionPane.ERROR_MESSAGE);
             } else {
 
                 Conexion cn = new Conexion();
@@ -711,6 +711,7 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
 
     }
 
+    //Se encarga de instanciár un objeto de tipo FormIdentify y asegurarse de que solo se abra una instancia del lectoa la vez
     public void identify() {
 
         System.out.println(isOpen);
@@ -721,24 +722,25 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
         } else {
 
             //toaster.error("¡Nombre de usuario o contraseña inválidos!");
-            JOptionPane.showMessageDialog(null, "Ya hay una ventana del 'Lector de Huellas' abierta", "Lector en Uso", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Ya hay una ventana del 'Lector de Huellas' abierta", "Lector en uso", JOptionPane.WARNING_MESSAGE);
         }
     }
 
     /**
-     * @return the huellaPaciente
+     * @return la huellaPaciente
      */
     public ByteArrayInputStream getHuellaPaciente() {
         return huellaPaciente;
     }
 
     /**
-     * @param huellaPaciente the huellaPaciente to set
+     * @param huellaPaciente establece la huella del paciente
      */
     public void setHuellaPaciente(ByteArrayInputStream huellaPaciente) {
         this.huellaPaciente = huellaPaciente;
     }
 
+    //limpia los campos de la tabla de pacientes
     public void clearTable() {
         int rows = tableP.getRowCount();
         for (int i = 0; i < rows; i++) {
@@ -746,6 +748,8 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
         }
     }
 
+    //Encuentra al paciente, recibe el id del paciente y establece los datos del paciente en los campos 
+    //de texto luego de cargarlos al modelo
     public void findP(int id) {
 
         Conexion cn = new Conexion();
@@ -776,18 +780,22 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
 
     }
 
+    //Obtiene el tamaño de la huella
     public Integer getSizeHUella() {
         return sizeHuella;
     }
 
+    //Establece el tamaño de la huela
     public void setSizeHuella(Integer size) {
         sizeHuella = size;
     }
 
+    //Establece la variabl que controla la consulta para definir si se trata de un INSERT(true) o un UPDATE(false)
     private void setQueryInsert() {
         tipoQuery = true;
     }
 
+    //Realiza la inserciónn de un nuevo registro a la base de datos siempre y cuando no hayan campos obligatorios vacíos
     private void Insert() {
 
         Conexion cn = new Conexion();
@@ -799,7 +807,7 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
             ps.setBinaryStream(1, huellaPaciente, sizeHuella);
             ps.setString(2, txtNombrePaciente.getText());
             ps.execute();
-            JOptionPane.showMessageDialog(null, "El paciente '" + txtNombrePaciente.getText() + "' se guardó con éxito", "Paciente Registrado en RUIPI", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "El paciente '" + txtNombrePaciente.getText() + "' se guardó con éxito", "Paciente registrado exitosamente en RUIPI", JOptionPane.INFORMATION_MESSAGE);
             clearFields();
         } catch (SQLException ex) {
             Logger.getLogger(FormPatientsManagement.class.getName()).log(Level.SEVERE, null, ex);
@@ -807,13 +815,14 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
 
     }
 
+    //Realiza la actualización de un paciente buscado o identificado cuyos datos estén cargados en el modelo y los campos del formulario de pacientes
     private void Update() {
         Conexion cn = new Conexion();
         Connection cnn = cn.getConnection();
 
         if ("".equals(txtNombrePaciente.getText()) && huellaPaciente == null) {
 
-            JOptionPane.showMessageDialog(null, "Los campos con * son obligatorios");
+            JOptionPane.showMessageDialog(null, "Los campos con asterísco ( * ) son obligatorios", "Hay campos vacíos", JOptionPane.WARNING_MESSAGE);
 
         } else {
 
@@ -825,7 +834,7 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
                 ps.setString(2, txtNombrePaciente.getText());
                 ps.setInt(3, id_paciente);
                 ps.execute();
-                JOptionPane.showMessageDialog(null, "La actualización del paciente '" + txtNombrePaciente.getText() + "' se guardó con éxito", "Paciente Actualizado", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, "La actualización del paciente '" + txtNombrePaciente.getText() + "' se guardó con éxito", "Paciente actualizado", JOptionPane.INFORMATION_MESSAGE);
                 clearFields();
             } catch (SQLException ex) {
                 Logger.getLogger(FormPatientsManagement.class.getName()).log(Level.SEVERE, null, ex);
@@ -835,27 +844,41 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
 
     }
 
+    //retorna true o false dependiendo si los campos obligatorios están vaciós y habilita el botón de guardar no están vacíos
     public boolean emptyFields() {
 
         if (txtNombrePaciente.getText().isEmpty() || huellaPaciente == null) {
-            JOptionPane.showMessageDialog(null, "No pueden haber campos vacíos", "Campos Vacíos", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Los campos con asterísco ( * ) son obligatorios", "Hay campos vacíos", JOptionPane.WARNING_MESSAGE);
             txtNombrePaciente.requestFocus();
             return false;
 
         } else {
-            btnSaveP.setEnabled(true);
+            btnSavePOn();
             return true;
 
         }
 
     }
 
-    public void btnAsociarOff() {
+    //
+    public void editRowTable(java.awt.event.MouseEvent evt) {
+        if (evt.getClickCount() == 2) {
+
+            txtIdPaciente.setText((tableP.getValueAt(tableP.getSelectedRow(), 0).toString()));
+            id_paciente = Integer.valueOf(txtIdPaciente.getText());
+            txtNombrePaciente.setText((tableP.getValueAt(tableP.getSelectedRow(), 1).toString()));
+
+            tipoQuery = false;
+            disableButtons(false, true, false);
+        }
+    }
+
+    public void btnAsociateOff() {
 
         btnAssociate.setEnabled(false);
     }
 
-    public void btnAsociarOn() {
+    public void btnAsociateOn() {
 
         btnAssociate.setEnabled(true);
     }
@@ -908,40 +931,6 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
         btnIdentify.setEnabled(identify);
     }
 
-
-    private void btnAssociateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAssociateActionPerformed
-        asociate();
-    }//GEN-LAST:event_btnAssociateActionPerformed
-
-    private void btnSavePActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSavePActionPerformed
-        saveP();
-    }//GEN-LAST:event_btnSavePActionPerformed
-
-    private void btnSearchUpdatePActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchUpdatePActionPerformed
-        searchUpdate();
-    }//GEN-LAST:event_btnSearchUpdatePActionPerformed
-
-    private void btnIdentifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIdentifyActionPerformed
-        identify();
-    }//GEN-LAST:event_btnIdentifyActionPerformed
-
-    private void btnNewPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewPActionPerformed
-        clearFields();
-        //disableButtons(false, true, true);
-    }//GEN-LAST:event_btnNewPActionPerformed
-
-
-    private void tablePMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablePMouseClicked
-        if (evt.getClickCount() == 2) {
-
-            txtIdPaciente.setText((tableP.getValueAt(tableP.getSelectedRow(), 0).toString()));
-            id_paciente = Integer.valueOf(txtIdPaciente.getText());
-            txtNombrePaciente.setText((tableP.getValueAt(tableP.getSelectedRow(), 1).toString()));
-
-            tipoQuery = false;
-            disableButtons(false, true, false);
-        }
-    }//GEN-LAST:event_tablePMouseClicked
 
     private void btnAssociateMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAssociateMouseEntered
         btnAssociate.setBackground(UIUtils.COLOR_INTERACTIVE_DARKER);
@@ -999,19 +988,43 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
         btnHC.setBackground(UIUtils.COLOR_INTERACTIVE);
     }//GEN-LAST:event_btnHCMouseExited
 
+    private void tablePMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablePMouseClicked
+        editRowTable(evt);
+    }//GEN-LAST:event_tablePMouseClicked
+
+    private void btnAssociateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAssociateActionPerformed
+        asociate();
+    }//GEN-LAST:event_btnAssociateActionPerformed
+
+    private void btnSavePActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSavePActionPerformed
+        saveP();
+    }//GEN-LAST:event_btnSavePActionPerformed
+
+    private void btnSearchUpdatePActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchUpdatePActionPerformed
+        searchUpdate();
+    }//GEN-LAST:event_btnSearchUpdatePActionPerformed
+
+    private void btnIdentifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIdentifyActionPerformed
+        identify();
+    }//GEN-LAST:event_btnIdentifyActionPerformed
+
+    private void btnNewPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewPActionPerformed
+       clearFields();
+    }//GEN-LAST:event_btnNewPActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btnAssociate;
     public javax.swing.JButton btnDeleteP;
-    private javax.swing.JButton btnHC;
+    public javax.swing.JButton btnHC;
     public javax.swing.JButton btnIdentify;
     public javax.swing.JButton btnNewP;
     public javax.swing.JButton btnSaveP;
     public javax.swing.JButton btnSearchUpdateP;
-    private javax.swing.JComboBox<String> comboComunidad;
+    public javax.swing.JComboBox<String> comboComunidad;
     public javax.swing.JComboBox<String> comboEtnia;
     public javax.swing.JComboBox<String> comboGestante;
-    private javax.swing.JComboBox<String> comboMunicipio;
+    public javax.swing.JComboBox<String> comboMunicipio;
     private javax.swing.JComboBox<String> comboRh;
     private javax.swing.JComboBox<String> comboSexo;
     private javax.swing.JLabel jLabel1;
@@ -1044,7 +1057,7 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
     public javax.swing.JTextField txtIdPaciente;
     public javax.swing.JTextField txtNombrePaciente;
     public javax.swing.JTextField txtNumDoc;
-    private javax.swing.JTextField txtPYDT;
+    public javax.swing.JTextField txtPYDT;
     public javax.swing.JTextField txtTel;
     public javax.swing.JTextField txtTipoDoc;
     // End of variables declaration//GEN-END:variables

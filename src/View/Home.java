@@ -352,13 +352,13 @@ public class Home extends javax.swing.JFrame {
 
 
     private void btnConfigActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfigActionPerformed
-        formSettings fs = new formSettings();
+        FormSettings fs = new FormSettings();
         windowCentered(fs);
     }//GEN-LAST:event_btnConfigActionPerformed
 
 
     private void btnUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuariosActionPerformed
-        formUsers fu = new formUsers();
+        FormUsers fu = new FormUsers();
         windowCentered(fu);
     }//GEN-LAST:event_btnUsuariosActionPerformed
 

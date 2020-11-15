@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Connector;
+package DAO;
 
+import Connector.Conexion;
 import Model.User;
 import java.sql.*;
 

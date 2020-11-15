@@ -1,7 +1,7 @@
 package View;
 
 import Connector.Conexion;
-import Connector.UserDAO;
+import DAO.UserDAO;
 import Model.User;
 import Toaster.Toaster;
 import Utils.*;

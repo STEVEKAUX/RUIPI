@@ -159,7 +159,7 @@ public class FormIdentify extends javax.swing.JFrame {
                     Reclutador.clear();
                     stop();
                     setTemplate(null);
-                    JOptionPane.showMessageDialog(this, "La Plantilla de la Huella NO pudo ser creada, Repita el Proceso", "Inscripcion de Huellas Dactilares", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "La Plantilla de la Huella NO pudo ser creada, Repita el Proceso", "Inscripcion de huellas dactilares", JOptionPane.ERROR_MESSAGE);
                     start();
                     break;
             }
@@ -365,7 +365,7 @@ public class FormIdentify extends javax.swing.JFrame {
                     
                     fp.findP(id);
                     
-                    JOptionPane.showMessageDialog(null, "El paciente '"+ nombre + "' está registrado en RUIPI", "Paciente Registrado en RUIPI",JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "El paciente '"+ nombre + "' está registrado en RUIPI", "Paciente identificado",JOptionPane.INFORMATION_MESSAGE);
                     existe = true;
                     closing();
                     dispose();
@@ -376,7 +376,7 @@ public class FormIdentify extends javax.swing.JFrame {
             setTemplate(null);
             if (!existe) {
                
-                JOptionPane.showMessageDialog(null, "El paciente NO está registrado en RUIPI","No Hay Registro", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "El paciente NO está registrado en RUIPI","No hay registro", JOptionPane.ERROR_MESSAGE);
             }
 
         } catch (SQLException ex) {
