@@ -1,6 +1,6 @@
 package View;
 
-import Connector.Conexion;
+import Model.Conexion;
 import com.digitalpersona.onetouch.DPFPDataPurpose;
 import com.digitalpersona.onetouch.DPFPFeatureSet;
 import com.digitalpersona.onetouch.DPFPGlobal;
@@ -21,7 +21,6 @@ import com.digitalpersona.onetouch.processing.DPFPImageQualityException;
 import com.digitalpersona.onetouch.verification.DPFPVerification;
 import com.digitalpersona.onetouch.verification.DPFPVerificationResult;
 import java.awt.Image;
-import java.awt.Toolkit;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -207,7 +206,7 @@ public class FormIdentify extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         this.fp = fp;
         fp.btnSearchUpdateOff();
-        fp.clearTable();
+        fp.clearTable();//activar
               
 
         //Establecemos el icono del proyecto en la barra de tareas y superior del Frame  

@@ -1,4 +1,4 @@
-package Connector;
+package Model;
 
 import java.sql.*;
 

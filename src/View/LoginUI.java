@@ -1,10 +1,8 @@
 package View;
 
-import Connector.Conexion;
-import DAO.UserDAO;
+import Model.Conexion;
+import Model.UserDAO;
 import Model.User;
-import Toaster.Toaster;
-import Utils.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.sql.Connection;

@@ -1,20 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package View;
 
-/**
- *
- * @author lenov
- */
-public class FormUsers extends javax.swing.JInternalFrame {
+
+public class FormSettingsManagement extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form formUsers
      */
-    public FormUsers() {
+    public FormSettingsManagement() {
         initComponents();
     }
 
@@ -31,8 +24,8 @@ public class FormUsers extends javax.swing.JInternalFrame {
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
-        setTitle("Gestión de Usuarios");
-        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/user_20px.png"))); // NOI18N
+        setTitle("Configuración de la Empresa");
+        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/settings_20px.png"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

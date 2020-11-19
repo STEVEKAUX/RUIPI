@@ -3,10 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package RUIPI;
+package Model;
 
-import DAO.UserDAO;
+import Model.UserDAO;
 import Controller.PatientController;
+import Model.Patient;
 import Model.User;
 import View.FormPatientsManagement;
 import View.LoginUI;
@@ -17,8 +18,9 @@ public class RUIPI {
          LoginUI loginUI = new LoginUI();
          User u = new User();
          UserDAO uDao = new UserDAO();
+         Patient p= new Patient();
          FormPatientsManagement fp = new FormPatientsManagement();
-         PatientController pc= new PatientController(u, uDao, fp);
+         PatientController pc= new PatientController(u, uDao, fp, p);
          
     }
 

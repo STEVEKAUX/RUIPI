@@ -1,11 +1,11 @@
-package Utils;
+package View;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-import static Utils.UIUtils.*;
+import static View.UIUtils.*;
 import static java.awt.Cursor.*;
 
 //Crea la clase HyperlinkText que extiende de JLabel

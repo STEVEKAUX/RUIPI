@@ -1,13 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package View;
 
 //imports
-import Connector.Conexion;
-import Utils.UIUtils;
+import Controller.HomeController;
+import Model.Conexion;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.sql.Connection;
@@ -35,6 +31,7 @@ public class Home extends javax.swing.JFrame {
         this.setIconImage(new ImageIcon(getClass().getResource("/icon.png")).getImage());
         this.setTitle("RUIPI Menú Principal");
         //setUOnline();
+        HomeController hc= new HomeController(this);
 
     }
 
@@ -146,11 +143,6 @@ public class Home extends javax.swing.JFrame {
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 btnCerrarSesionMouseExited(evt);
-            }
-        });
-        btnCerrarSesion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCerrarSesionActionPerformed(evt);
             }
         });
 
@@ -283,6 +275,7 @@ public class Home extends javax.swing.JFrame {
                 JOptionPane.YES_NO_OPTION,
                 JOptionPane.QUESTION_MESSAGE, null, opciones, "Aceptar");
         if (eleccion == JOptionPane.YES_OPTION) {
+            access = (Connection) con.disconnect();
             this.dispose();
             LoginUI lg = new LoginUI();
         } else {
@@ -343,22 +336,15 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPacientesActionPerformed
 
 
-    private void btnCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSesionActionPerformed
-        access = (Connection) con.disconnect();
-        close();
-
-
-    }//GEN-LAST:event_btnCerrarSesionActionPerformed
-
 
     private void btnConfigActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfigActionPerformed
-        FormSettings fs = new FormSettings();
+        FormSettingsManagement fs = new FormSettingsManagement();
         windowCentered(fs);
     }//GEN-LAST:event_btnConfigActionPerformed
 
 
     private void btnUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuariosActionPerformed
-        FormUsers fu = new FormUsers();
+        FormUsersManagement fu = new FormUsersManagement();
         windowCentered(fu);
     }//GEN-LAST:event_btnUsuariosActionPerformed
 

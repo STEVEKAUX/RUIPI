@@ -1,6 +1,6 @@
-package Toaster;
+package View;
 
-import Utils.UIUtils;
+import View.UIUtils;
 
 import javax.swing.*;
 import java.awt.*;

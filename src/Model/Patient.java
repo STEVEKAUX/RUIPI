@@ -176,5 +176,5 @@ public class Patient {
     public void setFechaPaciente(String fechaPaciente) {
         this.fechaPaciente = fechaPaciente;
     }
-
+    
 }

@@ -1,14 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package View;
 
-import Connector.Conexion;
+import Model.Conexion;
+import Controller.PatientController;
+import Model.UserDAO;
 import Model.Patient;
-import Toaster.Toaster;
-import Utils.UIUtils;
+import Model.User;
 import java.sql.*;
 import java.io.ByteArrayInputStream;
 import java.util.logging.Level;
@@ -20,14 +17,16 @@ import javax.swing.table.DefaultTableModel;
 
 public final class FormPatientsManagement extends javax.swing.JInternalFrame {
 
-    private ByteArrayInputStream huellaPaciente;
+    public ByteArrayInputStream huellaPaciente;
     Integer sizeHuella;
     boolean isOpen = false;
     boolean tipoQuery = false;
     Toaster toaster;
-    int id_paciente;
-    DefaultTableModel modt;
+    public int id_paciente;
+    public DefaultTableModel modt;
     Patient p = new Patient();
+    
+    
 
     public FormPatientsManagement() {
         setQueryInsert();
@@ -35,7 +34,11 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
         //  emptyFields();
         disableButtons(false, true, true);
         modt = (DefaultTableModel) tableP.getModel();
-
+         User u = new User();
+         UserDAO uDao = new UserDAO();
+         Patient p= new Patient();
+         //relación con el controlador
+         PatientController pc= new PatientController(u, uDao, this, p);
     }
 
     /**
@@ -225,11 +228,6 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
                 btnSavePMouseExited(evt);
             }
         });
-        btnSaveP.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSavePActionPerformed(evt);
-            }
-        });
 
         jLabel19.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel19.setForeground(new java.awt.Color(108, 216, 158));
@@ -246,11 +244,6 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 btnAssociateMouseExited(evt);
-            }
-        });
-        btnAssociate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAssociateActionPerformed(evt);
             }
         });
 
@@ -270,11 +263,6 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
                 btnIdentifyMouseExited(evt);
             }
         });
-        btnIdentify.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnIdentifyActionPerformed(evt);
-            }
-        });
 
         btnSearchUpdateP.setBackground(new java.awt.Color(108, 216, 158));
         btnSearchUpdateP.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
@@ -288,11 +276,6 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 btnSearchUpdatePMouseExited(evt);
-            }
-        });
-        btnSearchUpdateP.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSearchUpdatePActionPerformed(evt);
             }
         });
 
@@ -323,11 +306,6 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 btnNewPMouseExited(evt);
-            }
-        });
-        btnNewP.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNewPActionPerformed(evt);
             }
         });
 
@@ -645,7 +623,8 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
     //Se encarga de realizar la inserción o la actualización de los datos del paciente
     //siempre y cuando los campos no estén vaciós dependiendo si es una búsqueda o una inserción de paciente
     public void saveP() {
-        clearTable();
+        
+        clearTable();//activar
 
         if (emptyFields()) {
             //btnSearchUpdateOn();
@@ -658,7 +637,7 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
                 tipoQuery = true;
             }
 
-            clearFields();
+            clearFields();//activar
             isOpen = false;
             //emptyFields();
             //btnAsociarOn();
@@ -669,7 +648,7 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
     //Se encarga de realizar la búsequeda de un paciente por nombre o coinsidencia de letras que contiene su nombre,
     //una vez encontado el paciente, se llenan los campos con sus datos y se activa la consulta para actualizar datos tipoQuery= UPDATE
     public void searchUpdate() {
-        clearTable();
+        clearTable();//activar
         //emptyFields();
         String nombreBuscar = JOptionPane.showInputDialog(null, "Ingresa un nombre o parte de él", "Búsqueda de pacientes", QUESTION_MESSAGE);
 
@@ -808,7 +787,7 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
             ps.setString(2, txtNombrePaciente.getText());
             ps.execute();
             JOptionPane.showMessageDialog(null, "El paciente '" + txtNombrePaciente.getText() + "' se guardó con éxito", "Paciente registrado exitosamente en RUIPI", JOptionPane.INFORMATION_MESSAGE);
-            clearFields();
+            clearFields();//activar
         } catch (SQLException ex) {
             Logger.getLogger(FormPatientsManagement.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -835,7 +814,7 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
                 ps.setInt(3, id_paciente);
                 ps.execute();
                 JOptionPane.showMessageDialog(null, "La actualización del paciente '" + txtNombrePaciente.getText() + "' se guardó con éxito", "Paciente actualizado", JOptionPane.INFORMATION_MESSAGE);
-                clearFields();
+                clearFields();//activar
             } catch (SQLException ex) {
                 Logger.getLogger(FormPatientsManagement.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -992,26 +971,6 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
         editRowTable(evt);
     }//GEN-LAST:event_tablePMouseClicked
 
-    private void btnAssociateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAssociateActionPerformed
-        asociate();
-    }//GEN-LAST:event_btnAssociateActionPerformed
-
-    private void btnSavePActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSavePActionPerformed
-        saveP();
-    }//GEN-LAST:event_btnSavePActionPerformed
-
-    private void btnSearchUpdatePActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchUpdatePActionPerformed
-        searchUpdate();
-    }//GEN-LAST:event_btnSearchUpdatePActionPerformed
-
-    private void btnIdentifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIdentifyActionPerformed
-        identify();
-    }//GEN-LAST:event_btnIdentifyActionPerformed
-
-    private void btnNewPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewPActionPerformed
-       clearFields();
-    }//GEN-LAST:event_btnNewPActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btnAssociate;
@@ -1025,8 +984,8 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
     public javax.swing.JComboBox<String> comboEtnia;
     public javax.swing.JComboBox<String> comboGestante;
     public javax.swing.JComboBox<String> comboMunicipio;
-    private javax.swing.JComboBox<String> comboRh;
-    private javax.swing.JComboBox<String> comboSexo;
+    public javax.swing.JComboBox<String> comboRh;
+    public javax.swing.JComboBox<String> comboSexo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
