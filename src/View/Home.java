@@ -22,12 +22,10 @@ public class Home extends javax.swing.JFrame {
         this.setResizable(true);
         setLocationRelativeTo(null);
 
-//        Toolkit loginFrame = Toolkit.getDefaultToolkit();
-//        Image ruipiIcon = loginFrame.getImage("resource/icon.png");
-//        setIconImage(ruipiIcon);
+
         this.setIconImage(new ImageIcon(getClass().getResource("/icon.png")).getImage());
         this.setTitle("RUIPI Menú Principal");
-        //setUOnline();
+        
         HomeController hc= new HomeController(this);
 
     }

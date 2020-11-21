@@ -1,5 +1,6 @@
 package View;
 
+import Controller.LoginController;
 import Model.Conexion;
 import Model.UserDAO;
 import Model.User;
@@ -13,14 +14,13 @@ public class LoginUI extends JFrame {
     //Variables globales
     Conexion con = new Conexion();
     Connection access;
-
+    public JButton loginButton;
+    public JButton exitButton;
     UserDAO udao = new UserDAO();
-    User u ;
+    User u;
     private final Toaster toaster;
-
     public String username = "";
     public String password = "";
-
     public TextFieldUsername txtUsernameField;
     public TextFieldPassword txtPasswordField;
 
@@ -32,23 +32,14 @@ public class LoginUI extends JFrame {
         this.setTitle("RUIPI Inicio de Sesión");
 
         JPanel mainJPanel = getMainJPanel();
-
-        //addMinButton(mainJPanel);
         addLogo(mainJPanel);
-
         addSeparator(mainJPanel);
-
         addUsernameTextField(mainJPanel);
-
         addPasswordTextField(mainJPanel);
-
         addLoginButton(mainJPanel);
-
         addExitButton(mainJPanel);
-
         addForgotPasswordButton(mainJPanel);
 
-        //addRegisterButton(mainJPanel);
         this.add(mainJPanel);
         this.pack();
         this.setVisible(true);
@@ -57,6 +48,7 @@ public class LoginUI extends JFrame {
         //Establecemos la ubicación del Panel 
         setLocationRelativeTo(null);
         toaster = new Toaster(mainJPanel);
+        LoginController lc = new LoginController(this);
     }
 
     //Obtiene el texto del campo de Nombre de usuario
@@ -73,7 +65,7 @@ public class LoginUI extends JFrame {
         return password;
     }
 
-    //OBTIENE EL PANE PRINCIPAL
+    //Obtiene el panel prncipal con su apariencia retonra el panel1
     private JPanel getMainJPanel() {
         this.setUndecorated(false);
         this.setResizable(false);
@@ -120,7 +112,7 @@ public class LoginUI extends JFrame {
         return panel1;
     }
 
-    //AGREGA EL SEPARADOR CENTRAL
+    //Agrega el separadorcentral
     private void addSeparator(JPanel panel1) {
         JSeparator separator1 = new JSeparator();
         separator1.setOrientation(SwingConstants.VERTICAL);
@@ -129,36 +121,18 @@ public class LoginUI extends JFrame {
         separator1.setBounds(400, 45, 1, 308);
     }
 
-    /**
-     * //MINIMIZAR public void minimize() { *
-     * this.setExtendedState(ICONIFIED);{ }}*
-     */
-    //CONFIRMAR ACCIÓN DE SALIR
-    public void closeApp() {
-        Object[] opciones = {"Aceptar", "Cancelar"};
-        int eleccion = JOptionPane.showOptionDialog(rootPane, "¿Realmente desea salir de la aplicación?", "Saliendo de RUIPI",
-                JOptionPane.YES_NO_OPTION,
-                JOptionPane.QUESTION_MESSAGE, null, opciones, "Aceptar");
-        if (eleccion == JOptionPane.YES_OPTION) {
-            System.exit(0);
-        } else {
-        }
-    }
-
-    //AGREGA EL LOGO DE RUIPI
+    //Agrega el logo de RUIPI
     private void addLogo(JPanel panel1) {
         JLabel label1 = new JLabel();
         label1.setFocusable(false);
-       // label1.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("ruipi2.png")).getFile()));
         label1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruipi2.png")));
         panel1.add(label1);
         label1.setBounds(100, 100, 200, 200);
     }
 
-    //CAMPO DE TEXTO DE NOMBRE DE USUARIO
+    //Define, agrega y le da la apariencia al campo de texto nombre de usuario
     private void addUsernameTextField(JPanel panel1) {
         txtUsernameField = new TextFieldUsername();
-
         txtUsernameField.setBounds(475, 66, 250, 44);
         txtUsernameField.addFocusListener(new FocusListener() {
             @Override
@@ -183,12 +157,11 @@ public class LoginUI extends JFrame {
         panel1.add(txtUsernameField);
     }
 
-    //CAMPO DE TEXTO DE CONTRASEÑA
+    //Define, agrega y le da la apariencia al campo de texto contraseña
     private void addPasswordTextField(JPanel panel1) {
         txtPasswordField = new TextFieldPassword();
         txtPasswordField.setText(UIUtils.PLACEHOLDER_TEXT_PASSWORD);
         txtPasswordField.setForeground(UIUtils.COLOR_OUTLINE);
-
         txtPasswordField.setBounds(475, 126, 250, 44);
         txtPasswordField.addFocusListener(new FocusListener() {
             @Override
@@ -210,23 +183,14 @@ public class LoginUI extends JFrame {
             }
         });
 
-        txtPasswordField.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyTyped(KeyEvent e) {
-                if (e.getKeyChar() == KeyEvent.VK_ENTER) {
-                    validateLogin();
-                }
-            }
-        });
-
         panel1.add(txtPasswordField);
     }
 
-    //BOTÓN DE INICIO DE SESIÓN 
+    //Define, agrega y le da la apariencia al botón de inicio de sesión
     private void addLoginButton(JPanel panel1) {
         final Color[] loginButtonColors = {UIUtils.COLOR_INTERACTIVE, Color.white};
 
-        JLabel loginButton = new JLabel() {
+        loginButton = new JButton() {
             @Override
             protected void paintComponent(Graphics g) {
                 Graphics2D g2 = UIUtils.get2dGraphics(g);
@@ -249,11 +213,6 @@ public class LoginUI extends JFrame {
 
         loginButton.addMouseListener(new MouseAdapter() {
 
-            @Override
-            public void mousePressed(MouseEvent e) {
-                validateLogin();
-
-            }
 
             @Override
             public void mouseEntered(MouseEvent e) {
@@ -277,11 +236,11 @@ public class LoginUI extends JFrame {
         panel1.add(loginButton);
     }
 
-    // BOTON DE SALIR
+    //Define, agrega y le da la apariencia al botón de inicio de salir
     private void addExitButton(JPanel panel1) {
         final Color[] exitButtonColors = {UIUtils.COLOR_INTERACTIVE2, Color.white};
 
-        JLabel exitButton = new JLabel() {
+        exitButton = new JButton() {
             @Override
             protected void paintComponent(Graphics g) {
                 Graphics2D g2 = UIUtils.get2dGraphics(g);
@@ -304,10 +263,6 @@ public class LoginUI extends JFrame {
 
         exitButton.addMouseListener(new MouseAdapter() {
 
-            /**
-             * @Override public void mousePressed(MouseEvent e) {
-             * exitEventHandler(); }*
-             */
             @Override
             public void mouseEntered(MouseEvent e) {
                 exitButtonColors[0] = UIUtils.COLOR_INTERACTIVE_DARKER2;
@@ -322,11 +277,6 @@ public class LoginUI extends JFrame {
                 exitButton.repaint();
             }
 
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                access = (Connection) con.disconnect();
-                closeApp();
-            }
         });
 
         exitButton.setBackground(UIUtils.COLOR_BACKGROUND);
@@ -335,64 +285,19 @@ public class LoginUI extends JFrame {
         panel1.add(exitButton);
     }
 
- 
-    //ALERTAS
+    //Muestra las alertas
     private void addForgotPasswordButton(JPanel panel1) {
         panel1.add(new HyperlinkText(UIUtils.BUTTON_TEXT_FORGOT_PASS, 475, 177, () -> {
             toaster.warn("Reestablecer contraseña");
         }));
     }
 
-    private void loginEventHandler() {
-        toaster.success("Iniciando sesión");
-    }
-
-    private void loginErrorEventHandler() {
+    public void loginErrorEventHandler() {
         toaster.error("¡Hay campos vacíos!");
     }
 
-    private void dataErrorEventHandler() {
-        toaster.error("¡Datos inválidos!"); 
+    public void dataErrorEventHandler() {
+        toaster.error("¡Datos inválidos!");
     }
 
-    public void validateLogin() {
-        String uf = getUsernameField();
-        String pf = getPasswordField();
-
-        if (getUsernameField().equals("") || getPasswordField().equals("") || getUsernameField().equals("Nombre de Usuario") || getPasswordField().equals("contraseña")) {
-            loginErrorEventHandler();
-            txtUsernameField.requestFocus();
-
-        } else {
-            u = udao.userValidator(uf, pf);
-          
-            if (u.getUsername() != null && u.getPassword() != null) {   
-                   
-                Home h = new Home();
-                //loginEventHandler();
-                h.setVisible(true);
-                h.lblUsername.setText(getUsernameField());
-                switch (u.getIdTipoUsuario()) {
-                    case 1:
-                        h.lblUserType.setText("Superusuario");
-                        break;
-                    case 2:
-                        h.lblUserType.setText("Usuario Estándar");
-                        break;
-                    case 3:
-                        h.lblUserType.setText("Usuario Básico");
-                        break;
-                    default: {
-                    }
-                }
-
-                dispose();
-
-            } else {
-                dataErrorEventHandler();
-                txtPasswordField.requestFocus();
-            }
-
-        }
-    }
 }

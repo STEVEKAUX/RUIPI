@@ -204,6 +204,7 @@ public class FormEnterBrand extends javax.swing.JFrame {
         Iniciar();
         start();
         setLocationRelativeTo(null);
+        this.setResizable(false);
         this.fp = fp;
 
         //Establecemos el icono del proyecto en la barra de tareas y superior del Frame  

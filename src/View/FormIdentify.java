@@ -204,6 +204,7 @@ public class FormIdentify extends javax.swing.JFrame {
         Iniciar();
         start();
         setLocationRelativeTo(null);
+        this.setResizable(false);
         this.fp = fp;
         fp.btnSearchUpdateOff();
         fp.clearTable();
