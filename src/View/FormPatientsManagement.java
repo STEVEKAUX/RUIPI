@@ -31,7 +31,7 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
     public FormPatientsManagement() {
         setQueryInsert();
         initComponents();
-        //  emptyFields();
+        
         disableButtons(false, true, true);
         modt = (DefaultTableModel) tableP.getModel();
          User u = new User();
@@ -601,8 +601,7 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
     //método del botón Asociar Huella se encarga de crear la instancia del lector de huellas que asocia la huella del paciente
     public void asociate() {
 
-        //btnSearchUpdateOff();
-        //btnSaveP.setEnabled(false);
+        
         disableButtons(false, false, false);
 
         if (isOpen == false) {
@@ -624,10 +623,10 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
     //siempre y cuando los campos no estén vaciós dependiendo si es una búsqueda o una inserción de paciente
     public void saveP() {
         
-        clearTable();//activar
+        clearTable();
 
         if (emptyFields()) {
-            //btnSearchUpdateOn();
+            
             if (tipoQuery) {
                 Insert();
                 txtNombrePaciente.requestFocus();
@@ -637,10 +636,9 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
                 tipoQuery = true;
             }
 
-            clearFields();//activar
+            clearFields();
             isOpen = false;
-            //emptyFields();
-            //btnAsociarOn();
+            
             disableButtons(false, true, true);
         }
     }
@@ -648,8 +646,8 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
     //Se encarga de realizar la búsequeda de un paciente por nombre o coinsidencia de letras que contiene su nombre,
     //una vez encontado el paciente, se llenan los campos con sus datos y se activa la consulta para actualizar datos tipoQuery= UPDATE
     public void searchUpdate() {
-        clearTable();//activar
-        //emptyFields();
+        clearTable();
+        
         String nombreBuscar = JOptionPane.showInputDialog(null, "Ingresa un nombre o parte de él", "Búsqueda de pacientes", QUESTION_MESSAGE);
 
         if (nombreBuscar != null) {
@@ -665,14 +663,7 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
                     ResultSet rs = ps.executeQuery();
 
                     while (rs.next()) {
-
-//                            if (rs.getString("nombre_paciente").equals(nombreBuscar)) {
-//                                id_paciente = rs.getInt("id_paciente");
-//                                tipoQuery = false;
-//                                txtNombrePaciente.setText(rs.getString("nombre_paciente"));
-//                                txtIdPaciente.setText(rs.getString("id_paciente"));
-//                                disableButtons(false, true, false);
-//                            }
+  
                         modt.addRow(new Object[]{
                             rs.getInt("id_paciente"),
                             rs.getString("nombre_paciente")
@@ -779,7 +770,7 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
 
         Conexion cn = new Conexion();
         Connection cnn = cn.getConnection();
-        //poner el if con em Jopane message
+        
         try {
             System.out.println("INSERT");
             PreparedStatement ps = cnn.prepareStatement("INSERT INTO Paciente (huella, nombre_paciente) VALUES(?,?)");
@@ -787,7 +778,7 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
             ps.setString(2, txtNombrePaciente.getText());
             ps.execute();
             JOptionPane.showMessageDialog(null, "El paciente '" + txtNombrePaciente.getText() + "' se guardó con éxito", "Paciente registrado exitosamente en RUIPI", JOptionPane.INFORMATION_MESSAGE);
-            clearFields();//activar
+            clearFields();
         } catch (SQLException ex) {
             Logger.getLogger(FormPatientsManagement.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -897,11 +888,12 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
         comboGestante.setSelectedIndex(0);
         comboEtnia.setSelectedIndex(0);
         txtPYDT.setText("");
+        txtTel.setText("");
         huellaPaciente = null;
-        //btnSavePOff();
+        
         setQueryInsert();
         clearTable();
-        disableButtons(false, true, true);//1/10/2020/5:36pm
+        disableButtons(false, true, true);
     }
 
     public void disableButtons(boolean save, boolean search, boolean identify) {

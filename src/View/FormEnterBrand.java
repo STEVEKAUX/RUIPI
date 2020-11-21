@@ -200,18 +200,14 @@ public class FormEnterBrand extends javax.swing.JFrame {
     //Constructor de la clase FormEnterBrand
     public FormEnterBrand(FormPatientsManagement fp) {
         initComponents();
-        //this.setAlwaysOnTop(true);
-        //fp.setEnabled(false);
+
         Iniciar();
         start();
         setLocationRelativeTo(null);
         this.fp = fp;
-        //fp.clearTable();
 
         //Establecemos el icono del proyecto en la barra de tareas y superior del Frame  
-//        Toolkit loginFrame = Toolkit.getDefaultToolkit();
-//        Image ruipiIcon = loginFrame.getImage("resource/icon.png");
-//        setIconImage(ruipiIcon);
+//        
         this.setIconImage(new ImageIcon(getClass().getResource("/icon.png")).getImage());
         this.setTitle("RUIPI Lector de Huellas");
 
@@ -325,22 +321,19 @@ public class FormEnterBrand extends javax.swing.JFrame {
         fp.isOpen = true;
         dispose();
         fp.isOpen = false;
-        //fp.btnAsociateOn();
-        fp.disableButtons(true, false, false);
-        //fp.setEnabled(true);
 
-        //fp.emptyFields();
-        //datosHuella=null;
+        fp.disableButtons(true, false, false);
+
 
     }//GEN-LAST:event_btnGuardarHuellaActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        //fp.btnSearchUpdateOn();
+
         fp.disableButtons(false, true, true);
         huella = null;
         stop();
         fp.isOpen = false;
-        //fp.setEnabled(true);
+
 
     }//GEN-LAST:event_formWindowClosing
 

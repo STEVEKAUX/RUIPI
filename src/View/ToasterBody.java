@@ -1,6 +1,5 @@
 package View;
 
-import View.UIUtils;
 
 import javax.swing.*;
 import java.awt.*;

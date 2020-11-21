@@ -28,9 +28,6 @@ public class LoginUI extends JFrame {
     public LoginUI() {
 
         //Establecemos el icono del proyecto en la barra de tareas y superior del Frame     
-//        Toolkit loginFrame = Toolkit.getDefaultToolkit();
-//        Image ruipiIcon = loginFrame.getImage("resource/icon.png");
-//        setIconImage(ruipiIcon);
         this.setIconImage(new ImageIcon(getClass().getResource("/icon.png")).getImage());
         this.setTitle("RUIPI Inicio de Sesión");
 
@@ -338,52 +335,7 @@ public class LoginUI extends JFrame {
         panel1.add(exitButton);
     }
 
-    //BOTÓN DE MINIMIZAR
-    /**
-     * private void addMinButton(JPanel panel1) { final Color[] minButtonColors
-     * = {UIUtils.COLOR_INTERACTIVE, Color.white};
-     *
-     * JLabel minButton = new JLabel() {
-     *
-     * @Override protected void paintComponent(Graphics g) { Graphics2D g2 =
-     * UIUtils.get2dGraphics(g); super.paintComponent(g2);
-     *
-     * Insets insets = getInsets(); int w = getWidth() - insets.left -
-     * insets.right; int h = getHeight() - insets.top - insets.bottom;
-     * g2.setColor(minButtonColors[0]); g2.fillRoundRect(insets.left,
-     * insets.top, w, h, UIUtils.ROUNDNESS, UIUtils.ROUNDNESS);
-     *
-     * }
-     * };
-     *
-     * minButton.addMouseListener(new MouseAdapter() {
-     *
-     * /**@Override public void mousePressed(MouseEvent e) { minEventHandler();
-     * }
-     *
-     * @Override public void mouseEntered(MouseEvent e) { minButtonColors[0] =
-     * UIUtils.COLOR_INTERACTIVE_DARKER; minButtonColors[1] = UIUtils.OFFWHITE;
-     * minButton.repaint(); }
-     *
-     * @Override public void mouseExited(MouseEvent e) { minButtonColors[0] =
-     * UIUtils.COLOR_INTERACTIVE; minButtonColors[1] = Color.white;
-     * minButton.repaint(); }
-     *
-     * @Override public void mouseClicked(MouseEvent e) { minimize(); }
-     *
-     * });
-     *
-     * minButton.setBackground(UIUtils. COLOR_BACKGROUND);
-     * minButton.setBounds(745, 20, 35, 8);
-     * minButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-     * panel1.add(minButton); }*
-     */
-    /**
-     * método retirado porque solo el Administrador puede registrar nuevos
-     * usuarios private void addRegisterButton(JPanel panel1) { panel1.add(new
-     * HyperlinkText(UIUtils.BUTTON_TEXT_REGISTER, 613, 150, () -> {
-     * toaster.success("Regristrarme en RUIPI"); })); }*
-     */
+ 
     //ALERTAS
     private void addForgotPasswordButton(JPanel panel1) {
         panel1.add(new HyperlinkText(UIUtils.BUTTON_TEXT_FORGOT_PASS, 475, 177, () -> {

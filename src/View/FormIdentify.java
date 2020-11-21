@@ -200,13 +200,13 @@ public class FormIdentify extends javax.swing.JFrame {
 
     public FormIdentify(FormPatientsManagement fp) {
         initComponents();
-        //this.setAlwaysOnTop(true);
+        
         Iniciar();
         start();
         setLocationRelativeTo(null);
         this.fp = fp;
         fp.btnSearchUpdateOff();
-        fp.clearTable();//activar
+        fp.clearTable();
               
 
         //Establecemos el icono del proyecto en la barra de tareas y superior del Frame  
@@ -311,7 +311,6 @@ public class FormIdentify extends javax.swing.JFrame {
     public void closing(){
          stop();
         fp.isOpen = false;
-        //fp.btnSearchUpdateOn();
         fp.disableButtons(false, true, true);
     }
 

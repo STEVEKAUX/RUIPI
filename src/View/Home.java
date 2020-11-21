@@ -4,12 +4,9 @@ package View;
 //imports
 import Controller.HomeController;
 import Model.Conexion;
-import java.awt.Dimension;
 import java.awt.Graphics;
 import java.sql.Connection;
 import javax.swing.ImageIcon;
-import javax.swing.JInternalFrame;
-import javax.swing.JOptionPane;
 
 public class Home extends javax.swing.JFrame {
 
@@ -105,11 +102,6 @@ public class Home extends javax.swing.JFrame {
                 btnUsuariosMouseExited(evt);
             }
         });
-        btnUsuarios.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUsuariosActionPerformed(evt);
-            }
-        });
 
         btnPacientes.setBackground(new java.awt.Color(108, 216, 158));
         btnPacientes.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
@@ -123,11 +115,6 @@ public class Home extends javax.swing.JFrame {
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 btnPacientesMouseExited(evt);
-            }
-        });
-        btnPacientes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPacientesActionPerformed(evt);
             }
         });
 
@@ -158,11 +145,6 @@ public class Home extends javax.swing.JFrame {
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 btnConfigMouseExited(evt);
-            }
-        });
-        btnConfig.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnConfigActionPerformed(evt);
             }
         });
 
@@ -260,98 +242,9 @@ public class Home extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public void windowCentered(JInternalFrame frame) {
-        jDesktopPane1.add(frame);
-
-        Dimension screenSize = jDesktopPane1.getSize();
-        Dimension formP = frame.getSize();
-        frame.setLocation((screenSize.width - formP.width) / 2, ((screenSize.height) - formP.height) / 2);
-        frame.show();
-    }
-
-    public void close() {
-        Object[] opciones = {"Aceptar", "Cancelar"};
-        int eleccion = JOptionPane.showOptionDialog(rootPane, "¿Realmente desea salir de la aplicación?", "Saliendo de RUIPI",
-                JOptionPane.YES_NO_OPTION,
-                JOptionPane.QUESTION_MESSAGE, null, opciones, "Aceptar");
-        if (eleccion == JOptionPane.YES_OPTION) {
-            access = (Connection) con.disconnect();
-            this.dispose();
-            LoginUI lg = new LoginUI();
-        } else {
-        }
-    }
-
-    //Establece el nombre de usuario y el tipo de usuario que inició sesiónn en la parte baja del frame
-//    public void setUOnline() {
-//
-//        Conexion cn = new Conexion();
-//        Connection cnn = cn.getConnection();
-//        PreparedStatement ps;
-//        ResultSet rs;
-//        Home h = null;
-//        String query = "SELECT u.username, u.idtipo_usuario, t.nombre_tipo_usuario FROM usuario AS u "
-//                + "INNER JOIN tipo_usuario AS t ON u.idtipo_usuario=t.id_tipo_usuario";
-//        try {
-//
-//            ps = cnn.prepareStatement(query);
-//            rs = ps.executeQuery();
-//
-//            while (rs.next()) {
-//                lblUsername.setText(rs.getString("username"));
-//                lblUserType.setText(rs.getString("nombre_tipo_usuario"));
-//                
-//                
-//            }
-//            //REVISAR CASOS PARA TIPOS DE USUARIO
-////            switch(rs.getInt("idtipo_usuario")){
-////                case 1: System.out.println(rs.getInt("idtipo_usuario"));;
-////                break;
-////                case 2: h.btnConfig.setEnabled(false);
-////                break;
-////                case 3: h.btnConfig.setEnabled(false);
-////                break;
-////            }
-//
-//        } catch (Exception e) {
-//
-//       }
-//
-//    }
-//    public void privileges(){
-//        Conexion cn = new Conexion();
-//        Connection cnn = cn.getConnection();
-//        PreparedStatement ps;
-//        ResultSet rs;
-//        String query="SELECT u.idtipo_usuario, t.nombre_tipo_usuario FROM usuario AS u" 
-//                +"INNER JOIN tipo_usuario AS t ON u.idtipo_usuario=t.id_tipo_usuario";
-//        
-//        
-//    }
-
-    private void btnPacientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPacientesActionPerformed
-        FormPatientsManagement fp = new FormPatientsManagement();
-        windowCentered(fp);
-        fp.txtNombrePaciente.requestFocus();
-    }//GEN-LAST:event_btnPacientesActionPerformed
-
-
-
-    private void btnConfigActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfigActionPerformed
-        FormSettingsManagement fs = new FormSettingsManagement();
-        windowCentered(fs);
-    }//GEN-LAST:event_btnConfigActionPerformed
-
-
-    private void btnUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuariosActionPerformed
-        FormUsersManagement fu = new FormUsersManagement();
-        windowCentered(fu);
-    }//GEN-LAST:event_btnUsuariosActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         access = (Connection) con.disconnect();
-        //close();
-
     }//GEN-LAST:event_formWindowClosing
 
     private void btnUsuariosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUsuariosMouseEntered
@@ -431,7 +324,7 @@ public class Home extends javax.swing.JFrame {
     public javax.swing.JButton btnConfig;
     public javax.swing.JButton btnPacientes;
     public javax.swing.JButton btnUsuarios;
-    private javax.swing.JDesktopPane jDesktopPane1;
+    public javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
