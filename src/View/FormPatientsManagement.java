@@ -6,6 +6,7 @@ import Controller.PatientController;
 import Model.UserDAO;
 import Model.Patient;
 import Model.User;
+import static java.awt.Frame.MAXIMIZED_BOTH;
 import java.sql.*;
 import java.io.ByteArrayInputStream;
 import java.util.logging.Level;
@@ -101,10 +102,11 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
         setBorder(null);
         setClosable(true);
         setIconifiable(true);
-        setMaximizable(true);
+        setResizable(true);
         setTitle("Gestión de Pacientes");
-        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/patients_25px.png"))); // NOI18N
+        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/patients_20px.png"))); // NOI18N
         setMinimumSize(new java.awt.Dimension(800, 450));
+        setPreferredSize(new java.awt.Dimension(1197, 653));
 
         jPanel1.setBackground(new java.awt.Color(37, 51, 61));
 

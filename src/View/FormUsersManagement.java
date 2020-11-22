@@ -23,7 +23,7 @@ public class FormUsersManagement extends javax.swing.JInternalFrame {
         setBorder(null);
         setClosable(true);
         setIconifiable(true);
-        setMaximizable(true);
+        setResizable(true);
         setTitle("Gestión de Usuarios");
         setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/user_20px.png"))); // NOI18N
 

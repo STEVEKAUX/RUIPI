@@ -23,7 +23,7 @@ public class FormSettingsManagement extends javax.swing.JInternalFrame {
         setBorder(null);
         setClosable(true);
         setIconifiable(true);
-        setMaximizable(true);
+        setResizable(true);
         setTitle("Configuración de la Empresa");
         setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/settings_20px.png"))); // NOI18N
 

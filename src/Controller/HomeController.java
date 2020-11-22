@@ -9,7 +9,10 @@ import View.LoginUI;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.beans.PropertyVetoException;
 import java.sql.Connection;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 
@@ -36,15 +39,30 @@ public class HomeController implements ActionListener {
         if (e.getSource() == h.btnUsuarios) {
             FormUsersManagement fu = new FormUsersManagement();
         windowCentered(fu);
+         try {
+                fu.setMaximum(true);
+            } catch (PropertyVetoException ex) {
+                Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         if (e.getSource() == h.btnPacientes) {
              fp = new FormPatientsManagement();
             windowCentered(fp);
+            try {
+                fp.setMaximum(true);
+            } catch (PropertyVetoException ex) {
+                Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
+            }
             fp.txtNombrePaciente.requestFocus();
         }
         if (e.getSource() == h.btnConfig) {
              FormSettingsManagement fs = new FormSettingsManagement();
         windowCentered(fs);
+         try {
+                fs.setMaximum(true);
+            } catch (PropertyVetoException ex) {
+                Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         if (e.getSource() == h.btnCerrarSesion) {
             close();
