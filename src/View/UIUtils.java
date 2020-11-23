@@ -12,6 +12,7 @@ public class UIUtils {
 
     public static final Color COLOR_OUTLINE = new Color(103, 112, 120);
     public static final Color COLOR_BACKGROUND = new Color(37, 51, 61);
+    public static final Color COLOR_BACKGROUND_SOFT = new Color(47,61,71);
     public static final Color COLOR_INTERACTIVE = new Color(108, 216, 158);
     public static final Color COLOR_INTERACTIVE_DARKER = new Color(87, 171, 127);
     public static final Color COLOR_INTERACTIVE2 = new Color(252, 87, 118);

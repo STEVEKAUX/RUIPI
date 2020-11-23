@@ -4,6 +4,7 @@ package View;
 //imports
 import Controller.HomeController;
 import Model.Conexion;
+import java.awt.Color;
 import java.awt.Graphics;
 import java.sql.Connection;
 import javax.swing.ImageIcon;
@@ -49,7 +50,7 @@ public class Home extends javax.swing.JFrame {
         btnPacientes = new javax.swing.JButton();
         btnConfig = new javax.swing.JButton();
         btnCerrarSesion = new javax.swing.JButton();
-        jDesktopPane1 =  new javax.swing.JDesktopPane() { @Override protected void paintComponent(Graphics g) { super.paintComponent(g); g.setColor(UIUtils.COLOR_BACKGROUND); g.fillRect(0, 0, getWidth(), getHeight()); } };
+        jDesktopPane1 = new javax.swing.JDesktopPane() { @Override protected void paintComponent(Graphics g) { super.paintComponent(g); g.setColor(UIUtils.COLOR_BACKGROUND_SOFT); g.fillRect(0, 0, getWidth(), getHeight()); } };
         ;
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -60,26 +61,26 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
-        jPanel1.setBackground(new java.awt.Color(108, 216, 158));
+        jPanel1.setBackground(new java.awt.Color(37, 51, 61));
         jPanel1.setForeground(new java.awt.Color(37, 51, 61));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(37, 51, 61));
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/home_20px.png"))); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(108, 216, 158));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/home_20px1.png"))); // NOI18N
         jLabel1.setText("Menú Principal");
 
-        lblUserType.setBackground(new java.awt.Color(108, 216, 158));
+        lblUserType.setBackground(new java.awt.Color(37, 51, 61));
         lblUserType.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        lblUserType.setForeground(new java.awt.Color(37, 51, 61));
+        lblUserType.setForeground(new java.awt.Color(108, 216, 158));
 
-        jLabel2.setBackground(new java.awt.Color(108, 216, 158));
+        jLabel2.setBackground(new java.awt.Color(37, 51, 61));
         jLabel2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(37, 51, 61));
+        jLabel2.setForeground(new java.awt.Color(108, 216, 158));
         jLabel2.setText(":");
 
-        lblUsername.setBackground(new java.awt.Color(108, 216, 158));
+        lblUsername.setBackground(new java.awt.Color(37, 51, 61));
         lblUsername.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        lblUsername.setForeground(new java.awt.Color(37, 51, 61));
+        lblUsername.setForeground(new java.awt.Color(108, 216, 158));
         lblUsername.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -112,15 +113,16 @@ public class Home extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanel3.setBackground(new java.awt.Color(108, 216, 158));
+        jPanel3.setBackground(new java.awt.Color(37, 51, 61));
 
-        btnUsuarios.setBackground(new java.awt.Color(108, 216, 158));
+        btnUsuarios.setBackground(new java.awt.Color(37, 51, 61));
         btnUsuarios.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        btnUsuarios.setForeground(new java.awt.Color(37, 51, 61));
-        btnUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/user_20px.png"))); // NOI18N
+        btnUsuarios.setForeground(new java.awt.Color(108, 216, 158));
+        btnUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/user_20px1.png"))); // NOI18N
         btnUsuarios.setText("Usuarios");
         btnUsuarios.setToolTipText("");
         btnUsuarios.setBorder(null);
+        btnUsuarios.setFocusPainted(false);
         btnUsuarios.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btnUsuariosMouseEntered(evt);
@@ -130,12 +132,13 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
-        btnPacientes.setBackground(new java.awt.Color(108, 216, 158));
+        btnPacientes.setBackground(new java.awt.Color(37, 51, 61));
         btnPacientes.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        btnPacientes.setForeground(new java.awt.Color(37, 51, 61));
-        btnPacientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/patients_25px.png"))); // NOI18N
+        btnPacientes.setForeground(new java.awt.Color(108, 216, 158));
+        btnPacientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/patients_25px1.png"))); // NOI18N
         btnPacientes.setText("Pacientes");
         btnPacientes.setBorder(null);
+        btnPacientes.setFocusPainted(false);
         btnPacientes.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btnPacientesMouseEntered(evt);
@@ -145,12 +148,13 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
-        btnConfig.setBackground(new java.awt.Color(108, 216, 158));
+        btnConfig.setBackground(new java.awt.Color(37, 51, 61));
         btnConfig.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        btnConfig.setForeground(new java.awt.Color(37, 51, 61));
-        btnConfig.setIcon(new javax.swing.ImageIcon(getClass().getResource("/settings_20px.png"))); // NOI18N
+        btnConfig.setForeground(new java.awt.Color(108, 216, 158));
+        btnConfig.setIcon(new javax.swing.ImageIcon(getClass().getResource("/settings_20px1.png"))); // NOI18N
         btnConfig.setText("Configuración");
         btnConfig.setBorder(null);
+        btnConfig.setFocusPainted(false);
         btnConfig.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btnConfigMouseEntered(evt);
@@ -160,12 +164,13 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
-        btnCerrarSesion.setBackground(new java.awt.Color(252, 87, 118));
+        btnCerrarSesion.setBackground(new java.awt.Color(37, 51, 61));
         btnCerrarSesion.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        btnCerrarSesion.setForeground(new java.awt.Color(37, 51, 61));
-        btnCerrarSesion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/exit_20px.png"))); // NOI18N
+        btnCerrarSesion.setForeground(new java.awt.Color(252, 87, 118));
+        btnCerrarSesion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/exit_20px1.png"))); // NOI18N
         btnCerrarSesion.setText("Cerrar Sesión");
         btnCerrarSesion.setBorder(null);
+        btnCerrarSesion.setFocusPainted(false);
         btnCerrarSesion.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btnCerrarSesionMouseEntered(evt);
@@ -221,8 +226,7 @@ public class Home extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
-                        .addComponent(jDesktopPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(0, 0, 0))
+                        .addComponent(jDesktopPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
@@ -232,9 +236,7 @@ public class Home extends javax.swing.JFrame {
                 .addGap(0, 0, 0)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jDesktopPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 480, Short.MAX_VALUE)
-                        .addGap(0, 0, 0))))
+                    .addComponent(jDesktopPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 480, Short.MAX_VALUE)))
         );
 
         pack();
@@ -246,35 +248,35 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowClosing
 
     private void btnUsuariosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUsuariosMouseEntered
-        btnUsuarios.setBackground(UIUtils.COLOR_INTERACTIVE_DARKER);
+        btnUsuarios.setBackground(UIUtils.COLOR_BACKGROUND_SOFT);
     }//GEN-LAST:event_btnUsuariosMouseEntered
 
     private void btnPacientesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPacientesMouseEntered
-        btnPacientes.setBackground(UIUtils.COLOR_INTERACTIVE_DARKER);
+        btnPacientes.setBackground(UIUtils.COLOR_BACKGROUND_SOFT);
     }//GEN-LAST:event_btnPacientesMouseEntered
 
     private void btnConfigMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConfigMouseEntered
-        btnConfig.setBackground(UIUtils.COLOR_INTERACTIVE_DARKER);
+        btnConfig.setBackground(UIUtils.COLOR_BACKGROUND_SOFT);
     }//GEN-LAST:event_btnConfigMouseEntered
 
     private void btnCerrarSesionMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCerrarSesionMouseEntered
-        btnCerrarSesion.setBackground(UIUtils.COLOR_INTERACTIVE_DARKER2);
+        btnCerrarSesion.setBackground(UIUtils.COLOR_BACKGROUND_SOFT);
     }//GEN-LAST:event_btnCerrarSesionMouseEntered
 
     private void btnUsuariosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUsuariosMouseExited
-        btnUsuarios.setBackground(UIUtils.COLOR_INTERACTIVE);
+        btnUsuarios.setBackground(UIUtils.COLOR_BACKGROUND);
     }//GEN-LAST:event_btnUsuariosMouseExited
 
     private void btnPacientesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPacientesMouseExited
-        btnPacientes.setBackground(UIUtils.COLOR_INTERACTIVE);
+        btnPacientes.setBackground(UIUtils.COLOR_BACKGROUND);
     }//GEN-LAST:event_btnPacientesMouseExited
 
     private void btnConfigMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConfigMouseExited
-        btnConfig.setBackground(UIUtils.COLOR_INTERACTIVE);
+        btnConfig.setBackground(UIUtils.COLOR_BACKGROUND);
     }//GEN-LAST:event_btnConfigMouseExited
 
     private void btnCerrarSesionMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCerrarSesionMouseExited
-        btnCerrarSesion.setBackground(UIUtils.COLOR_INTERACTIVE2);
+        btnCerrarSesion.setBackground(UIUtils.COLOR_BACKGROUND);
     }//GEN-LAST:event_btnCerrarSesionMouseExited
 
     /**

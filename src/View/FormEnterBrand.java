@@ -87,7 +87,7 @@ public class FormEnterBrand extends javax.swing.JFrame {
             public void fingerTouched(final DPFPSensorEvent e) {
                 SwingUtilities.invokeLater(new Runnable() {
                     public void run() {
-                        System.out.println("El dedo ha sido colocado sobre el Lector de Huella");
+                        System.out.println("El dedo ha sido colocado sobre el Lector de Huella");                     
                     }
                 });
             }
@@ -132,6 +132,7 @@ public class FormEnterBrand extends javax.swing.JFrame {
 
             // Dibuja la huella dactilar capturada.
             Image image = CrearImagenHuella(sample);
+            fp.clearTable();
             DibujarHuella(image);
 
         } catch (DPFPImageQualityException ex) {
@@ -245,8 +246,10 @@ public class FormEnterBrand extends javax.swing.JFrame {
 
         btnGuardarHuella.setBackground(new java.awt.Color(108, 216, 158));
         btnGuardarHuella.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        btnGuardarHuella.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fingerprint_20px.png"))); // NOI18N
         btnGuardarHuella.setText("Guardar Huella");
         btnGuardarHuella.setEnabled(false);
+        btnGuardarHuella.setFocusPainted(false);
         btnGuardarHuella.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGuardarHuellaActionPerformed(evt);
@@ -296,7 +299,7 @@ public class FormEnterBrand extends javax.swing.JFrame {
                 .addComponent(huella, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnGuardarHuella)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -322,7 +325,7 @@ public class FormEnterBrand extends javax.swing.JFrame {
         fp.isOpen = true;
         dispose();
         fp.isOpen = false;
-
+        fp.clearTable();
         fp.disableButtons(true, false, false);
 
 
