@@ -26,21 +26,19 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
     FormEnterBrand asociarHuella;
     public DefaultTableModel modt;
     Patient p = new Patient();
-    
-    
 
     public FormPatientsManagement() {
         setQueryInsert();
         initComponents();
-        
+
         disableButtons(false, true, true);
         modt = (DefaultTableModel) tableP.getModel();
-         User u = new User();
-         UserDAO uDao = new UserDAO();
-         Patient p= new Patient();
-         //relación con el controlador
-         PatientController pc= new PatientController(u, uDao, this, p);
-         lblIndicadorQuery.setText("Modo 'INSERCIÓN DE REGISTROS' a la base de datos de RUIPI.");
+        User u = new User();
+        UserDAO uDao = new UserDAO();
+        Patient p = new Patient();
+        //relación con el controlador
+        PatientController pc = new PatientController(u, uDao, this, p);
+        lblIndicadorQuery.setText("'PUEDES REGISTRAR UN NUEVO PACIENTE'.");
     }
 
     /**
@@ -372,7 +370,7 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
             }
         });
 
-        lblIndicadorQuery.setFont(new java.awt.Font("Segoe UI Light", 0, 16)); // NOI18N
+        lblIndicadorQuery.setFont(new java.awt.Font("Segoe UI Symbol", 0, 16)); // NOI18N
         lblIndicadorQuery.setForeground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -613,11 +611,10 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
     //método del botón Asociar Huella se encarga de crear la instancia del lector de huellas que asocia la huella del paciente
     public void asociate() {
 
-        
         disableButtons(false, false, false);
 
         if (isOpen == false) {
-             asociarHuella = new FormEnterBrand(this);
+            asociarHuella = new FormEnterBrand(this);
             asociarHuella.setVisible(true);
             isOpen = true;
             clearTable();
@@ -635,11 +632,11 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
     //Se encarga de realizar la inserción o la actualización de los datos del paciente
     //siempre y cuando los campos no estén vaciós dependiendo si es una búsqueda o una inserción de paciente
     public void saveP() {
-        
+
         clearTable();
 
         if (emptyFields()) {
-            
+
             if (tipoQuery) {
                 Insert();
                 txtNombrePaciente.requestFocus();
@@ -651,7 +648,7 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
 
             clearFields();
             isOpen = false;
-            
+
             disableButtons(false, true, true);
         }
     }
@@ -660,7 +657,7 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
     //una vez encontado el paciente, se llenan los campos con sus datos y se activa la consulta para actualizar datos tipoQuery= UPDATE
     public void searchUpdate() {
         clearTable();
-        
+
         String nombreBuscar = JOptionPane.showInputDialog(null, "Ingresa un nombre o parte de él", "Búsqueda de pacientes", QUESTION_MESSAGE);
 
         if (nombreBuscar != null) {
@@ -676,7 +673,7 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
                     ResultSet rs = ps.executeQuery();
 
                     while (rs.next()) {
-  
+
                         modt.addRow(new Object[]{
                             rs.getInt("id_paciente"),
                             rs.getString("nombre_paciente")
@@ -776,7 +773,7 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
     //Establece la variabl que controla la consulta para definir si se trata de un INSERT(true) o un UPDATE(false)
     private void setQueryInsert() {
         tipoQuery = true;
-        
+
     }
 
     //Realiza la inserciónn de un nuevo registro a la base de datos siempre y cuando no hayan campos obligatorios vacíos
@@ -784,7 +781,7 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
 
         Conexion cn = new Conexion();
         Connection cnn = cn.getConnection();
-        
+
         try {
             System.out.println("INSERT");
             PreparedStatement ps = cnn.prepareStatement("INSERT INTO Paciente (huella, nombre_paciente) VALUES(?,?)");
@@ -885,6 +882,14 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
         btnSaveP.setEnabled(false);
     }
 
+    public void btnNewOff() {
+        btnNewP.setEnabled(false);
+    }
+
+    public void btnNewOn() {
+        btnNewP.setEnabled(true);
+    }
+
     public void clearFields() {
 
         txtIdPaciente.setText("");
@@ -904,7 +909,7 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
         txtPYDT.setText("");
         txtTel.setText("");
         huellaPaciente = null;
-        
+
         setQueryInsert();
         clearTable();
         disableButtons(false, true, true);
@@ -976,7 +981,7 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
 
     private void tablePMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablePMouseClicked
         editRowTable(evt);
-        lblIndicadorQuery.setText("Modo 'ACTUALIZACIÓN DE REGISTROS' de la base de datos de RUIPI.");
+        lblIndicadorQuery.setText("'PUEDES OBSERVAR O ACTUALIZAR LOS DATOS DE ESTE PACIENTE' Para actualizar, debes asociar su huella nuevamente.");
 
     }//GEN-LAST:event_tablePMouseClicked
 

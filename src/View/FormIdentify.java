@@ -200,7 +200,7 @@ public class FormIdentify extends javax.swing.JFrame {
 
     public FormIdentify(FormPatientsManagement fp) {
         initComponents();
-        
+
         Iniciar();
         start();
         setLocationRelativeTo(null);
@@ -208,7 +208,6 @@ public class FormIdentify extends javax.swing.JFrame {
         this.fp = fp;
         fp.btnSearchUpdateOff();
         fp.clearTable();
-              
 
         //Establecemos el icono del proyecto en la barra de tareas y superior del Frame  
         this.setIconImage(new ImageIcon(getClass().getResource("/icon.png")).getImage());
@@ -303,13 +302,19 @@ public class FormIdentify extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-       closing();
+        closing();
+        fp.lblIndicadorQuery.setText("!EL LECTOR SE CERRÓ¡ Ingresa una huella para identificar un paciente u oprime 'Nuevo' para reestablecer el Formulario.");
+
     }//GEN-LAST:event_formWindowClosing
 
-    public void closing(){
-         stop();
+    public void closing() {
         fp.isOpen = false;
-        fp.disableButtons(false, true, true);
+        if (!fp.isOpen) {
+            fp.disableButtons(false, false, true);
+        }
+        fp.btnNewOn();
+        stop();
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -342,12 +347,12 @@ public class FormIdentify extends javax.swing.JFrame {
 
             ResultSet rs = ps.executeQuery();
             boolean existe = false;
-            
+
             while (rs.next()) {
                 byte huellas[] = rs.getBytes("huella");
                 String nombre = rs.getString("nombre_paciente");
                 int id = rs.getInt("id_paciente");
-                
+
                 //Crea una nueva plantilla a partir de la guardada en la base de datos
                 DPFPTemplate referenceTemplate = DPFPGlobal.getTemplateFactory().createTemplate(huellas);
                 //Envia la plantilla creada al objeto contendor de Template del componente de huella digital
@@ -358,23 +363,25 @@ public class FormIdentify extends javax.swing.JFrame {
                 DPFPVerificationResult result = Verificador.verify(featuresverificacion, getTemplate());
 
                 if (result.isVerified()) {
-                    
+
                     fp.findP(id);
                     fp.clearTable();
-                    JOptionPane.showMessageDialog(null, "El paciente '"+ nombre + "' está registrado en RUIPI", "Paciente identificado",JOptionPane.INFORMATION_MESSAGE);
-                    fp.lblIndicadorQuery.setText("Modo 'ACTUALIZACIÓN DE REGISTROS' de la base de datos de RUIPI.");
+                    JOptionPane.showMessageDialog(null, "El paciente '" + nombre + "' está registrado en RUIPI", "Paciente identificado", JOptionPane.INFORMATION_MESSAGE);
+                    fp.lblIndicadorQuery.setText("'PUEDES OBSERVAR O ACTUALIZAR LOS DATOS DE ESTE PACIENTE' Para actualizar, debes asociar su huella nuevamente.");
                     existe = true;
                     closing();
                     dispose();
-                    
+
                     fp.disableButtons(false, false, true);
+                    fp.btnNewOn();
+                    fp.btnAsociateOn();
                 }
             }
 
             setTemplate(null);
             if (!existe) {
-               
-                JOptionPane.showMessageDialog(null, "El paciente NO está registrado en RUIPI","No hay registro", JOptionPane.ERROR_MESSAGE);
+
+                JOptionPane.showMessageDialog(null, "El paciente NO está registrado en RUIPI", "No hay registro", JOptionPane.ERROR_MESSAGE);
             }
 
         } catch (SQLException ex) {

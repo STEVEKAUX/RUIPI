@@ -38,22 +38,28 @@ public class PatientController implements ActionListener {
 
         if (e.getSource() == fp.btnAssociate) {
             fp.asociate();
+            fp.btnNewOff();
         }
         if (e.getSource() == fp.btnSaveP) {
             fp.saveP();
+            fp.lblIndicadorQuery.setText("'PUEDES REGISTRAR UN NUEVO PACIENTE'.");
+
         }
         if (e.getSource() == fp.btnSearchUpdateP) {
-            fp.lblIndicadorQuery.setText("Modo 'BÚSQUEDA DE REGISTROS' de la base de datos de RUIPI.");
+            fp.lblIndicadorQuery.setText("'BÚSQUEDA DE PACIENTES' Ingresa un nombre o parte de él.");
             fp.searchUpdate();
 
         }
         if (e.getSource() == fp.btnIdentify) {
-            fp.lblIndicadorQuery.setText("Modo 'BÚSQUEDA DE REGISTROS' de la base de datos de RUIPI.");
+            fp.btnNewOff();
+            fp.btnAsociateOff();
+            fp.lblIndicadorQuery.setText("'BÚSQUEDA DE PACIENTES' ¿Quieres verificar la identidad de esta persona?.");
             fp.identify();
         }
         if (e.getSource() == fp.btnNewP) {
-            fp.lblIndicadorQuery.setText("Modo 'INSERCIÓN DE REGISTROS' a la base de datos de RUIPI.");
+            fp.lblIndicadorQuery.setText("'PUEDES REGISTRAR UN NUEVO PACIENTE'.");
             fp.clearFields();
+            fp.btnAsociateOn();
 
         }
     }

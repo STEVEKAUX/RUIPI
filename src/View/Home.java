@@ -116,7 +116,7 @@ public class Home extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(37, 51, 61));
 
         btnUsuarios.setBackground(new java.awt.Color(37, 51, 61));
-        btnUsuarios.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        btnUsuarios.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
         btnUsuarios.setForeground(new java.awt.Color(108, 216, 158));
         btnUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/user_20px1.png"))); // NOI18N
         btnUsuarios.setText("Usuarios");
@@ -133,7 +133,7 @@ public class Home extends javax.swing.JFrame {
         });
 
         btnPacientes.setBackground(new java.awt.Color(37, 51, 61));
-        btnPacientes.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        btnPacientes.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
         btnPacientes.setForeground(new java.awt.Color(108, 216, 158));
         btnPacientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/patients_25px1.png"))); // NOI18N
         btnPacientes.setText("Pacientes");
@@ -149,7 +149,7 @@ public class Home extends javax.swing.JFrame {
         });
 
         btnConfig.setBackground(new java.awt.Color(37, 51, 61));
-        btnConfig.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        btnConfig.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
         btnConfig.setForeground(new java.awt.Color(108, 216, 158));
         btnConfig.setIcon(new javax.swing.ImageIcon(getClass().getResource("/settings_20px1.png"))); // NOI18N
         btnConfig.setText("Configuración");
@@ -165,7 +165,7 @@ public class Home extends javax.swing.JFrame {
         });
 
         btnCerrarSesion.setBackground(new java.awt.Color(37, 51, 61));
-        btnCerrarSesion.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        btnCerrarSesion.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
         btnCerrarSesion.setForeground(new java.awt.Color(252, 87, 118));
         btnCerrarSesion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/exit_20px1.png"))); // NOI18N
         btnCerrarSesion.setText("Cerrar Sesión");

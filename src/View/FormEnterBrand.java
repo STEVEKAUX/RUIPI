@@ -87,7 +87,7 @@ public class FormEnterBrand extends javax.swing.JFrame {
             public void fingerTouched(final DPFPSensorEvent e) {
                 SwingUtilities.invokeLater(new Runnable() {
                     public void run() {
-                        System.out.println("El dedo ha sido colocado sobre el Lector de Huella");                     
+                        System.out.println("El dedo ha sido colocado sobre el Lector de Huella");
                     }
                 });
             }
@@ -327,17 +327,21 @@ public class FormEnterBrand extends javax.swing.JFrame {
         fp.isOpen = false;
         fp.clearTable();
         fp.disableButtons(true, false, false);
+        fp.btnNewOn();
+        fp.lblIndicadorQuery.setText("!HUELLA CARGADA¡ ¿Quieres guardar este nuevo paciente?");
 
 
     }//GEN-LAST:event_btnGuardarHuellaActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-
-        fp.disableButtons(false, true, true);
-        huella = null;
-        stop();
         fp.isOpen = false;
-
+        if (!fp.isOpen) {
+            fp.disableButtons(false, false, false);
+            huella = null;
+        }
+        fp.btnNewOn();
+        stop();
+        fp.lblIndicadorQuery.setText("¡EL LECTOR SE CERRÓ! Asocia una huella para crear un nuevo registro u oprime 'Nuevo' para reestablecer el Formulario.");
 
     }//GEN-LAST:event_formWindowClosing
 
