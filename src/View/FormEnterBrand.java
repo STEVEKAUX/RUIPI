@@ -328,7 +328,7 @@ public class FormEnterBrand extends javax.swing.JFrame {
         fp.clearTable();
         fp.disableButtons(true, false, false);
         fp.btnNewOn();
-        fp.lblIndicadorQuery.setText("!HUELLA CARGADA¡ ¿Quieres guardar este nuevo paciente?");
+        fp.lblIndicadorQuery.setText("!HUELLA CARGADA¡ ¿Quieres guardar?");
 
 
     }//GEN-LAST:event_btnGuardarHuellaActionPerformed
@@ -341,7 +341,7 @@ public class FormEnterBrand extends javax.swing.JFrame {
         }
         fp.btnNewOn();
         stop();
-        fp.lblIndicadorQuery.setText("¡EL LECTOR SE CERRÓ! Asocia una huella para crear un nuevo registro u oprime 'Nuevo' para reestablecer el Formulario.");
+        fp.lblIndicadorQuery.setText("¡EL LECTOR SE CERRÓ! Asocia una huella u oprime 'Nuevo' para reiniciar el formulario.");
 
     }//GEN-LAST:event_formWindowClosing
 

@@ -303,7 +303,7 @@ public class FormIdentify extends javax.swing.JFrame {
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         closing();
-        fp.lblIndicadorQuery.setText("!EL LECTOR SE CERRÓ¡ Ingresa una huella para identificar un paciente u oprime 'Nuevo' para reestablecer el Formulario.");
+        fp.lblIndicadorQuery.setText("!EL LECTOR SE CERRÓ¡ Identifica un paciente u oprime 'Nuevo' para reiniciar el formulario.");
 
     }//GEN-LAST:event_formWindowClosing
 
@@ -366,8 +366,9 @@ public class FormIdentify extends javax.swing.JFrame {
 
                     fp.findP(id);
                     fp.clearTable();
+                    fp.btnSearchUpdateOff();
                     JOptionPane.showMessageDialog(null, "El paciente '" + nombre + "' está registrado en RUIPI", "Paciente identificado", JOptionPane.INFORMATION_MESSAGE);
-                    fp.lblIndicadorQuery.setText("'PUEDES OBSERVAR O ACTUALIZAR LOS DATOS DE ESTE PACIENTE' Para actualizar, debes asociar su huella nuevamente.");
+                    fp.lblIndicadorQuery.setText("PUEDES OBSERVAR O ACTUALIZAR LOS DATOS DE ESTE PACIENTE. Para actualizar, debes ASOCIAR su huella nuevamente.");
                     existe = true;
                     closing();
                     dispose();

@@ -37,27 +37,28 @@ public class PatientController implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         if (e.getSource() == fp.btnAssociate) {
+            fp.lblIndicadorQuery.setText("ASOCIANDO UNA HUELLA.");
             fp.asociate();
             fp.btnNewOff();
         }
         if (e.getSource() == fp.btnSaveP) {
             fp.saveP();
-            fp.lblIndicadorQuery.setText("'PUEDES REGISTRAR UN NUEVO PACIENTE'.");
+            fp.lblIndicadorQuery.setText("PUEDES BUSCAR, IDENTIFICAR O REGISTRAR UN NUEVO PACIENTE.");
 
         }
         if (e.getSource() == fp.btnSearchUpdateP) {
-            fp.lblIndicadorQuery.setText("'BÚSQUEDA DE PACIENTES' Ingresa un nombre o parte de él.");
+             fp.lblIndicadorQuery.setText("PUEDES BUSCAR, IDENTIFICAR O REGISTRAR UN NUEVO PACIENTE.");
             fp.searchUpdate();
 
         }
         if (e.getSource() == fp.btnIdentify) {
             fp.btnNewOff();
             fp.btnAsociateOff();
-            fp.lblIndicadorQuery.setText("'BÚSQUEDA DE PACIENTES' ¿Quieres verificar la identidad de esta persona?.");
+            fp.lblIndicadorQuery.setText("IDENTIFICA UN PACIENTE.");
             fp.identify();
         }
         if (e.getSource() == fp.btnNewP) {
-            fp.lblIndicadorQuery.setText("'PUEDES REGISTRAR UN NUEVO PACIENTE'.");
+            fp.lblIndicadorQuery.setText("PUEDES BUSCAR, IDENTIFICAR O REGISTRAR UN NUEVO PACIENTE.");
             fp.clearFields();
             fp.btnAsociateOn();
 

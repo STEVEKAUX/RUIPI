@@ -38,7 +38,7 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
         Patient p = new Patient();
         //relación con el controlador
         PatientController pc = new PatientController(u, uDao, this, p);
-        lblIndicadorQuery.setText("'PUEDES REGISTRAR UN NUEVO PACIENTE'.");
+        lblIndicadorQuery.setText("PUEDES BUSCAR, IDENTIFICAR O REGISTRAR UN NUEVO PACIENTE.");
     }
 
     /**
@@ -657,7 +657,7 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
     //una vez encontado el paciente, se llenan los campos con sus datos y se activa la consulta para actualizar datos tipoQuery= UPDATE
     public void searchUpdate() {
         clearTable();
-
+        
         String nombreBuscar = JOptionPane.showInputDialog(null, "Ingresa un nombre o parte de él", "Búsqueda de pacientes", QUESTION_MESSAGE);
 
         if (nombreBuscar != null) {
@@ -680,6 +680,7 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
 
                         });
                     }
+                    lblIndicadorQuery.setText("LA TABLA MUESTRA LOS RESULTADOS DE LA BÚSQUEDA. Para actualizar una fila de esta tabla puedes dar doble click sobre ella.");
 
                 } catch (SQLException ex) {
                     Logger.getLogger(FormPatientsManagement.class.getName()).log(Level.SEVERE, null, ex);
@@ -981,7 +982,7 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
 
     private void tablePMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablePMouseClicked
         editRowTable(evt);
-        lblIndicadorQuery.setText("'PUEDES OBSERVAR O ACTUALIZAR LOS DATOS DE ESTE PACIENTE' Para actualizar, debes asociar su huella nuevamente.");
+        lblIndicadorQuery.setText("PUEDES OBSERVAR O ACTUALIZAR LOS DATOS DE ESTE PACIENTE. Para actualizar, debes ASOCIAR su huella nuevamente.");
 
     }//GEN-LAST:event_tablePMouseClicked
 
