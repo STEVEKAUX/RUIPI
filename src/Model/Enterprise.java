@@ -13,14 +13,15 @@ public class Enterprise {
     private int telefonoEmpresa;
     private String url;
     private String emailEmpresa;
-    private String fechaEmpresa;
 
     //Constructor vacío de Enterprice
     public Enterprise() {
     }
 
     //Constructor de Enterprise
-    public Enterprise(int idEmpresa, int nit, String nombreEmpresa, String direccionEmpresa, String ciudadEmpresa, String departamentoEmpresa, int telefonoEmpresa, String url, String emailEmpresa, String fechaEmmpresa) {
+    public Enterprise(int idEmpresa, int nit, String nombreEmpresa, String direccionEmpresa,
+            String ciudadEmpresa, String departamentoEmpresa, int telefonoEmpresa, String url,
+            String emailEmpresa) {
         this.idEmpresa = idEmpresa;
         this.nit = nit;
         this.nombreEmpresa = nombreEmpresa;
@@ -30,7 +31,7 @@ public class Enterprise {
         this.telefonoEmpresa = telefonoEmpresa;
         this.url = url;
         this.emailEmpresa = emailEmpresa;
-        this.fechaEmpresa = fechaEmmpresa;
+        
     }
 
     //Setters y Getters
@@ -104,14 +105,6 @@ public class Enterprise {
 
     public void setEmailEmpresa(String emailEmpresa) {
         this.emailEmpresa = emailEmpresa;
-    }
-
-    public String getFechaEmmpresa() {
-        return fechaEmpresa;
-    }
-
-    public void setFechaEmmpresa(String fechaEmmpresa) {
-        this.fechaEmpresa = fechaEmmpresa;
     }
 
 }

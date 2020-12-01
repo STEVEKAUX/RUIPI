@@ -1,6 +1,7 @@
 package Controller;
 
 import Model.Conexion;
+import View.FormClinicalHistoryManagement;
 import View.FormPatientsManagement;
 import View.FormSettingsManagement;
 import View.FormUsersManagement;
@@ -31,6 +32,7 @@ public class HomeController implements ActionListener {
         this.h.btnCerrarSesion.addActionListener(this);
         this.h.btnConfig.addActionListener(this);
         this.h.btnPacientes.addActionListener(this);
+        this.h.btnHistoriaC.addActionListener(this);
         this.h.btnUsuarios.addActionListener(this);
     }
 
@@ -38,15 +40,15 @@ public class HomeController implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == h.btnUsuarios) {
             FormUsersManagement fu = new FormUsersManagement();
-        windowCentered(fu);
-         try {
+            windowCentered(fu);
+            try {
                 fu.setMaximum(true);
             } catch (PropertyVetoException ex) {
                 Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         if (e.getSource() == h.btnPacientes) {
-             fp = new FormPatientsManagement();
+            fp = new FormPatientsManagement();
             windowCentered(fp);
             try {
                 fp.setMaximum(true);
@@ -55,10 +57,19 @@ public class HomeController implements ActionListener {
             }
             fp.txtNombrePaciente.requestFocus();
         }
+        if (e.getSource() == h.btnHistoriaC) {
+            FormClinicalHistoryManagement hc = new FormClinicalHistoryManagement();
+            windowCentered(hc);
+            try {
+                hc.setMaximum(true);
+            } catch (PropertyVetoException ex) {
+                Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
         if (e.getSource() == h.btnConfig) {
-             FormSettingsManagement fs = new FormSettingsManagement();
-        windowCentered(fs);
-         try {
+            FormSettingsManagement fs = new FormSettingsManagement();
+            windowCentered(fs);
+            try {
                 fs.setMaximum(true);
             } catch (PropertyVetoException ex) {
                 Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
@@ -69,7 +80,7 @@ public class HomeController implements ActionListener {
         }
 
     }
-    
+
     public void windowCentered(JInternalFrame frame) {
         h.jDesktopPane1.add(frame);
 
@@ -79,7 +90,7 @@ public class HomeController implements ActionListener {
         frame.show();
     }
 
-     public void close() {
+    public void close() {
         Object[] opciones = {"Aceptar", "Cancelar"};
         int eleccion = JOptionPane.showOptionDialog(null, "¿Realmente desea salir de la aplicación?", "Saliendo de RUIPI",
                 JOptionPane.YES_NO_OPTION,

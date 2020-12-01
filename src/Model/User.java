@@ -7,39 +7,62 @@ public class User {
     private int idUsuario;
     private String username;
     private String password;
-    private String emailUsuario;
-    private String nombreUsuario;
-    private String apellidoUsuario;
     private String cargo;
     private String area;
     private String ultimaSesion;
-    private String fechaUsuario;
-    private int idEmpresa;
-    private int idTipoUsuario;
+    private int id_empresa;
+    private int id_tipo_usuario;
+    
+    private int id_persona;
+    private String nombreU;
+    private String apellidoU;
+    private String emailU;
+    private String tipoDocumentoU;
+    private int numeroDocumentoU;
+    private int celularU;
+    private String fechaNaciemientoU;
+    private String ciudadOrigenU;
+    private String departamentoOrigenU;
+    private String direccionU;
+    
+    
+    
     private String nombre_tipo_usuario;
 
     //Constructor vacío de la clase User
     public User() {
     }
 
-    //Constructor de la clase User
-    public User(int idUsuario, String username, String password, String nombreUsuario, String apellidoUsuario,
-            String cargo, String area, String ultimaSesion, String fechaUsuario, int idEmpresa, int idTipoUsuario) {
+    //Constructor de Paciente
+    public User(int idUsuario, String username, String password, String cargo, String area,
+            String ultimaSesion, int Empresa_id_empresa, int Tipo_id_tipo_usuario,
+            int id_persona, String nombreUsuario, String apellidoUsuario, String emailUsuario, String tipoDocumentoU,
+            int numeroDocumentoU, int celularU, String fechaNaciemientoU, String ciudadOrigenU, String departamentoOrigenU,
+            String direccionU, String nombre_tipo_usuario) {
+        
         this.idUsuario = idUsuario;
         this.username = username;
         this.password = password;
-        this.emailUsuario = emailUsuario;
-        this.nombreUsuario = nombreUsuario;
-        this.apellidoUsuario = apellidoUsuario;
         this.cargo = cargo;
         this.area = area;
         this.ultimaSesion = ultimaSesion;
-        this.fechaUsuario = fechaUsuario;
-        this.idEmpresa = idEmpresa;
-        this.idTipoUsuario = idTipoUsuario;
+        this.id_empresa = Empresa_id_empresa;
+        this.id_tipo_usuario = Tipo_id_tipo_usuario;
+        
+        this.id_persona = id_persona;
+        this.nombreU = nombreUsuario;
+        this.apellidoU = apellidoUsuario;
+        this.emailU = emailUsuario;
+        this.tipoDocumentoU = tipoDocumentoU;
+        this.numeroDocumentoU = numeroDocumentoU;
+        this.celularU = celularU;
+        this.fechaNaciemientoU = fechaNaciemientoU;
+        this.ciudadOrigenU = ciudadOrigenU;
+        this.departamentoOrigenU = departamentoOrigenU;
+        this.direccionU = direccionU;
+        this.nombre_tipo_usuario = nombre_tipo_usuario;
     }
 
-    //Setters y Getters
     public int getIdUsuario() {
         return idUsuario;
     }
@@ -62,30 +85,6 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getEmailUsuario() {
-        return emailUsuario;
-    }
-
-    public void setEmailUsuario(String emailUsuario) {
-        this.emailUsuario = emailUsuario;
-    }
-
-    public String getNombreUsuario() {
-        return nombreUsuario;
-    }
-
-    public void setNombreUsuario(String nombreUsuario) {
-        this.nombreUsuario = nombreUsuario;
-    }
-
-    public String getApellidoUsuario() {
-        return apellidoUsuario;
-    }
-
-    public void setApellidoUsuario(String apellidoUsuario) {
-        this.apellidoUsuario = apellidoUsuario;
     }
 
     public String getCargo() {
@@ -112,28 +111,108 @@ public class User {
         this.ultimaSesion = ultimaSesion;
     }
 
-    public String getFechaUsuario() {
-        return fechaUsuario;
+    public int getId_empresa() {
+        return id_empresa;
     }
 
-    public void setFechaUsuario(String fechaUsuario) {
-        this.fechaUsuario = fechaUsuario;
+    public void setId_empresa(int id_empresa) {
+        this.id_empresa = id_empresa;
     }
 
-    public int getIdEmpresa() {
-        return idEmpresa;
+    public int getId_tipo_usuario() {
+        return id_tipo_usuario;
     }
 
-    public void setIdEmpresa(int idEmpresa) {
-        this.idEmpresa = idEmpresa;
+    public void setId_tipo_usuario(int id_tipo_usuario) {
+        this.id_tipo_usuario = id_tipo_usuario;
     }
 
-    public int getIdTipoUsuario() {
-        return idTipoUsuario;
+    public int getId_persona() {
+        return id_persona;
     }
 
-    public void setIdTipoUsuario(int idTipoUsuario) {
-        this.idTipoUsuario = idTipoUsuario;
+    public void setId_persona(int id_persona) {
+        this.id_persona = id_persona;
+    }
+
+    public String getNombreU() {
+        return nombreU;
+    }
+
+    public void setNombreU(String nombreU) {
+        this.nombreU = nombreU;
+    }
+
+    public String getApellidoU() {
+        return apellidoU;
+    }
+
+    public void setApellidoU(String apellidoU) {
+        this.apellidoU = apellidoU;
+    }
+
+    public String getEmailU() {
+        return emailU;
+    }
+
+    public void setEmailU(String emailU) {
+        this.emailU = emailU;
+    }
+
+    public String getTipoDocumentoU() {
+        return tipoDocumentoU;
+    }
+
+    public void setTipoDocumentoU(String tipoDocumentoU) {
+        this.tipoDocumentoU = tipoDocumentoU;
+    }
+
+    public int getNumeroDocumentoU() {
+        return numeroDocumentoU;
+    }
+
+    public void setNumeroDocumentoU(int numeroDocumentoU) {
+        this.numeroDocumentoU = numeroDocumentoU;
+    }
+
+    public int getCelularU() {
+        return celularU;
+    }
+
+    public void setCelularU(int celularU) {
+        this.celularU = celularU;
+    }
+
+    public String getFechaNaciemientoU() {
+        return fechaNaciemientoU;
+    }
+
+    public void setFechaNaciemientoU(String fechaNaciemientoU) {
+        this.fechaNaciemientoU = fechaNaciemientoU;
+    }
+
+    public String getCiudadOrigenU() {
+        return ciudadOrigenU;
+    }
+
+    public void setCiudadOrigenU(String ciudadOrigenU) {
+        this.ciudadOrigenU = ciudadOrigenU;
+    }
+
+    public String getDepartamentoOrigenU() {
+        return departamentoOrigenU;
+    }
+
+    public void setDepartamentoOrigenU(String departamentoOrigenU) {
+        this.departamentoOrigenU = departamentoOrigenU;
+    }
+
+    public String getDireccionU() {
+        return direccionU;
+    }
+
+    public void setDireccionU(String direccionU) {
+        this.direccionU = direccionU;
     }
 
     public String getNombre_tipo_usuario() {
@@ -143,4 +222,6 @@ public class User {
     public void setNombre_tipo_usuario(String nombre_tipo_usuario) {
         this.nombre_tipo_usuario = nombre_tipo_usuario;
     }
+
+   
 }

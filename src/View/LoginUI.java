@@ -31,6 +31,7 @@ public class LoginUI extends JFrame {
         this.setIconImage(new ImageIcon(getClass().getResource("/icon.png")).getImage());
         this.setTitle("RUIPI Inicio de Sesión");
 
+        //Agrega los campos y botones
         JPanel mainJPanel = getMainJPanel();
         addLogo(mainJPanel);
         addSeparator(mainJPanel);
@@ -78,6 +79,7 @@ public class LoginUI extends JFrame {
         panel1.setBackground(UIUtils.COLOR_BACKGROUND);
         panel1.setLayout(null);
 
+        //Permite que el panel de login se pueda mover con el mouse
         MouseAdapter ma = new MouseAdapter() {
             int lastX, lastY;
 
@@ -99,7 +101,7 @@ public class LoginUI extends JFrame {
 
         panel1.addMouseListener(ma);
         panel1.addMouseMotionListener(ma);
-
+        //define el comportamiento por defecto del botón de cerrar superior derecho
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {

@@ -1,10 +1,15 @@
-
 package View;
 
+/**
+ *
+ * @author Daniel Felipe Lozada Ramirez Dev <felipe_lozada04102@elpoli.edu.co>
+ */
+public class FormClinicalHistoryManagement extends javax.swing.JInternalFrame {
 
-public class FormUsersManagement extends javax.swing.JInternalFrame {
-
-    public FormUsersManagement() {
+    /**
+     * Creates new form FormClinicalHistoryManagement
+     */
+    public FormClinicalHistoryManagement() {
         initComponents();
     }
 
@@ -20,8 +25,8 @@ public class FormUsersManagement extends javax.swing.JInternalFrame {
         setBorder(null);
         setClosable(true);
         setIconifiable(true);
-        setTitle("Gestión de Usuarios");
-        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/user_20px.png"))); // NOI18N
+        setTitle("Gestión de Historial Clínico");
+        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/hc_20px.png"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

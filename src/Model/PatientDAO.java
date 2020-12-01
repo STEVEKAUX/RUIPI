@@ -6,11 +6,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 //Crea la clase PatientDAO
-public class PatientDAO {
+public class PatientDAO extends Conexion{
 
     //crealas variables globales
     Connection conn;
-    Conexion con = new Conexion();
+    
     PreparedStatement ps;
     ResultSet rs;
 

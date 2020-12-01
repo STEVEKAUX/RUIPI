@@ -10,6 +10,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -78,7 +81,11 @@ public class LoginController implements ActionListener {
             log.txtUsernameField.requestFocus();
 
         } else {
-            u = udao.userValidator(uf, pf);
+            try {
+                u = udao.userValidator(uf, pf);
+            } catch (SQLException ex) {
+                Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+            }
           
             if (u.getUsername() != null && u.getPassword() != null) {   
                  System.out.println("Validado");  
@@ -86,12 +93,15 @@ public class LoginController implements ActionListener {
                 
                 home.setVisible(true);
                 home.lblUsername.setText(uf);
-                switch (u.getIdTipoUsuario()) {
+                switch (u.getId_tipo_usuario()) {
                     case 1:
                         home.lblUserType.setText("Administrador");
                         break;
                     case 2:
-                        home.lblUserType.setText("Empleado");
+                        home.lblUserType.setText("Médico");
+                        break;
+                        case 3:
+                        home.lblUserType.setText("Recepción");
                         break;
                     default: {
                     }

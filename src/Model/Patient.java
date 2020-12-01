@@ -5,136 +5,73 @@ public class Patient {
 
     //Declaración de variables de la clase Patient
     private int idPaciente;
-    private String nombre;
-    private String apellido;
-    private String fechaNacimiento;
-    private String ciudadNacimiento;
-    private String departamentoNacimiento;
-    private String direccion;
-    private String tipoDocumento;
-    private int numeroDocumento;
-    private String email;
-    private String sexo;
     private String rh;
     private boolean gestante;
-    private int edad;
+    private String sexo;
     private String etnia;
-    private String fechaPaciente;
+    private String comunidad;
+    private String municipio;
+    private int Persona_id_persona;
+    
+    private int idPersona;
+    private String nombreP;
+    private String apellidoP;
+    private String emailP;
+    private String tipoDocumentoP;
+    private int numeroDocumentoP;
+    private String celularP;
+    private String fechaNacimientoP;
+    private String ciudadOrigenP;
+    private String departamentoOrigenP;
+    private String direccionP;
+    private String programaPyDT;
+    
+    private int edad;
+   
 
     //Constructor vacío de la clase Patient
     public Patient() {
     }
 
     //Constructor de la clase Patient
-    public Patient(int idPaciente, String nombre, String apellido, String fechaNacimiento, String ciudadNacimiento,
-            String departamentoNacimiento, String direccion, String tipoDocumento, int numeroDocumento,
-            String email, String sexo, String rh, boolean gestante, int edad, String etnia,
-            String anteEHeredada, String medActual, String fechaPaciente) {
+
+    public Patient(int idPaciente, String rh, boolean gestante, String sexo, String etnia,
+            String comunidad, String municipio, int Persona_id_persona, int idPersona, String nombreP,
+            String apellidoP, String emailP, String tipoDocumentoP, int numeroDocumentoP, String celularP,
+            String fechaNacimientoP, String ciudadOrigenP, String departamentoOrigenP, String direccionP,
+            int edad, String programaPyDT) {
+        
         this.idPaciente = idPaciente;
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.fechaNacimiento = fechaNacimiento;
-        this.ciudadNacimiento = ciudadNacimiento;
-        this.departamentoNacimiento = departamentoNacimiento;
-        this.direccion = direccion;
-        this.tipoDocumento = tipoDocumento;
-        this.numeroDocumento = numeroDocumento;
-        this.email = email;
-        this.sexo = sexo;
         this.rh = rh;
         this.gestante = gestante;
-        this.edad = edad;
+        this.sexo = sexo;
         this.etnia = etnia;
-        this.fechaPaciente = fechaPaciente;
+        this.comunidad = comunidad;
+        this.municipio = municipio;
+        this.Persona_id_persona = Persona_id_persona;
+        this.idPersona = idPersona;
+        this.nombreP = nombreP;
+        this.apellidoP = apellidoP;
+        this.emailP = emailP;
+        this.tipoDocumentoP = tipoDocumentoP;
+        this.numeroDocumentoP = numeroDocumentoP;
+        this.celularP = celularP;
+        this.fechaNacimientoP = fechaNacimientoP;
+        this.ciudadOrigenP = ciudadOrigenP;
+        this.departamentoOrigenP = departamentoOrigenP;
+        this.direccionP = direccionP;
+        this.edad = edad;
+        this.programaPyDT = programaPyDT;
     }
+   
+    //Setters y Getteres
 
-    //Setters y Getters
     public int getIdPaciente() {
         return idPaciente;
     }
 
     public void setIdPaciente(int idPaciente) {
         this.idPaciente = idPaciente;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getApellido() {
-        return apellido;
-    }
-
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
-    }
-
-    public String getFechaNacimiento() {
-        return fechaNacimiento;
-    }
-
-    public void setFechaNacimiento(String fechaNacimiento) {
-        this.fechaNacimiento = fechaNacimiento;
-    }
-
-    public String getCiudadNacimiento() {
-        return ciudadNacimiento;
-    }
-
-    public void setCiudadNacimiento(String ciudadNacimiento) {
-        this.ciudadNacimiento = ciudadNacimiento;
-    }
-
-    public String getDepartamentoNacimiento() {
-        return departamentoNacimiento;
-    }
-
-    public void setDepartamentoNacimiento(String departamentoNacimiento) {
-        this.departamentoNacimiento = departamentoNacimiento;
-    }
-
-    public String getDireccion() {
-        return direccion;
-    }
-
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
-    }
-
-    public String getTipoDocumento() {
-        return tipoDocumento;
-    }
-
-    public void setTipoDocumento(String tipoDocumento) {
-        this.tipoDocumento = tipoDocumento;
-    }
-
-    public int getNumeroDocumento() {
-        return numeroDocumento;
-    }
-
-    public void setNumeroDocumento(int numeroDocumento) {
-        this.numeroDocumento = numeroDocumento;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getSexo() {
-        return sexo;
-    }
-
-    public void setSexo(String sexo) {
-        this.sexo = sexo;
     }
 
     public String getRh() {
@@ -153,12 +90,12 @@ public class Patient {
         this.gestante = gestante;
     }
 
-    public int getEdad() {
-        return edad;
+    public String getSexo() {
+        return sexo;
     }
 
-    public void setEdad(int edad) {
-        this.edad = edad;
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
     }
 
     public String getEtnia() {
@@ -169,12 +106,132 @@ public class Patient {
         this.etnia = etnia;
     }
 
-    public String getFechaPaciente() {
-        return fechaPaciente;
+    public String getComunidad() {
+        return comunidad;
     }
 
-    public void setFechaPaciente(String fechaPaciente) {
-        this.fechaPaciente = fechaPaciente;
+    public void setComunidad(String comunidad) {
+        this.comunidad = comunidad;
+    }
+
+    public String getMunicipio() {
+        return municipio;
+    }
+
+    public void setMunicipio(String municipio) {
+        this.municipio = municipio;
+    }
+
+    public int getPersona_id_persona() {
+        return Persona_id_persona;
+    }
+
+    public void setPersona_id_persona(int Persona_id_persona) {
+        this.Persona_id_persona = Persona_id_persona;
+    }
+
+    public int getIdPersona() {
+        return idPersona;
+    }
+
+    public void setIdPersona(int idPersona) {
+        this.idPersona = idPersona;
+    }
+
+    public String getNombreP() {
+        return nombreP;
+    }
+
+    public void setNombreP(String nombreP) {
+        this.nombreP = nombreP;
+    }
+
+    public String getApellidoP() {
+        return apellidoP;
+    }
+
+    public void setApellidoP(String apellidoP) {
+        this.apellidoP = apellidoP;
+    }
+
+    public String getEmailP() {
+        return emailP;
+    }
+
+    public void setEmailP(String emailP) {
+        this.emailP = emailP;
+    }
+
+    public String getTipoDocumentoP() {
+        return tipoDocumentoP;
+    }
+
+    public void setTipoDocumentoP(String tipoDocumentoP) {
+        this.tipoDocumentoP = tipoDocumentoP;
+    }
+
+    public int getNumeroDocumentoP() {
+        return numeroDocumentoP;
+    }
+
+    public void setNumeroDocumentoP(int numeroDocumentoP) {
+        this.numeroDocumentoP = numeroDocumentoP;
+    }
+
+    public String getCelularP() {
+        return celularP;
+    }
+
+    public void setCelularP(String celularP) {
+        this.celularP = celularP;
+    }
+
+    public String getFechaNacimientoP() {
+        return fechaNacimientoP;
+    }
+
+    public void setFechaNacimientoP(String fechaNacimientoP) {
+        this.fechaNacimientoP = fechaNacimientoP;
+    }
+
+    public String getCiudadOrigenP() {
+        return ciudadOrigenP;
+    }
+
+    public void setCiudadOrigenP(String ciudadOrigenP) {
+        this.ciudadOrigenP = ciudadOrigenP;
+    }
+
+    public String getDepartamentoOrigenP() {
+        return departamentoOrigenP;
+    }
+
+    public void setDepartamentoOrigenP(String departamentoOrigenP) {
+        this.departamentoOrigenP = departamentoOrigenP;
+    }
+
+    public String getDireccionP() {
+        return direccionP;
+    }
+
+    public void setDireccionP(String direccionP) {
+        this.direccionP = direccionP;
+    }
+
+    public int getEdad() {
+        return edad;
+    }
+
+    public void setEdad(int edad) {
+        this.edad = edad;
+    }
+
+    public String getProgramaPyDT() {
+        return programaPyDT;
+    }
+
+    public void setProgramaPyDT(String programaPyDT) {
+        this.programaPyDT = programaPyDT;
     }
     
 }

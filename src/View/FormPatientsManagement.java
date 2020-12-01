@@ -92,8 +92,11 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
         comboComunidad = new javax.swing.JComboBox<>();
         comboRh = new javax.swing.JComboBox<>();
         comboSexo = new javax.swing.JComboBox<>();
-        btnHC = new javax.swing.JButton();
         lblIndicadorQuery = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        txtCiudadO = new javax.swing.JTextField();
+        txtDepO = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableP = new javax.swing.JTable();
@@ -102,8 +105,8 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
         setBorder(null);
         setClosable(true);
         setIconifiable(true);
-        setResizable(true);
         setTitle("Gestión de Pacientes");
+        setFocusable(false);
         setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/patients_20px.png"))); // NOI18N
         setMinimumSize(new java.awt.Dimension(800, 450));
         setPreferredSize(new java.awt.Dimension(1197, 653));
@@ -222,6 +225,7 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
         btnSaveP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/save_20px.png"))); // NOI18N
         btnSaveP.setText("Guardar");
         btnSaveP.setBorder(null);
+        btnSaveP.setFocusable(false);
         btnSaveP.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btnSavePMouseEntered(evt);
@@ -240,6 +244,7 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
         btnAssociate.setForeground(new java.awt.Color(37, 51, 61));
         btnAssociate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/in_finger_20px.png"))); // NOI18N
         btnAssociate.setBorder(null);
+        btnAssociate.setFocusable(false);
         btnAssociate.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btnAssociateMouseEntered(evt);
@@ -257,6 +262,7 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
         btnIdentify.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fingerprint_20px.png"))); // NOI18N
         btnIdentify.setText("Identificar");
         btnIdentify.setBorder(null);
+        btnIdentify.setFocusable(false);
         btnIdentify.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btnIdentifyMouseEntered(evt);
@@ -272,6 +278,7 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
         btnSearchUpdateP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/search_20px.png"))); // NOI18N
         btnSearchUpdateP.setText("Buscar y Actualizar");
         btnSearchUpdateP.setBorder(null);
+        btnSearchUpdateP.setFocusable(false);
         btnSearchUpdateP.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btnSearchUpdatePMouseEntered(evt);
@@ -287,6 +294,7 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
         btnDeleteP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/delete_user_20px.png"))); // NOI18N
         btnDeleteP.setText("Eliminar");
         btnDeleteP.setBorder(null);
+        btnDeleteP.setFocusable(false);
         btnDeleteP.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btnDeletePMouseEntered(evt);
@@ -302,6 +310,7 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
         btnNewP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/add_user_20px.png"))); // NOI18N
         btnNewP.setText("Nuevo");
         btnNewP.setBorder(null);
+        btnNewP.setFocusable(false);
         btnNewP.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btnNewPMouseEntered(evt);
@@ -355,23 +364,22 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
         comboSexo.setForeground(new java.awt.Color(37, 51, 61));
         comboSexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIONAR\t", "Masculino", "Femenino", "Otro" }));
 
-        btnHC.setBackground(new java.awt.Color(108, 216, 158));
-        btnHC.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        btnHC.setForeground(new java.awt.Color(37, 51, 61));
-        btnHC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hc_20px.png"))); // NOI18N
-        btnHC.setText("Asociar Historia Clínica");
-        btnHC.setBorder(null);
-        btnHC.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnHCMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnHCMouseExited(evt);
-            }
-        });
-
         lblIndicadorQuery.setFont(new java.awt.Font("Segoe UI Symbol", 0, 16)); // NOI18N
         lblIndicadorQuery.setForeground(new java.awt.Color(255, 255, 255));
+
+        jLabel17.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel17.setForeground(new java.awt.Color(108, 216, 158));
+        jLabel17.setText("Ciudad de Origen");
+
+        jLabel18.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel18.setForeground(new java.awt.Color(108, 216, 158));
+        jLabel18.setText("Dpto de Origen");
+
+        txtCiudadO.setBackground(new java.awt.Color(255, 255, 255));
+        txtCiudadO.setToolTipText("");
+
+        txtDepO.setBackground(new java.awt.Color(255, 255, 255));
+        txtDepO.setToolTipText("");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -380,7 +388,7 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap(48, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblIndicadorQuery, javax.swing.GroupLayout.DEFAULT_SIZE, 1135, Short.MAX_VALUE)
+                    .addComponent(lblIndicadorQuery, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel2Layout.createSequentialGroup()
@@ -411,7 +419,7 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
                                     .addComponent(comboMunicipio, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -427,7 +435,7 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
                                 .addComponent(btnSaveP, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -437,7 +445,7 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addGap(0, 7, Short.MAX_VALUE)
+                                        .addGap(0, 17, Short.MAX_VALUE)
                                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -445,32 +453,36 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
                                             .addComponent(txtDireccion, javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addComponent(txtTipoDoc, javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addComponent(txtNumDoc, javax.swing.GroupLayout.Alignment.TRAILING))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
                                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(jPanel2Layout.createSequentialGroup()
                                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                     .addComponent(jLabel13)
                                                     .addComponent(jLabel15)
                                                     .addComponent(jLabel14))
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                                     .addComponent(comboGestante, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                     .addComponent(comboEtnia, javax.swing.GroupLayout.Alignment.TRAILING, 0, 180, Short.MAX_VALUE)
                                                     .addComponent(txtPYDT, javax.swing.GroupLayout.Alignment.TRAILING))
                                                 .addGap(1, 1, 1))
                                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                                .addComponent(jLabel16)
+                                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(jLabel16)
+                                                    .addComponent(jLabel17)
+                                                    .addComponent(jLabel18))
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                    .addComponent(btnHC, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                    .addComponent(txtTel, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE))))))
+                                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(txtTel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(txtCiudadO, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(txtDepO, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                                 .addContainerGap(44, Short.MAX_VALUE))))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addComponent(lblIndicadorQuery, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+                .addComponent(lblIndicadorQuery, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)
                 .addGap(25, 25, 25)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -510,18 +522,23 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(comboMunicipio, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnHC, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel5)
                         .addComponent(jLabel11)
-                        .addComponent(comboSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(comboSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel17)
+                        .addComponent(txtCiudadO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel12)
-                    .addComponent(comboComunidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(comboRh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel6)
+                        .addComponent(jLabel12)
+                        .addComponent(comboComunidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(comboRh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel18))
+                    .addComponent(txtDepO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -909,6 +926,8 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
         comboEtnia.setSelectedIndex(0);
         txtPYDT.setText("");
         txtTel.setText("");
+        txtCiudadO.setText("");
+        txtDepO.setText("");
         huellaPaciente = null;
 
         setQueryInsert();
@@ -972,14 +991,6 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
         btnDeleteP.setBackground(UIUtils.COLOR_INTERACTIVE2);
     }//GEN-LAST:event_btnDeletePMouseExited
 
-    private void btnHCMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHCMouseEntered
-        btnHC.setBackground(UIUtils.COLOR_INTERACTIVE_DARKER);
-    }//GEN-LAST:event_btnHCMouseEntered
-
-    private void btnHCMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHCMouseExited
-        btnHC.setBackground(UIUtils.COLOR_INTERACTIVE);
-    }//GEN-LAST:event_btnHCMouseExited
-
     private void tablePMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablePMouseClicked
         editRowTable(evt);
         lblIndicadorQuery.setText("PUEDES OBSERVAR O ACTUALIZAR LOS DATOS DE ESTE PACIENTE. Para actualizar, debes ASOCIAR su huella nuevamente.");
@@ -990,7 +1001,6 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btnAssociate;
     public javax.swing.JButton btnDeleteP;
-    public javax.swing.JButton btnHC;
     public javax.swing.JButton btnIdentify;
     public javax.swing.JButton btnNewP;
     public javax.swing.JButton btnSaveP;
@@ -1009,6 +1019,8 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -1026,6 +1038,8 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
     public javax.swing.JLabel lblIndicadorQuery;
     public javax.swing.JTable tableP;
     public javax.swing.JTextField txtApellidoPaciente;
+    public javax.swing.JTextField txtCiudadO;
+    public javax.swing.JTextField txtDepO;
     public javax.swing.JTextField txtDireccion;
     public javax.swing.JTextField txtEmailPaciente;
     public javax.swing.JTextField txtFNacimiento;

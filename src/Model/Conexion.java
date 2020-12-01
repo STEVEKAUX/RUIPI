@@ -13,7 +13,7 @@ public class Conexion {
             + "JDBCCompliantTimezoneSHift=true&useLegacyDatetimeCode=false&"
             + "serverTimezone=UTC";
 
-    Connection con = null;
+    public static Connection con = null;
     //Constructor de la clase
 
     public Conexion() {
@@ -24,6 +24,7 @@ public class Conexion {
             con = DriverManager.getConnection(URL, USER, PASSWORD);
             if (con != null) {
                 System.out.println("¡Conexión Exitosa a : " + DBNAME + "!");
+                con.setAutoCommit(false);
             }
         } catch (ClassNotFoundException e) {
             System.out.println("¡Ocurre una ClassNotFoundException : " + e.getMessage() + "!");

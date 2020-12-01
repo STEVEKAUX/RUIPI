@@ -4,7 +4,6 @@ package View;
 //imports
 import Controller.HomeController;
 import Model.Conexion;
-import java.awt.Color;
 import java.awt.Graphics;
 import java.sql.Connection;
 import javax.swing.ImageIcon;
@@ -50,8 +49,10 @@ public class Home extends javax.swing.JFrame {
         btnPacientes = new javax.swing.JButton();
         btnConfig = new javax.swing.JButton();
         btnCerrarSesion = new javax.swing.JButton();
+        btnHistoriaC = new javax.swing.JButton();
         jDesktopPane1 = new javax.swing.JDesktopPane() { @Override protected void paintComponent(Graphics g) { super.paintComponent(g); g.setColor(UIUtils.COLOR_BACKGROUND_SOFT); g.fillRect(0, 0, getWidth(), getHeight()); } };
         ;
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1300, 700));
@@ -180,6 +181,22 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
+        btnHistoriaC.setBackground(new java.awt.Color(37, 51, 61));
+        btnHistoriaC.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
+        btnHistoriaC.setForeground(new java.awt.Color(108, 216, 158));
+        btnHistoriaC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/hc_20px1.png"))); // NOI18N
+        btnHistoriaC.setText("Historias Clínicas");
+        btnHistoriaC.setBorder(null);
+        btnHistoriaC.setFocusPainted(false);
+        btnHistoriaC.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnHistoriaCMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnHistoriaCMouseExited(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -188,32 +205,45 @@ public class Home extends javax.swing.JFrame {
             .addComponent(btnUsuarios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnConfig, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
             .addComponent(btnCerrarSesion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnHistoriaC, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap(49, Short.MAX_VALUE)
+                .addContainerGap(31, Short.MAX_VALUE)
                 .addComponent(btnUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addComponent(btnPacientes, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addComponent(btnHistoriaC, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addComponent(btnConfig, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addComponent(btnCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(53, Short.MAX_VALUE))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
 
         jDesktopPane1.setPreferredSize(new java.awt.Dimension(800, 505));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ruipihome.png"))); // NOI18N
+
+        jDesktopPane1.setLayer(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
         jDesktopPane1.setLayout(jDesktopPane1Layout);
         jDesktopPane1Layout.setHorizontalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -279,6 +309,14 @@ public class Home extends javax.swing.JFrame {
         btnCerrarSesion.setBackground(UIUtils.COLOR_BACKGROUND);
     }//GEN-LAST:event_btnCerrarSesionMouseExited
 
+    private void btnHistoriaCMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHistoriaCMouseEntered
+        btnHistoriaC.setBackground(UIUtils.COLOR_BACKGROUND_SOFT);
+    }//GEN-LAST:event_btnHistoriaCMouseEntered
+
+    private void btnHistoriaCMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHistoriaCMouseExited
+         btnHistoriaC.setBackground(UIUtils.COLOR_BACKGROUND);
+    }//GEN-LAST:event_btnHistoriaCMouseExited
+
     /**
      * @param args the command line arguments
      */
@@ -322,11 +360,13 @@ public class Home extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btnCerrarSesion;
     public javax.swing.JButton btnConfig;
+    public javax.swing.JButton btnHistoriaC;
     public javax.swing.JButton btnPacientes;
     public javax.swing.JButton btnUsuarios;
     public javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     public javax.swing.JLabel lblUserType;
