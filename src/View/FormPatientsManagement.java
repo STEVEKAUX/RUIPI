@@ -1,4 +1,3 @@
-
 package View;
 
 import Model.Conexion;
@@ -20,12 +19,13 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
     public ByteArrayInputStream huellaPaciente;
     Integer sizeHuella;
     boolean isOpen = false;
-    boolean tipoQuery = false;
+    public boolean tipoQuery = false;
     Toaster toaster;
     public int id_paciente;
     FormEnterBrand asociarHuella;
     public DefaultTableModel modt;
     Patient p = new Patient();
+    public static PatientController pc;
 
     public FormPatientsManagement() {
         setQueryInsert();
@@ -37,7 +37,7 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
         UserDAO uDao = new UserDAO();
         Patient p = new Patient();
         //relación con el controlador
-        PatientController pc = new PatientController(u, uDao, this, p);
+         pc = new PatientController(u, uDao, this, p);
         lblIndicadorQuery.setText("PUEDES BUSCAR, IDENTIFICAR O REGISTRAR UN NUEVO PACIENTE.");
     }
 
@@ -59,17 +59,17 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
         jLabel3 = new javax.swing.JLabel();
         txtApellidoPaciente = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        txtFNacimiento = new javax.swing.JTextField();
+        dateFNacimiento = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        txtDireccion = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
         txtTipoDoc = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
         txtNumDoc = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        txtCiudadO = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-        txtEmailPaciente = new javax.swing.JTextField();
+        txtDepO = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
@@ -95,8 +95,10 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
         lblIndicadorQuery = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
-        txtCiudadO = new javax.swing.JTextField();
-        txtDepO = new javax.swing.JTextField();
+        txtDireccion = new javax.swing.JTextField();
+        txtEmail = new javax.swing.JTextField();
+        jLabel20 = new javax.swing.JLabel();
+        dateRegister = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableP = new javax.swing.JTable();
@@ -145,8 +147,8 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
         jLabel4.setForeground(new java.awt.Color(108, 216, 158));
         jLabel4.setText("Fecha Nacimiento");
 
-        txtFNacimiento.setBackground(new java.awt.Color(255, 255, 255));
-        txtFNacimiento.setToolTipText("");
+        dateFNacimiento.setBackground(new java.awt.Color(255, 255, 255));
+        dateFNacimiento.setToolTipText("");
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(108, 216, 158));
@@ -158,31 +160,31 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(108, 216, 158));
-        jLabel7.setText("Dirección");
-
-        txtDireccion.setBackground(new java.awt.Color(255, 255, 255));
-        txtDireccion.setToolTipText("");
-
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(108, 216, 158));
-        jLabel8.setText("Tipo Documento");
+        jLabel7.setText("Tipo Documento");
 
         txtTipoDoc.setBackground(new java.awt.Color(255, 255, 255));
         txtTipoDoc.setToolTipText("");
 
-        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(108, 216, 158));
-        jLabel9.setText("Num Documento");
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(108, 216, 158));
+        jLabel8.setText("Núm Documento");
 
         txtNumDoc.setBackground(new java.awt.Color(255, 255, 255));
         txtNumDoc.setToolTipText("");
 
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(108, 216, 158));
+        jLabel9.setText("Ciudad de Origen");
+
+        txtCiudadO.setBackground(new java.awt.Color(255, 255, 255));
+        txtCiudadO.setToolTipText("");
+
         jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(108, 216, 158));
-        jLabel10.setText("Email");
+        jLabel10.setText("Dpto de Origen");
 
-        txtEmailPaciente.setBackground(new java.awt.Color(255, 255, 255));
-        txtEmailPaciente.setToolTipText("");
+        txtDepO.setBackground(new java.awt.Color(255, 255, 255));
+        txtDepO.setToolTipText("");
 
         jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(108, 216, 158));
@@ -369,72 +371,80 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
 
         jLabel17.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(108, 216, 158));
-        jLabel17.setText("Ciudad de Origen");
+        jLabel17.setText("Dirección");
 
         jLabel18.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(108, 216, 158));
-        jLabel18.setText("Dpto de Origen");
+        jLabel18.setText("Email");
 
-        txtCiudadO.setBackground(new java.awt.Color(255, 255, 255));
-        txtCiudadO.setToolTipText("");
+        txtDireccion.setBackground(new java.awt.Color(255, 255, 255));
+        txtDireccion.setToolTipText("");
 
-        txtDepO.setBackground(new java.awt.Color(255, 255, 255));
-        txtDepO.setToolTipText("");
+        txtEmail.setBackground(new java.awt.Color(255, 255, 255));
+        txtEmail.setToolTipText("");
+
+        jLabel20.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel20.setForeground(new java.awt.Color(108, 216, 158));
+        jLabel20.setText("Fecha Registro");
+
+        dateRegister.setBackground(new java.awt.Color(255, 255, 255));
+        dateRegister.setToolTipText("");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(48, Short.MAX_VALUE)
+                .addContainerGap(58, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblIndicadorQuery, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel1)
-                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtFNacimiento)
-                                    .addComponent(txtApellidoPaciente)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(txtNombrePaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txtIdPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(0, 2, Short.MAX_VALUE))))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel19))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(btnAssociate, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)
-                                    .addComponent(comboComunidad, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(comboMunicipio, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(50, 50, 50)
+                                .addComponent(dateRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(jPanel2Layout.createSequentialGroup()
+                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel4)
+                                        .addComponent(jLabel1)
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(dateFNacimiento)
+                                        .addComponent(txtApellidoPaciente)
+                                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(txtNombrePaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(txtIdPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGap(0, 2, Short.MAX_VALUE))))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel5)
+                                        .addComponent(jLabel6)
+                                        .addComponent(jLabel19))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(btnAssociate, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)
+                                        .addComponent(comboComunidad, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(comboMunicipio, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel8)
-                                            .addComponent(jLabel7)
-                                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(0, 30, Short.MAX_VALUE))
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE))))
+                                    .addComponent(jLabel8)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel10))
+                                .addGap(0, 38, Short.MAX_VALUE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(btnSaveP, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnSaveP, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
@@ -445,22 +455,22 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addGap(0, 17, Short.MAX_VALUE)
+                                        .addGap(0, 0, Short.MAX_VALUE)
                                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(txtEmailPaciente, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
-                                            .addComponent(txtDireccion, javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(txtDepO, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
                                             .addComponent(txtTipoDoc, javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(txtNumDoc, javax.swing.GroupLayout.Alignment.TRAILING))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
+                                            .addComponent(txtNumDoc, javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(txtCiudadO, javax.swing.GroupLayout.Alignment.TRAILING))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(jPanel2Layout.createSequentialGroup()
                                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                     .addComponent(jLabel13)
                                                     .addComponent(jLabel15)
                                                     .addComponent(jLabel14))
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                                     .addComponent(comboGestante, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                     .addComponent(comboEtnia, javax.swing.GroupLayout.Alignment.TRAILING, 0, 180, Short.MAX_VALUE)
@@ -474,30 +484,30 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                     .addComponent(txtTel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(txtCiudadO, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(txtDepO, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                                .addContainerGap(44, Short.MAX_VALUE))))))
+                                                    .addComponent(txtDireccion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(txtEmail, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                .addContainerGap(54, Short.MAX_VALUE))))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(lblIndicadorQuery, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)
-                .addGap(25, 25, 25)
+                .addGap(10, 10, 10)
+                .addComponent(lblIndicadorQuery, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
                             .addComponent(txtIdPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel7)
-                            .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtTipoDoc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel13))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
                             .addComponent(txtNombrePaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel8)
-                            .addComponent(txtTipoDoc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtNumDoc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel15)
                             .addComponent(comboEtnia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
@@ -506,16 +516,16 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
                                 .addComponent(jLabel3)
                                 .addComponent(txtApellidoPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel9)
-                                .addComponent(txtNumDoc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtCiudadO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel14)
                                 .addComponent(txtPYDT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
-                            .addComponent(txtFNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(dateFNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel10)
-                            .addComponent(txtEmailPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtDepO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel16)
                             .addComponent(txtTel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(comboGestante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -528,7 +538,7 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
                         .addComponent(comboSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel17)
-                        .addComponent(txtCiudadO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -537,8 +547,12 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
                         .addComponent(comboComunidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(comboRh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel18))
-                    .addComponent(txtDepO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
+                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel20)
+                    .addComponent(dateRegister, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -561,20 +575,15 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "ID paciente", "Nombre ", "Apellido", "Fecha Nacimiento", "Ciudad Origen", "Dpto Origen", "Dirección", "Tipo Documento", "Num Documeto", "Email", "Sexo", "RH", "Gestante", "Etnia", "Programas PyDT", "Fecha de Creación"
+                "ID paciente", "Nombres", "Apellidos", "Fecha Nacimiento", "Municipio", "Comunidad", "Tipo Documento", "Núm Documeto", "Ciudad Origen", "Dpto Origen", "Sexo", "RH", "Gestante", "Etnia", "Programa PyDT", "Celular", "Direccion", "Email", "Fecha Registro"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
-            }
-        });
-        tableP.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tablePMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(tableP);
@@ -663,7 +672,7 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
                 tipoQuery = true;
             }
 
-            clearFields();
+            pc.clearFields();
             isOpen = false;
 
             disableButtons(false, true, true);
@@ -674,7 +683,7 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
     //una vez encontado el paciente, se llenan los campos con sus datos y se activa la consulta para actualizar datos tipoQuery= UPDATE
     public void searchUpdate() {
         clearTable();
-        
+
         String nombreBuscar = JOptionPane.showInputDialog(null, "Ingresa un nombre o parte de él", "Búsqueda de pacientes", QUESTION_MESSAGE);
 
         if (nombreBuscar != null) {
@@ -685,19 +694,42 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
                 Conexion cn = new Conexion();
                 Connection cnn = cn.getConnection();
                 try {
-                    PreparedStatement ps = cnn.prepareStatement("SELECT * FROM paciente WHERE nombre_paciente LIKE '%" + nombreBuscar + "%'");
+                    PreparedStatement ps = cnn.prepareStatement("SELECT pe.id_persona, pe.nombre, pe.apellido,"
+                            + " pe.email, pe.tipo_documento, pe.numero_documento, pe.celular, pe.fecha_nacimiento,"
+                            + " pe.ciudad_origen, pe.departamento_origen, pe.direccion,"
+                            + " pa.id_paciente, pa.huella, pa.rh, pa.gestante, pa.sexo, pa.etnia, pa.comunidad, pa.municipio,"
+                            + " pa.fecha_registro, pa.id_persona, pa.id_programaPyDT"
+                            + " FROM Persona AS pe INNER JOIN Paciente AS pa ON pe.id_persona=pa.id_persona"
+                            + " WHERE pe.nombre LIKE '%" + nombreBuscar + "%'");
 
                     ResultSet rs = ps.executeQuery();
 
                     while (rs.next()) {
-
+                        
                         modt.addRow(new Object[]{
                             rs.getInt("id_paciente"),
-                            rs.getString("nombre_paciente")
-
+                            rs.getString("nombre"),
+                            rs.getString("apellido"),
+                            rs.getDate("fecha_nacimiento"),
+                            rs.getString("municipio"),
+                            rs.getString("comunidad"),
+                            rs.getString("tipo_documento"),
+                            rs.getInt("numero_documento"),
+                            rs.getString("ciudad_origen"),
+                            rs.getString("departamento_origen"),
+                            rs.getString("sexo"),
+                            rs.getString("rh"),
+                            rs.getString("gestante"),
+                            rs.getString("etnia"),
+                            rs.getString("id_programaPyDT"),
+                            rs.getInt("celular"),
+                            rs.getString("direccion"),
+                            rs.getString("email"),
+                            rs.getDate("fecha_registro")
+                            
                         });
                     }
-                    lblIndicadorQuery.setText("LA TABLA MUESTRA LOS RESULTADOS DE LA BÚSQUEDA. Para actualizar una fila de esta tabla puedes dar doble click sobre ella.");
+                    lblIndicadorQuery.setText("LA TABLA MUESTRA LOS RESULTADOS DE LA BÚSQUEDA. Para actualizar una fila puedes dar doble click sobre ella.");
 
                 } catch (SQLException ex) {
                     Logger.getLogger(FormPatientsManagement.class.getName()).log(Level.SEVERE, null, ex);
@@ -709,7 +741,7 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
 
     }
 
-    //Se encarga de instanciár un objeto de tipo FormIdentify y asegurarse de que solo se abra una instancia del lectoa la vez
+    //Se encarga de instanciár un objeto de tipo FormIdentify y asegurarse de que solo se abra una instancia del lector a la vez
     public void identify() {
 
         System.out.println(isOpen);
@@ -789,7 +821,7 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
     }
 
     //Establece la variabl que controla la consulta para definir si se trata de un INSERT(true) o un UPDATE(false)
-    private void setQueryInsert() {
+    public void setQueryInsert() {
         tipoQuery = true;
 
     }
@@ -802,16 +834,31 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
 
         try {
             System.out.println("INSERT");
-            PreparedStatement ps = cnn.prepareStatement("INSERT INTO Paciente (huella, nombre_paciente) VALUES(?,?)");
-            ps.setBinaryStream(1, huellaPaciente, sizeHuella);
-            ps.setString(2, txtNombrePaciente.getText());
-            ps.execute();
+            PreparedStatement psPersona = cnn.prepareStatement("INSERT INTO Persona"
+                    + " (nombre, apellido) VALUES (?,?)");
+            PreparedStatement psPaciente = cnn.prepareStatement("INSERT INTO Paciente"
+                    + " (huella, id_persona) VALUES (?,last_insert_id())");
+            
+            psPersona.setString(1, txtNombrePaciente.getText());
+            psPersona.setString(2, txtApellidoPaciente.getText());
+            psPersona.execute();
+            
+            psPaciente.setBinaryStream(1, huellaPaciente, sizeHuella);
+            psPaciente.execute();
+            
+            cnn.commit();
+            
             JOptionPane.showMessageDialog(null, "El paciente '" + txtNombrePaciente.getText() + "' se guardó con éxito", "Paciente registrado exitosamente en RUIPI", JOptionPane.INFORMATION_MESSAGE);
-            clearFields();
+            pc.clearFields();
+            
         } catch (SQLException ex) {
-            Logger.getLogger(FormPatientsManagement.class.getName()).log(Level.SEVERE, null, ex);
+            try {
+                Logger.getLogger(FormPatientsManagement.class.getName()).log(Level.SEVERE, null, ex);
+                cnn.rollback();
+            } catch (SQLException ex1) {
+                Logger.getLogger(FormPatientsManagement.class.getName()).log(Level.SEVERE, null, ex1);
+            }
         }
-
     }
 
     //Realiza la actualización de un paciente buscado o identificado cuyos datos estén cargados en el modelo y los campos del formulario de pacientes
@@ -834,7 +881,7 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
                 ps.setInt(3, id_paciente);
                 ps.execute();
                 JOptionPane.showMessageDialog(null, "La actualización del paciente '" + txtNombrePaciente.getText() + "' se guardó con éxito", "Paciente actualizado", JOptionPane.INFORMATION_MESSAGE);
-                clearFields();//activar
+                pc.clearFields();
             } catch (SQLException ex) {
                 Logger.getLogger(FormPatientsManagement.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -859,18 +906,7 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
 
     }
 
-    //
-    public void editRowTable(java.awt.event.MouseEvent evt) {
-        if (evt.getClickCount() == 2) {
-
-            txtIdPaciente.setText((tableP.getValueAt(tableP.getSelectedRow(), 0).toString()));
-            id_paciente = Integer.valueOf(txtIdPaciente.getText());
-            txtNombrePaciente.setText((tableP.getValueAt(tableP.getSelectedRow(), 1).toString()));
-
-            tipoQuery = false;
-            disableButtons(false, true, false);
-        }
-    }
+    
 
     public void btnAsociateOff() {
 
@@ -907,34 +943,7 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
     public void btnNewOn() {
         btnNewP.setEnabled(true);
     }
-
-    public void clearFields() {
-
-        txtIdPaciente.setText("");
-        txtNombrePaciente.setText("");
-        txtApellidoPaciente.setText("");
-        txtFNacimiento.setText("");
-        comboMunicipio.setSelectedIndex(0);
-        comboComunidad.setSelectedIndex(0);
-        txtDireccion.setText("");
-        txtTipoDoc.setText("");
-        txtNumDoc.setText("");
-        txtEmailPaciente.setText("");
-        comboSexo.setSelectedIndex(0);
-        comboRh.setSelectedIndex(0);
-        comboGestante.setSelectedIndex(0);
-        comboEtnia.setSelectedIndex(0);
-        txtPYDT.setText("");
-        txtTel.setText("");
-        txtCiudadO.setText("");
-        txtDepO.setText("");
-        huellaPaciente = null;
-
-        setQueryInsert();
-        clearTable();
-        disableButtons(false, true, true);
-    }
-
+    
     //desactiva los botones de Guardar, Buscar y Actualizar e Identificar dependiendo de los parámetros que se le 
     public void disableButtons(boolean save, boolean search, boolean identify) {
         btnSaveP.setEnabled(save);
@@ -991,12 +1000,6 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
         btnDeleteP.setBackground(UIUtils.COLOR_INTERACTIVE2);
     }//GEN-LAST:event_btnDeletePMouseExited
 
-    private void tablePMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablePMouseClicked
-        editRowTable(evt);
-        lblIndicadorQuery.setText("PUEDES OBSERVAR O ACTUALIZAR LOS DATOS DE ESTE PACIENTE. Para actualizar, debes ASOCIAR su huella nuevamente.");
-
-    }//GEN-LAST:event_tablePMouseClicked
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btnAssociate;
@@ -1011,6 +1014,8 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
     public javax.swing.JComboBox<String> comboMunicipio;
     public javax.swing.JComboBox<String> comboRh;
     public javax.swing.JComboBox<String> comboSexo;
+    public javax.swing.JTextField dateFNacimiento;
+    public javax.swing.JTextField dateRegister;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1023,6 +1028,7 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1041,8 +1047,7 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
     public javax.swing.JTextField txtCiudadO;
     public javax.swing.JTextField txtDepO;
     public javax.swing.JTextField txtDireccion;
-    public javax.swing.JTextField txtEmailPaciente;
-    public javax.swing.JTextField txtFNacimiento;
+    public javax.swing.JTextField txtEmail;
     public javax.swing.JTextField txtIdPaciente;
     public javax.swing.JTextField txtNombrePaciente;
     public javax.swing.JTextField txtNumDoc;
