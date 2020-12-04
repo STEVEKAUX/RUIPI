@@ -574,10 +574,11 @@
                   <Color blue="3d" green="33" red="25" type="rgb"/>
                 </Property>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="3">
+                  <StringArray count="4">
                     <StringItem index="0" value="SELECCIONAR"/>
-                    <StringItem index="1" value="SI"/>
+                    <StringItem index="1" value="S&#xcd;"/>
                     <StringItem index="2" value="NO"/>
+                    <StringItem index="3" value="NO APLICA"/>
                   </StringArray>
                 </Property>
               </Properties>
@@ -984,11 +985,10 @@
                   <Color blue="3d" green="33" red="25" type="rgb"/>
                 </Property>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="4">
-                    <StringItem index="0" value="SELECCIONAR&#x9;"/>
+                  <StringArray count="3">
+                    <StringItem index="0" value="SELECCIONAR"/>
                     <StringItem index="1" value="Masculino"/>
                     <StringItem index="2" value="Femenino"/>
-                    <StringItem index="3" value="Otro"/>
                   </StringArray>
                 </Property>
               </Properties>

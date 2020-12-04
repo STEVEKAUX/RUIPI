@@ -1,5 +1,6 @@
 package View;
 
+import static View.FormPatientsManagement.pc;
 import com.digitalpersona.onetouch.DPFPDataPurpose;
 import com.digitalpersona.onetouch.DPFPFeatureSet;
 import com.digitalpersona.onetouch.DPFPGlobal;
@@ -132,7 +133,7 @@ public class FormEnterBrand extends javax.swing.JFrame {
 
             // Dibuja la huella dactilar capturada.
             Image image = CrearImagenHuella(sample);
-            fp.clearTable();
+            pc.clearTable();
             DibujarHuella(image);
 
         } catch (DPFPImageQualityException ex) {
@@ -325,7 +326,7 @@ public class FormEnterBrand extends javax.swing.JFrame {
         fp.isOpen = true;
         dispose();
         fp.isOpen = false;
-        fp.clearTable();
+        pc.clearTable();
         fp.disableButtons(true, false, false);
         fp.btnNewOn();
         fp.lblIndicadorQuery.setText("!HUELLA CARGADA¡ ¿Quieres guardar?");

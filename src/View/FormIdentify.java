@@ -1,6 +1,7 @@
 package View;
 
 import Model.Conexion;
+import static View.FormPatientsManagement.pc;
 import com.digitalpersona.onetouch.DPFPDataPurpose;
 import com.digitalpersona.onetouch.DPFPFeatureSet;
 import com.digitalpersona.onetouch.DPFPGlobal;
@@ -207,7 +208,7 @@ public class FormIdentify extends javax.swing.JFrame {
         this.setResizable(false);
         this.fp = fp;
         fp.btnSearchUpdateOff();
-        fp.clearTable();
+        pc.clearTable();
 
         //Establecemos el icono del proyecto en la barra de tareas y superior del Frame  
         this.setIconImage(new ImageIcon(getClass().getResource("/icon.png")).getImage());
@@ -365,7 +366,7 @@ public class FormIdentify extends javax.swing.JFrame {
                 if (result.isVerified()) {
 
                     fp.findP(id);
-                    fp.clearTable();
+                    pc.clearTable();
                     fp.btnSearchUpdateOff();
                     JOptionPane.showMessageDialog(null, "El paciente '" + nombre + "' está registrado en RUIPI", "Paciente identificado", JOptionPane.INFORMATION_MESSAGE);
                     fp.lblIndicadorQuery.setText("PUEDES OBSERVAR O ACTUALIZAR LOS DATOS DE ESTE PACIENTE. Para actualizar, debes ASOCIAR su huella nuevamente.");

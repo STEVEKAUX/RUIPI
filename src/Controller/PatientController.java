@@ -72,7 +72,7 @@ public class PatientController implements ActionListener {
         }
     }
 
-     //Limpia todos los campos del formulario y lo reinicia
+    //Limpia todos los campos del formulario y lo reinicia
     public void clearFields() {
 
         fp.txtIdPaciente.setText("");
@@ -97,11 +97,18 @@ public class PatientController implements ActionListener {
         fp.huellaPaciente = null;
 
         fp.setQueryInsert();
-        fp.clearTable();
+        clearTable();
         fp.disableButtons(false, true, true);
     }
 
-    
+    //limpia los campos de la tabla de pacientes
+    public void clearTable() {
+        int rows = fp.tableP.getRowCount();
+        for (int i = 0; i < rows; i++) {
+            fp.modt.removeRow(0);
+        }
+    }
+
     //Al dar doble click en un campo de la tabla se carban los datos en el formulario para su actualización
     public void editRowTable(java.awt.event.MouseEvent evt) {
         if (evt.getClickCount() == 2) {
@@ -112,9 +119,9 @@ public class PatientController implements ActionListener {
                 fp.txtIdPaciente.setText((fp.tableP.getValueAt(fp.tableP.getSelectedRow(), 0).toString()));
             } catch (Exception e) {
             }
-            
+
             fp.id_paciente = Integer.valueOf(fp.txtIdPaciente.getText());
-            
+
             try {
                 fp.txtNombrePaciente.setText((fp.tableP.getValueAt(fp.tableP.getSelectedRow(), 1).toString()));
             } catch (Exception e) {

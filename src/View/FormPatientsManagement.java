@@ -37,7 +37,7 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
         UserDAO uDao = new UserDAO();
         Patient p = new Patient();
         //relación con el controlador
-         pc = new PatientController(u, uDao, this, p);
+        pc = new PatientController(u, uDao, this, p);
         lblIndicadorQuery.setText("PUEDES BUSCAR, IDENTIFICAR O REGISTRAR UN NUEVO PACIENTE.");
     }
 
@@ -200,7 +200,7 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
 
         comboGestante.setBackground(new java.awt.Color(255, 255, 255));
         comboGestante.setForeground(new java.awt.Color(37, 51, 61));
-        comboGestante.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIONAR", "SI", "NO" }));
+        comboGestante.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIONAR", "SÍ", "NO", "NO APLICA" }));
 
         jLabel14.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(108, 216, 158));
@@ -364,7 +364,7 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
 
         comboSexo.setBackground(new java.awt.Color(255, 255, 255));
         comboSexo.setForeground(new java.awt.Color(37, 51, 61));
-        comboSexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIONAR\t", "Masculino", "Femenino", "Otro" }));
+        comboSexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIONAR", "Masculino", "Femenino" }));
 
         lblIndicadorQuery.setFont(new java.awt.Font("Segoe UI Symbol", 0, 16)); // NOI18N
         lblIndicadorQuery.setForeground(new java.awt.Color(255, 255, 255));
@@ -643,7 +643,7 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
             asociarHuella = new FormEnterBrand(this);
             asociarHuella.setVisible(true);
             isOpen = true;
-            clearTable();
+            pc.clearTable();
 
         } else {
 
@@ -659,7 +659,7 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
     //siempre y cuando los campos no estén vaciós dependiendo si es una búsqueda o una inserción de paciente
     public void saveP() {
 
-        clearTable();
+        pc.clearTable();
 
         if (emptyFields()) {
 
@@ -682,7 +682,7 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
     //Se encarga de realizar la búsequeda de un paciente por nombre o coinsidencia de letras que contiene su nombre,
     //una vez encontado el paciente, se llenan los campos con sus datos y se activa la consulta para actualizar datos tipoQuery= UPDATE
     public void searchUpdate() {
-        clearTable();
+        pc.clearTable();
 
         String nombreBuscar = JOptionPane.showInputDialog(null, "Ingresa un nombre o parte de él", "Búsqueda de pacientes", QUESTION_MESSAGE);
 
@@ -705,7 +705,7 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
                     ResultSet rs = ps.executeQuery();
 
                     while (rs.next()) {
-                        
+
                         modt.addRow(new Object[]{
                             rs.getInt("id_paciente"),
                             rs.getString("nombre"),
@@ -726,7 +726,7 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
                             rs.getString("direccion"),
                             rs.getString("email"),
                             rs.getDate("fecha_registro")
-                            
+
                         });
                     }
                     lblIndicadorQuery.setText("LA TABLA MUESTRA LOS RESULTADOS DE LA BÚSQUEDA. Para actualizar una fila puedes dar doble click sobre ella.");
@@ -768,14 +768,6 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
      */
     public void setHuellaPaciente(ByteArrayInputStream huellaPaciente) {
         this.huellaPaciente = huellaPaciente;
-    }
-
-    //limpia los campos de la tabla de pacientes
-    public void clearTable() {
-        int rows = tableP.getRowCount();
-        for (int i = 0; i < rows; i++) {
-            modt.removeRow(0);
-        }
     }
 
     //Encuentra al paciente, recibe el id del paciente y establece los datos del paciente en los campos 
@@ -837,20 +829,21 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
             PreparedStatement psPersona = cnn.prepareStatement("INSERT INTO Persona"
                     + " (nombre, apellido) VALUES (?,?)");
             PreparedStatement psPaciente = cnn.prepareStatement("INSERT INTO Paciente"
-                    + " (huella, id_persona) VALUES (?,last_insert_id())");
-            
+                    + " (huella, sexo, id_persona) VALUES (?,?,last_insert_id())");
+
             psPersona.setString(1, txtNombrePaciente.getText());
             psPersona.setString(2, txtApellidoPaciente.getText());
             psPersona.execute();
-            
+
             psPaciente.setBinaryStream(1, huellaPaciente, sizeHuella);
+            psPaciente.setString(2, comboSexo.getSelectedItem().toString());
             psPaciente.execute();
-            
+
             cnn.commit();
-            
+
             JOptionPane.showMessageDialog(null, "El paciente '" + txtNombrePaciente.getText() + "' se guardó con éxito", "Paciente registrado exitosamente en RUIPI", JOptionPane.INFORMATION_MESSAGE);
             pc.clearFields();
-            
+
         } catch (SQLException ex) {
             try {
                 Logger.getLogger(FormPatientsManagement.class.getName()).log(Level.SEVERE, null, ex);
@@ -873,17 +866,30 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
         } else {
 
             try {
+                //UPDATE Paciente SET huella=?, nombre_paciente=? WHERE id_paciente=?
 
                 System.out.println("UPDATE");
-                PreparedStatement ps = cnn.prepareStatement("UPDATE Paciente SET huella=?, nombre_paciente=? WHERE id_paciente=?");
+                PreparedStatement ps = cnn.prepareStatement("UPDATE persona, paciente SET"
+                        + " paciente.huella = ?, persona.nombre = ?, persona.apellido = ?,"
+                        + " paciente.sexo = ?  WHERE persona.id_persona = paciente.id_persona AND paciente.id_paciente= ?;");
+                
                 ps.setBinaryStream(1, huellaPaciente, sizeHuella);
                 ps.setString(2, txtNombrePaciente.getText());
-                ps.setInt(3, id_paciente);
+                ps.setString(3, txtApellidoPaciente.getText());
+                ps.setString(4, comboSexo.getSelectedItem().toString());
+                ps.setInt(5, id_paciente);
                 ps.execute();
+                
+                cnn.commit();
                 JOptionPane.showMessageDialog(null, "La actualización del paciente '" + txtNombrePaciente.getText() + "' se guardó con éxito", "Paciente actualizado", JOptionPane.INFORMATION_MESSAGE);
                 pc.clearFields();
             } catch (SQLException ex) {
-                Logger.getLogger(FormPatientsManagement.class.getName()).log(Level.SEVERE, null, ex);
+                try {
+                    Logger.getLogger(FormPatientsManagement.class.getName()).log(Level.SEVERE, null, ex);
+                    cnn.rollback();
+                } catch (SQLException ex1) {
+                    Logger.getLogger(FormPatientsManagement.class.getName()).log(Level.SEVERE, null, ex1);
+                }
             }
 
         }
@@ -905,8 +911,6 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
         }
 
     }
-
-    
 
     public void btnAsociateOff() {
 
@@ -943,7 +947,7 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
     public void btnNewOn() {
         btnNewP.setEnabled(true);
     }
-    
+
     //desactiva los botones de Guardar, Buscar y Actualizar e Identificar dependiendo de los parámetros que se le 
     public void disableButtons(boolean save, boolean search, boolean identify) {
         btnSaveP.setEnabled(save);
