@@ -4,8 +4,19 @@ import Model.UserDAO;
 import Model.Patient;
 import Model.User;
 import View.FormPatientsManagement;
+import View.UIUtils;
+import java.awt.Color;
+import static java.awt.Color.darkGray;
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.beans.PropertyEditorManager;
+import java.util.Calendar;
+import java.util.Date;
+import javax.swing.JComponent;
+import javax.swing.JOptionPane;
+import javax.swing.UIManager;
+import javax.swing.plaf.ColorUIResource;
 
 //Crea la clase PatientController
 public class PatientController implements ActionListener {
@@ -49,9 +60,15 @@ public class PatientController implements ActionListener {
             fp.btnNewOff();
         }
         if (e.getSource() == fp.btnSaveP) {
-            fp.saveP();
-            fp.lblIndicadorQuery.setText("PUEDES BUSCAR, IDENTIFICAR O REGISTRAR UN NUEVO PACIENTE.");
 
+            if (fp.dateFNacimiento.getDate() == null) {
+                JOptionPane.showMessageDialog(null, "La fecha ingresada no es válida", "Fecha inválida", JOptionPane.ERROR_MESSAGE);
+                Date fecha = new Date();
+                fp.dateFNacimiento.setDate(fecha);
+            } else {
+                fp.saveP();
+                fp.lblIndicadorQuery.setText("PUEDES BUSCAR, IDENTIFICAR O REGISTRAR UN NUEVO PACIENTE.");
+            }
         }
         if (e.getSource() == fp.btnSearchUpdateP) {
             fp.lblIndicadorQuery.setText("PUEDES BUSCAR, IDENTIFICAR O REGISTRAR UN NUEVO PACIENTE.");
@@ -78,10 +95,10 @@ public class PatientController implements ActionListener {
         fp.txtIdPaciente.setText("");
         fp.txtNombrePaciente.setText("");
         fp.txtApellidoPaciente.setText("");
-        fp.dateFNacimiento.setText("");
+        //fp.dateFNacimiento.setText("");
         fp.comboMunicipio.setSelectedIndex(0);
         fp.comboComunidad.setSelectedIndex(0);
-        fp.txtTipoDoc.setText("");
+        fp.comboTipoDoc.setSelectedIndex(0);
         fp.txtNumDoc.setText("");
         fp.txtCiudadO.setText("");
         fp.txtDepO.setText("");
@@ -89,12 +106,13 @@ public class PatientController implements ActionListener {
         fp.comboRh.setSelectedIndex(0);
         fp.comboGestante.setSelectedIndex(0);
         fp.comboEtnia.setSelectedIndex(0);
-        fp.txtPYDT.setText("");
+        fp.comboPyDT.setSelectedIndex(0);
         fp.txtTel.setText("");
         fp.txtDireccion.setText("");
         fp.txtEmail.setText("");
         fp.dateRegister.setText("");
         fp.huellaPaciente = null;
+        actualDate();
 
         fp.setQueryInsert();
         clearTable();
@@ -107,6 +125,33 @@ public class PatientController implements ActionListener {
         for (int i = 0; i < rows; i++) {
             fp.modt.removeRow(0);
         }
+    }
+
+    //Establece la fecha del calendario con la fecha actual
+    public void actualDate() {
+
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.YEAR, -120);//15 year before
+        Date min = cal.getTime();
+
+        Date max = new Date();//actual date
+
+        Date fecha = new Date();
+        fp.dateFNacimiento.setDate(fecha);
+        fp.dateFNacimiento.setSelectableDateRange(min, max);
+    }
+
+    //Cambia el color de fondo del JDateChooser
+    public void setBgcDateChooser() {
+        for (Component c : fp.dateFNacimiento.getComponents()) {
+            ((JComponent) c).setBackground(new Color(47, 61, 71));
+        }
+    }
+
+    //Cambia el color de fondo del JComboBox
+    public void setBgcComboBox() {
+        fp.comboPyDT.setBackground(UIUtils.COLOR_BACKGROUND);
+        fp.comboPyDT.setForeground(UIUtils.COLOR_INTERACTIVE);
     }
 
     //Al dar doble click en un campo de la tabla se carban los datos en el formulario para su actualización
@@ -131,7 +176,7 @@ public class PatientController implements ActionListener {
             } catch (Exception e) {
             }
             try {
-                fp.dateFNacimiento.setText((fp.tableP.getValueAt(fp.tableP.getSelectedRow(), 3).toString()));
+                //fp.dateFNacimiento.setText((fp.tableP.getValueAt(fp.tableP.getSelectedRow(), 3).toString()));
             } catch (Exception e) {
             }
             try {
@@ -145,7 +190,7 @@ public class PatientController implements ActionListener {
                 fp.comboComunidad.setSelectedIndex(0);
             }
             try {
-                fp.txtTipoDoc.setText((fp.tableP.getValueAt(fp.tableP.getSelectedRow(), 6).toString()));
+                fp.comboTipoDoc.setSelectedItem((fp.tableP.getValueAt(fp.tableP.getSelectedRow(), 6).toString()));
             } catch (Exception e) {
             }
             try {
@@ -182,7 +227,7 @@ public class PatientController implements ActionListener {
                 fp.comboEtnia.setSelectedIndex(0);
             }
             try {
-                fp.txtPYDT.setText((fp.tableP.getValueAt(fp.tableP.getSelectedRow(), 14).toString()));
+                fp.comboPyDT.setSelectedItem((fp.tableP.getValueAt(fp.tableP.getSelectedRow(), 14).toString()));
             } catch (Exception e) {
             }
             try {

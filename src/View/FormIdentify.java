@@ -344,14 +344,19 @@ public class FormIdentify extends javax.swing.JFrame {
         Conexion cn = new Conexion();
         Connection cnn = cn.getConnection();
         try {
-            PreparedStatement ps = cnn.prepareStatement("SELECT * FROM Paciente");
+            PreparedStatement ps = cnn.prepareStatement("SELECT pe.id_persona, pe.nombre, pe.apellido,"
+                            + " pe.email, pe.tipo_documento, pe.numero_documento, pe.celular, pe.fecha_nacimiento,"
+                            + " pe.ciudad_origen, pe.departamento_origen, pe.direccion,"
+                            + " pa.id_paciente, pa.huella, pa.rh, pa.gestante, pa.sexo, pa.etnia, pa.comunidad, pa.municipio,"
+                            + " pa.fecha_registro, pa.id_persona, pa.id_programaPyDT"
+                            + " FROM Persona AS pe INNER JOIN Paciente AS pa ON pe.id_persona=pa.id_persona");
 
             ResultSet rs = ps.executeQuery();
             boolean existe = false;
 
             while (rs.next()) {
                 byte huellas[] = rs.getBytes("huella");
-                String nombre = rs.getString("nombre_paciente");
+                String nombre = rs.getString("nombre");
                 int id = rs.getInt("id_paciente");
 
                 //Crea una nueva plantilla a partir de la guardada en la base de datos

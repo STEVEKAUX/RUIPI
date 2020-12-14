@@ -5,13 +5,16 @@ import Controller.PatientController;
 import Model.UserDAO;
 import Model.Patient;
 import Model.User;
+import java.awt.Color;
 import java.sql.*;
 import java.io.ByteArrayInputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
 import static javax.swing.JOptionPane.QUESTION_MESSAGE;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 public final class FormPatientsManagement extends javax.swing.JInternalFrame {
@@ -39,6 +42,11 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
         //relación con el controlador
         pc = new PatientController(u, uDao, this, p);
         lblIndicadorQuery.setText("PUEDES BUSCAR, IDENTIFICAR O REGISTRAR UN NUEVO PACIENTE.");
+        pc.actualDate();
+        dateFNacimiento.getDateEditor().setEnabled(false);
+        pc.setBgcDateChooser();
+        pc.setBgcComboBox();
+       
     }
 
     /**
@@ -59,11 +67,9 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
         jLabel3 = new javax.swing.JLabel();
         txtApellidoPaciente = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        dateFNacimiento = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        txtTipoDoc = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         txtNumDoc = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
@@ -87,7 +93,6 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
         btnSearchUpdateP = new javax.swing.JButton();
         btnDeleteP = new javax.swing.JButton();
         btnNewP = new javax.swing.JButton();
-        txtPYDT = new javax.swing.JTextField();
         comboMunicipio = new javax.swing.JComboBox<>();
         comboComunidad = new javax.swing.JComboBox<>();
         comboRh = new javax.swing.JComboBox<>();
@@ -99,6 +104,9 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
         txtEmail = new javax.swing.JTextField();
         jLabel20 = new javax.swing.JLabel();
         dateRegister = new javax.swing.JTextField();
+        comboTipoDoc = new javax.swing.JComboBox<>();
+        comboPyDT = new javax.swing.JComboBox<>();
+        dateFNacimiento = new com.toedter.calendar.JDateChooser();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableP = new javax.swing.JTable();
@@ -129,26 +137,23 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
         txtIdPaciente.setToolTipText("");
         txtIdPaciente.setRequestFocusEnabled(false);
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(108, 216, 158));
         jLabel2.setText("Nombres*");
 
         txtNombrePaciente.setBackground(new java.awt.Color(255, 255, 255));
         txtNombrePaciente.setToolTipText("");
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(108, 216, 158));
         jLabel3.setText("Apellidos*");
 
         txtApellidoPaciente.setBackground(new java.awt.Color(255, 255, 255));
         txtApellidoPaciente.setToolTipText("");
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(108, 216, 158));
-        jLabel4.setText("Fecha Nacimiento");
-
-        dateFNacimiento.setBackground(new java.awt.Color(255, 255, 255));
-        dateFNacimiento.setToolTipText("");
+        jLabel4.setText("Fecha Nacimiento*");
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(108, 216, 158));
@@ -161,9 +166,6 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(108, 216, 158));
         jLabel7.setText("Tipo Documento");
-
-        txtTipoDoc.setBackground(new java.awt.Color(255, 255, 255));
-        txtTipoDoc.setToolTipText("");
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(108, 216, 158));
@@ -200,7 +202,7 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
 
         comboGestante.setBackground(new java.awt.Color(255, 255, 255));
         comboGestante.setForeground(new java.awt.Color(37, 51, 61));
-        comboGestante.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIONAR", "SÍ", "NO", "NO APLICA" }));
+        comboGestante.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", "SÍ", "NO", "NO APLICA" }));
 
         jLabel14.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(108, 216, 158));
@@ -211,8 +213,7 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
         jLabel15.setText("Etnia");
 
         comboEtnia.setBackground(new java.awt.Color(255, 255, 255));
-        comboEtnia.setForeground(new java.awt.Color(37, 51, 61));
-        comboEtnia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIONAR", "Arhuaco", "Kogui", "Wiwa", "Otro" }));
+        comboEtnia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", "Arhuaco", "Kogui", "Wiwa", "Otro" }));
 
         jLabel16.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(108, 216, 158));
@@ -237,7 +238,7 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel19.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        jLabel19.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel19.setForeground(new java.awt.Color(108, 216, 158));
         jLabel19.setText("Asociar Huella*");
 
@@ -347,24 +348,21 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
             .addComponent(btnIdentify, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        txtPYDT.setEditable(false);
-        txtPYDT.setBackground(new java.awt.Color(187, 187, 187));
-
         comboMunicipio.setBackground(new java.awt.Color(255, 255, 255));
         comboMunicipio.setForeground(new java.awt.Color(37, 51, 61));
-        comboMunicipio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIONAR", "Santa Marta", "Aracataca", "Dibulla", "Cienaga", "Fundación", "Rioacha" }));
+        comboMunicipio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", "Santa Marta", "Aracataca", "Dibulla", "Cienaga", "Fundación", "Rioacha" }));
 
         comboComunidad.setBackground(new java.awt.Color(255, 255, 255));
         comboComunidad.setForeground(new java.awt.Color(37, 51, 61));
-        comboComunidad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIONAR", "Gonawindua", "Gogzezhi", "Uleizhi", "Chivilongui", "Bunkwimake", "Gunmako", "Serankwa", "Dwanawimaku", "Pueblo Viejo", "Seiviaka", "Kasakumake", "Atigumake", "Gomake", "Parquesito", "Dumingueka", "Cherwa", "Sanantonio", "Kankawarwa", "Kantinurwa", "Vindiva", "Bunkwamake", "Singuney", "Carrizal" }));
+        comboComunidad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", "Gonawindua", "Gogzezhi", "Uleizhi", "Chivilongui", "Bunkwimake", "Gunmako", "Serankwa", "Dwanawimaku", "Pueblo Viejo", "Seiviaka", "Kasakumake", "Atigumake", "Gomake", "Parquesito", "Dumingueka", "Cherwa", "Sanantonio", "Kankawarwa", "Kantinurwa", "Vindiva", "Bunkwamake", "Singuney", "Carrizal" }));
 
         comboRh.setBackground(new java.awt.Color(255, 255, 255));
         comboRh.setForeground(new java.awt.Color(37, 51, 61));
-        comboRh.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIONAR", "A+", "A-", "AB+", "AB-", "B+", "B-", "O+", "O-" }));
+        comboRh.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", "A+", "A-", "AB+", "AB-", "B+", "B-", "O+", "O-" }));
 
         comboSexo.setBackground(new java.awt.Color(255, 255, 255));
         comboSexo.setForeground(new java.awt.Color(37, 51, 61));
-        comboSexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIONAR", "Masculino", "Femenino" }));
+        comboSexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", "Masculino", "Femenino" }));
 
         lblIndicadorQuery.setFont(new java.awt.Font("Segoe UI Symbol", 0, 16)); // NOI18N
         lblIndicadorQuery.setForeground(new java.awt.Color(255, 255, 255));
@@ -389,49 +387,62 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
 
         dateRegister.setBackground(new java.awt.Color(255, 255, 255));
         dateRegister.setToolTipText("");
+        dateRegister.setEnabled(false);
+
+        comboTipoDoc.setBackground(new java.awt.Color(255, 255, 255));
+        comboTipoDoc.setForeground(new java.awt.Color(37, 51, 61));
+        comboTipoDoc.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", "C.C.", "T.I.", "Registro Civíl" }));
+
+        comboPyDT.setBackground(new java.awt.Color(255, 255, 255));
+        comboPyDT.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+        comboPyDT.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", "Alteraciones Agudeza Visual", "Alteraciones Crecimiento y Desarrollo", "Alteraciones Desarrollo del Joven", "Alteraciones del Embarazo", "Alteraciones en el Adulto", "Cáncer de Seno", "Atención Preventiva en Salud Bucal" }));
+        comboPyDT.setEnabled(false);
+
+        dateFNacimiento.setDateFormatString("dd/MM/yyyy");
+        dateFNacimiento.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        dateFNacimiento.setOpaque(false);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(58, Short.MAX_VALUE)
+                .addContainerGap(50, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblIndicadorQuery, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(50, 50, 50)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(dateRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(jPanel2Layout.createSequentialGroup()
-                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel4)
-                                        .addComponent(jLabel1)
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
-                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(dateFNacimiento)
-                                        .addComponent(txtApellidoPaciente)
-                                        .addGroup(jPanel2Layout.createSequentialGroup()
-                                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(txtNombrePaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(txtIdPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGap(0, 2, Short.MAX_VALUE))))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel5)
-                                        .addComponent(jLabel6)
-                                        .addComponent(jLabel19))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
-                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(btnAssociate, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)
-                                        .addComponent(comboComunidad, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(comboMunicipio, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel1)
+                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addGap(31, 31, 31)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtApellidoPaciente)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(txtNombrePaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txtIdPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addComponent(dateFNacimiento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel19))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(btnAssociate, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)
+                                    .addComponent(comboComunidad, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(comboMunicipio, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel2Layout.createSequentialGroup()
@@ -440,7 +451,7 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
                                     .addComponent(jLabel7)
                                     .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel10))
-                                .addGap(0, 38, Short.MAX_VALUE))
+                                .addGap(0, 36, Short.MAX_VALUE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -460,9 +471,11 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addComponent(txtDepO, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
-                                            .addComponent(txtTipoDoc, javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addComponent(txtNumDoc, javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(txtCiudadO, javax.swing.GroupLayout.Alignment.TRAILING))
+                                            .addComponent(txtCiudadO, javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(comboTipoDoc, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(jPanel2Layout.createSequentialGroup()
@@ -471,12 +484,14 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
                                                     .addComponent(jLabel15)
                                                     .addComponent(jLabel14))
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                    .addComponent(comboGestante, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(comboEtnia, javax.swing.GroupLayout.Alignment.TRAILING, 0, 180, Short.MAX_VALUE)
-                                                    .addComponent(txtPYDT, javax.swing.GroupLayout.Alignment.TRAILING))
-                                                .addGap(1, 1, 1))
-                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                            .addComponent(comboGestante, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                            .addComponent(comboEtnia, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                        .addGap(1, 1, 1))
+                                                    .addComponent(comboPyDT, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                            .addGroup(jPanel2Layout.createSequentialGroup()
                                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                     .addComponent(jLabel16)
                                                     .addComponent(jLabel17)
@@ -486,30 +501,33 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
                                                     .addComponent(txtTel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                     .addComponent(txtDireccion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                     .addComponent(txtEmail, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                                .addContainerGap(54, Short.MAX_VALUE))))))
+                                .addContainerGap(52, Short.MAX_VALUE))))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(10, 10, 10)
-                .addComponent(lblIndicadorQuery, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(lblIndicadorQuery, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                .addGap(17, 17, 17)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(txtIdPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7)
-                            .addComponent(txtTipoDoc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel13))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(txtNombrePaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel8)
-                            .addComponent(txtNumDoc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel15)
-                            .addComponent(comboEtnia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel1)
+                                    .addComponent(txtIdPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel13)
+                                    .addComponent(comboTipoDoc, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel2)
+                                    .addComponent(txtNombrePaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel8)
+                                    .addComponent(txtNumDoc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel15)
+                                    .addComponent(comboEtnia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(comboGestante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -517,18 +535,17 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
                                 .addComponent(txtApellidoPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel9)
                                 .addComponent(txtCiudadO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel14)
-                                .addComponent(txtPYDT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(dateFNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel10)
-                            .addComponent(txtDepO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel16)
-                            .addComponent(txtTel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(comboGestante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel14, javax.swing.GroupLayout.Alignment.TRAILING)))
+                    .addComponent(comboPyDT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel4)
+                        .addComponent(jLabel10)
+                        .addComponent(txtDepO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel16)
+                        .addComponent(txtTel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(dateFNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(comboMunicipio, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -549,10 +566,10 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
                         .addComponent(jLabel18))
                     .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel20)
-                    .addComponent(dateRegister, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(dateRegister, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel20))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -777,7 +794,14 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
         Conexion cn = new Conexion();
         Connection cnn = cn.getConnection();
         try {
-            PreparedStatement ps = cnn.prepareStatement("SELECT * FROM Paciente WHERE id_paciente=?");
+            PreparedStatement ps = cnn.prepareStatement("SELECT pe.id_persona, pe.nombre, pe.apellido,"
+                    + " pe.email, pe.tipo_documento, pe.numero_documento, pe.celular, pe.fecha_nacimiento,"
+                    + " pe.ciudad_origen, pe.departamento_origen, pe.direccion,"
+                    + " pa.id_paciente, pa.huella, pa.rh, pa.gestante, pa.sexo, pa.etnia, pa.comunidad, pa.municipio,"
+                    + " pa.fecha_registro, pa.id_persona, pa.id_programaPyDT"
+                    + " FROM Persona AS pe INNER JOIN Paciente AS pa ON pe.id_persona=pa.id_persona"
+                    // + " INNER JOIN programa_PyDT AS pydt ON pa.id_programaPyDT=pydt.id_programaPyDT"
+                    + " WHERE id_paciente=?");
 
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
@@ -787,8 +811,27 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
                 if (rs.getInt("id_paciente") == id) {
                     id_paciente = rs.getInt("id_paciente");
                     tipoQuery = false;
-                    txtNombrePaciente.setText(rs.getString("nombre_paciente"));
+
                     txtIdPaciente.setText(rs.getString("id_paciente"));
+                    txtNombrePaciente.setText(rs.getString("nombre"));
+                    txtApellidoPaciente.setText(rs.getString("apellido"));
+                    //dateFNacimiento.setText(rs.getString("fecha_nacimiento"));
+                    comboMunicipio.setSelectedItem(rs.getString("municipio"));
+                    comboComunidad.setSelectedItem(rs.getString("comunidad"));
+                    dateRegister.setText(rs.getString("fecha_registro"));
+                    comboTipoDoc.setSelectedItem(rs.getString("tipo_documento"));
+                    txtNumDoc.setText(rs.getString("numero_documento"));
+                    txtCiudadO.setText(rs.getString("ciudad_origen"));
+                    txtDepO.setText(rs.getString("departamento_origen"));
+                    comboSexo.setSelectedItem(rs.getString("sexo"));
+                    comboRh.setSelectedItem(rs.getString("rh"));
+                    comboGestante.setSelectedItem(rs.getString("gestante"));
+                    comboEtnia.setSelectedItem(rs.getString("etnia"));
+                    comboPyDT.setSelectedItem(rs.getString("id_programaPyDT"));
+                    txtTel.setText(rs.getString("celular"));
+                    txtDireccion.setText(rs.getString("direccion"));
+                    txtEmail.setText(rs.getString("email"));
+
                     disableButtons(false, true, false);
                 }
 
@@ -827,12 +870,15 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
         try {
             System.out.println("INSERT");
             PreparedStatement psPersona = cnn.prepareStatement("INSERT INTO Persona"
-                    + " (nombre, apellido) VALUES (?,?)");
+                    + " (nombre, apellido, fecha_nacimiento) VALUES (?,?,?)");
             PreparedStatement psPaciente = cnn.prepareStatement("INSERT INTO Paciente"
                     + " (huella, sexo, id_persona) VALUES (?,?,last_insert_id())");
 
             psPersona.setString(1, txtNombrePaciente.getText());
             psPersona.setString(2, txtApellidoPaciente.getText());
+
+            SimpleDateFormat ff = new SimpleDateFormat("yyyy/MM/dd");
+            psPersona.setString(3, ff.format(dateFNacimiento.getDate()));
             psPersona.execute();
 
             psPaciente.setBinaryStream(1, huellaPaciente, sizeHuella);
@@ -872,14 +918,14 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
                 PreparedStatement ps = cnn.prepareStatement("UPDATE persona, paciente SET"
                         + " paciente.huella = ?, persona.nombre = ?, persona.apellido = ?,"
                         + " paciente.sexo = ?  WHERE persona.id_persona = paciente.id_persona AND paciente.id_paciente= ?;");
-                
+
                 ps.setBinaryStream(1, huellaPaciente, sizeHuella);
                 ps.setString(2, txtNombrePaciente.getText());
                 ps.setString(3, txtApellidoPaciente.getText());
                 ps.setString(4, comboSexo.getSelectedItem().toString());
                 ps.setInt(5, id_paciente);
                 ps.execute();
-                
+
                 cnn.commit();
                 JOptionPane.showMessageDialog(null, "La actualización del paciente '" + txtNombrePaciente.getText() + "' se guardó con éxito", "Paciente actualizado", JOptionPane.INFORMATION_MESSAGE);
                 pc.clearFields();
@@ -1016,9 +1062,11 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
     public javax.swing.JComboBox<String> comboEtnia;
     public javax.swing.JComboBox<String> comboGestante;
     public javax.swing.JComboBox<String> comboMunicipio;
+    public javax.swing.JComboBox<String> comboPyDT;
     public javax.swing.JComboBox<String> comboRh;
     public javax.swing.JComboBox<String> comboSexo;
-    public javax.swing.JTextField dateFNacimiento;
+    public javax.swing.JComboBox<String> comboTipoDoc;
+    public com.toedter.calendar.JDateChooser dateFNacimiento;
     public javax.swing.JTextField dateRegister;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -1055,9 +1103,7 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
     public javax.swing.JTextField txtIdPaciente;
     public javax.swing.JTextField txtNombrePaciente;
     public javax.swing.JTextField txtNumDoc;
-    public javax.swing.JTextField txtPYDT;
     public javax.swing.JTextField txtTel;
-    public javax.swing.JTextField txtTipoDoc;
     // End of variables declaration//GEN-END:variables
 
 }
