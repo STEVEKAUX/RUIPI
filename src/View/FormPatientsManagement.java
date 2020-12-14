@@ -5,7 +5,6 @@ import Controller.PatientController;
 import Model.UserDAO;
 import Model.Patient;
 import Model.User;
-import java.awt.Color;
 import java.sql.*;
 import java.io.ByteArrayInputStream;
 import java.util.logging.Level;
@@ -14,7 +13,6 @@ import javax.swing.JOptionPane;
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 import static javax.swing.JOptionPane.QUESTION_MESSAGE;
-import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 public final class FormPatientsManagement extends javax.swing.JInternalFrame {
@@ -396,7 +394,6 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
         comboPyDT.setBackground(new java.awt.Color(255, 255, 255));
         comboPyDT.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
         comboPyDT.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", "Alteraciones Agudeza Visual", "Alteraciones Crecimiento y Desarrollo", "Alteraciones Desarrollo del Joven", "Alteraciones del Embarazo", "Alteraciones en el Adulto", "Cáncer de Seno", "Atención Preventiva en Salud Bucal" }));
-        comboPyDT.setEnabled(false);
 
         dateFNacimiento.setDateFormatString("dd/MM/yyyy");
         dateFNacimiento.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -815,7 +812,7 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
                     txtIdPaciente.setText(rs.getString("id_paciente"));
                     txtNombrePaciente.setText(rs.getString("nombre"));
                     txtApellidoPaciente.setText(rs.getString("apellido"));
-                    //dateFNacimiento.setText(rs.getString("fecha_nacimiento"));
+                    dateFNacimiento.setDate(rs.getDate("fecha_nacimiento"));
                     comboMunicipio.setSelectedItem(rs.getString("municipio"));
                     comboComunidad.setSelectedItem(rs.getString("comunidad"));
                     dateRegister.setText(rs.getString("fecha_registro"));
@@ -877,8 +874,8 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
             psPersona.setString(1, txtNombrePaciente.getText());
             psPersona.setString(2, txtApellidoPaciente.getText());
 
-            SimpleDateFormat ff = new SimpleDateFormat("yyyy/MM/dd");
-            psPersona.setString(3, ff.format(dateFNacimiento.getDate()));
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+            psPersona.setString(3, sdf.format(dateFNacimiento.getDate()));
             psPersona.execute();
 
             psPaciente.setBinaryStream(1, huellaPaciente, sizeHuella);
@@ -912,7 +909,6 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
         } else {
 
             try {
-                //UPDATE Paciente SET huella=?, nombre_paciente=? WHERE id_paciente=?
 
                 System.out.println("UPDATE");
                 PreparedStatement ps = cnn.prepareStatement("UPDATE persona, paciente SET"

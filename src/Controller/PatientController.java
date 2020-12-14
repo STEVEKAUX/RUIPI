@@ -6,17 +6,14 @@ import Model.User;
 import View.FormPatientsManagement;
 import View.UIUtils;
 import java.awt.Color;
-import static java.awt.Color.darkGray;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.beans.PropertyEditorManager;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import javax.swing.JComponent;
-import javax.swing.JOptionPane;
-import javax.swing.UIManager;
-import javax.swing.plaf.ColorUIResource;
 
 //Crea la clase PatientController
 public class PatientController implements ActionListener {
@@ -60,15 +57,8 @@ public class PatientController implements ActionListener {
             fp.btnNewOff();
         }
         if (e.getSource() == fp.btnSaveP) {
-
-            if (fp.dateFNacimiento.getDate() == null) {
-                JOptionPane.showMessageDialog(null, "La fecha ingresada no es válida", "Fecha inválida", JOptionPane.ERROR_MESSAGE);
-                Date fecha = new Date();
-                fp.dateFNacimiento.setDate(fecha);
-            } else {
-                fp.saveP();
-                fp.lblIndicadorQuery.setText("PUEDES BUSCAR, IDENTIFICAR O REGISTRAR UN NUEVO PACIENTE.");
-            }
+            fp.saveP();
+            fp.lblIndicadorQuery.setText("PUEDES BUSCAR, IDENTIFICAR O REGISTRAR UN NUEVO PACIENTE.");
         }
         if (e.getSource() == fp.btnSearchUpdateP) {
             fp.lblIndicadorQuery.setText("PUEDES BUSCAR, IDENTIFICAR O REGISTRAR UN NUEVO PACIENTE.");
@@ -95,7 +85,6 @@ public class PatientController implements ActionListener {
         fp.txtIdPaciente.setText("");
         fp.txtNombrePaciente.setText("");
         fp.txtApellidoPaciente.setText("");
-        //fp.dateFNacimiento.setText("");
         fp.comboMunicipio.setSelectedIndex(0);
         fp.comboComunidad.setSelectedIndex(0);
         fp.comboTipoDoc.setSelectedIndex(0);
@@ -175,8 +164,10 @@ public class PatientController implements ActionListener {
                 fp.txtApellidoPaciente.setText((fp.tableP.getValueAt(fp.tableP.getSelectedRow(), 2).toString()));
             } catch (Exception e) {
             }
+            //SOLUCIONAR EL ERROR
+            //Date date = new SimpleDateFormat("yyyy/MM/dd").parse((String));
             try {
-                //fp.dateFNacimiento.setText((fp.tableP.getValueAt(fp.tableP.getSelectedRow(), 3).toString()));
+                fp.dateFNacimiento.setDate((Date)fp.tableP.getValueAt(fp.tableP.getSelectedRow(), 3));
             } catch (Exception e) {
             }
             try {
