@@ -9,22 +9,54 @@ import java.awt.event.*;
 import java.sql.Connection;
 import javax.swing.*;
 
+/**
+ *
+ * @author lenov
+ */
 public class LoginUI extends JFrame {
 
     //Variables globales
     Conexion con = new Conexion();
     Connection access;
+
+    /**
+     *
+     */
     public JButton loginButton;
+
+    /**
+     *
+     */
     public JButton exitButton;
     UserDAO udao = new UserDAO();
     User u;
     private final Toaster toaster;
+
+    /**
+     *
+     */
     public String username = "";
+
+    /**
+     *
+     */
     public String password = "";
+
+    /**
+     *
+     */
     public TextFieldUsername txtUsernameField;
+
+    /**
+     *
+     */
     public TextFieldPassword txtPasswordField;
 
     //Constructor de Login
+
+    /**
+     *
+     */
     public LoginUI() {
 
         //Establecemos el icono del proyecto en la barra de tareas y superior del Frame     
@@ -53,6 +85,11 @@ public class LoginUI extends JFrame {
     }
 
     //Obtiene el texto del campo de Nombre de usuario
+
+    /**
+     *
+     * @return
+     */
     public String getUsernameField() {
         username = txtUsernameField.getText();
 
@@ -60,6 +97,11 @@ public class LoginUI extends JFrame {
     }
 
     //Obtiene el texto del campo de texto de COntraseña
+
+    /**
+     *
+     * @return
+     */
     public String getPasswordField() {
         password = String.valueOf(txtPasswordField.getPassword());
 
@@ -294,10 +336,16 @@ public class LoginUI extends JFrame {
         }));
     }
 
+    /**
+     *
+     */
     public void loginErrorEventHandler() {
         toaster.error("¡Hay campos vacíos!");
     }
 
+    /**
+     *
+     */
     public void dataErrorEventHandler() {
         toaster.error("¡Datos inválidos!");
     }

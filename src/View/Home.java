@@ -8,6 +8,10 @@ import java.awt.Graphics;
 import java.sql.Connection;
 import javax.swing.ImageIcon;
 
+/**
+ *
+ * @author lenov
+ */
 public class Home extends javax.swing.JFrame {
 
     // global variables
@@ -16,6 +20,10 @@ public class Home extends javax.swing.JFrame {
     UIUtils utils = new UIUtils();
 
     // Home Constructror
+
+    /**
+     *
+     */
     public Home() {
         initComponents();
         this.setExtendedState(MAXIMIZED_BOTH);

@@ -6,6 +6,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 //Crea la clase PatientDAO
+
+/**
+ *
+ * @author lenov
+ */
 public class PatientDAO extends Conexion{
 
     //crealas variables globales

@@ -15,36 +15,71 @@ import java.text.SimpleDateFormat;
 import static javax.swing.JOptionPane.QUESTION_MESSAGE;
 import javax.swing.table.DefaultTableModel;
 
+/**
+ *
+ * @author lenov
+ */
 public final class FormPatientsManagement extends javax.swing.JInternalFrame {
 
+    /**
+     *
+     */
     public ByteArrayInputStream huellaPaciente;
     Integer sizeHuella;
-    boolean isOpen = false;
+
+    /**
+     *
+     */
+    public boolean isOpen = false;
+
+    /**
+     *
+     */
     public boolean tipoQuery = false;
     Toaster toaster;
+
+    /**
+     *
+     */
     public int id_paciente;
-    FormEnterBrand asociarHuella;
+
+    /**
+     *
+     */
+    public FormEnterBrand asociarHuella;
+
+    /**
+     *
+     */
     public DefaultTableModel modt;
     Patient p = new Patient();
+
+    /**
+     *
+     */
     public static PatientController pc;
 
+    /**
+     *
+     */
     public FormPatientsManagement() {
         setQueryInsert();
         initComponents();
 
-        disableButtons(false, true, true);
         modt = (DefaultTableModel) tableP.getModel();
         User u = new User();
         UserDAO uDao = new UserDAO();
         Patient p = new Patient();
+        
         //relación con el controlador
         pc = new PatientController(u, uDao, this, p);
+        
         lblIndicadorQuery.setText("PUEDES BUSCAR, IDENTIFICAR O REGISTRAR UN NUEVO PACIENTE.");
         pc.actualDate();
         dateFNacimiento.getDateEditor().setEnabled(false);
         pc.setBgcDateChooser();
         pc.setBgcComboBox();
-       
+
     }
 
     /**
@@ -646,55 +681,13 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    //tratando de listar al iniciar
-
-    //método del botón Asociar Huella se encarga de crear la instancia del lector de huellas que asocia la huella del paciente
-    public void asociate() {
-
-        disableButtons(false, false, false);
-
-        if (isOpen == false) {
-            asociarHuella = new FormEnterBrand(this);
-            asociarHuella.setVisible(true);
-            isOpen = true;
-            pc.clearTable();
-
-        } else {
-
-            //toaster.error("¡Nombre de usuario o contraseña inválidos!");
-            JOptionPane.showMessageDialog(null, "Ya hay una ventana del 'Lector de Huellas' abierta", "Lector en uso", JOptionPane.WARNING_MESSAGE);
-            btnSearchUpdateOn();
-
-        }
-
-    }
-
-    //Se encarga de realizar la inserción o la actualización de los datos del paciente
-    //siempre y cuando los campos no estén vaciós dependiendo si es una búsqueda o una inserción de paciente
-    public void saveP() {
-
-        pc.clearTable();
-
-        if (emptyFields()) {
-
-            if (tipoQuery) {
-                Insert();
-                txtNombrePaciente.requestFocus();
-
-            } else {
-                Update();
-                tipoQuery = true;
-            }
-
-            pc.clearFields();
-            isOpen = false;
-
-            disableButtons(false, true, true);
-        }
-    }
 
     //Se encarga de realizar la búsequeda de un paciente por nombre o coinsidencia de letras que contiene su nombre,
     //una vez encontado el paciente, se llenan los campos con sus datos y se activa la consulta para actualizar datos tipoQuery= UPDATE
+
+    /**
+     *
+     */
     public void searchUpdate() {
         pc.clearTable();
 
@@ -708,6 +701,7 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
                 Conexion cn = new Conexion();
                 Connection cnn = cn.getConnection();
                 try {
+                    int findedRows = 0;
                     PreparedStatement ps = cnn.prepareStatement("SELECT pe.id_persona, pe.nombre, pe.apellido,"
                             + " pe.email, pe.tipo_documento, pe.numero_documento, pe.celular, pe.fecha_nacimiento,"
                             + " pe.ciudad_origen, pe.departamento_origen, pe.direccion,"
@@ -720,6 +714,7 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
 
                     while (rs.next()) {
 
+                        findedRows++;
                         modt.addRow(new Object[]{
                             rs.getInt("id_paciente"),
                             rs.getString("nombre"),
@@ -745,10 +740,13 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
                     }
                     lblIndicadorQuery.setText("LA TABLA MUESTRA LOS RESULTADOS DE LA BÚSQUEDA. Para actualizar una fila puedes dar doble click sobre ella.");
 
+                    if (findedRows == 0) {
+                        JOptionPane.showMessageDialog(this, "No se  encontraron coincidencias para: " + "'" + nombreBuscar + "'", "No hay registro", JOptionPane.ERROR_MESSAGE);
+                        lblIndicadorQuery.setText("PUEDES BUSCAR, IDENTIFICAR O REGISTRAR UN NUEVO PACIENTE.");
+                    }
+
                 } catch (SQLException ex) {
                     Logger.getLogger(FormPatientsManagement.class.getName()).log(Level.SEVERE, null, ex);
-                    //JOptionPane.showMessageDialog(this, "El paciente NO está registrado en RUIPI","NO HAY REGISTRO", JOptionPane.ERROR_MESSAGE);
-
                 }
             }
         }
@@ -756,6 +754,10 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
     }
 
     //Se encarga de instanciár un objeto de tipo FormIdentify y asegurarse de que solo se abra una instancia del lector a la vez
+
+    /**
+     *
+     */
     public void identify() {
 
         System.out.println(isOpen);
@@ -786,6 +788,11 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
 
     //Encuentra al paciente, recibe el id del paciente y establece los datos del paciente en los campos 
     //de texto luego de cargarlos al modelo
+
+    /**
+     *
+     * @param id
+     */
     public void findP(int id) {
 
         Conexion cn = new Conexion();
@@ -829,7 +836,7 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
                     txtDireccion.setText(rs.getString("direccion"));
                     txtEmail.setText(rs.getString("email"));
 
-                    disableButtons(false, true, false);
+                    pc.disableButtons(false, true, false);
                 }
 
             }
@@ -843,23 +850,41 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
     }
 
     //Obtiene el tamaño de la huella
+
+    /**
+     *
+     * @return
+     */
     public Integer getSizeHUella() {
         return sizeHuella;
     }
 
     //Establece el tamaño de la huela
+
+    /**
+     *
+     * @param size
+     */
     public void setSizeHuella(Integer size) {
         sizeHuella = size;
     }
 
     //Establece la variabl que controla la consulta para definir si se trata de un INSERT(true) o un UPDATE(false)
+
+    /**
+     *
+     */
     public void setQueryInsert() {
         tipoQuery = true;
 
     }
 
     //Realiza la inserciónn de un nuevo registro a la base de datos siempre y cuando no hayan campos obligatorios vacíos
-    private void Insert() {
+
+    /**
+     *
+     */
+    public void Insert() {
 
         Conexion cn = new Conexion();
         Connection cnn = cn.getConnection();
@@ -898,7 +923,11 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
     }
 
     //Realiza la actualización de un paciente buscado o identificado cuyos datos estén cargados en el modelo y los campos del formulario de pacientes
-    private void Update() {
+
+    /**
+     *
+     */
+    public void Update() {
         Conexion cn = new Conexion();
         Connection cnn = cn.getConnection();
 
@@ -913,13 +942,18 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
                 System.out.println("UPDATE");
                 PreparedStatement ps = cnn.prepareStatement("UPDATE persona, paciente SET"
                         + " paciente.huella = ?, persona.nombre = ?, persona.apellido = ?,"
-                        + " paciente.sexo = ?  WHERE persona.id_persona = paciente.id_persona AND paciente.id_paciente= ?;");
+                        + " paciente.sexo = ?, persona.fecha_nacimiento=?"
+                        + " WHERE persona.id_persona = paciente.id_persona AND paciente.id_paciente= ?;");
 
                 ps.setBinaryStream(1, huellaPaciente, sizeHuella);
                 ps.setString(2, txtNombrePaciente.getText());
                 ps.setString(3, txtApellidoPaciente.getText());
                 ps.setString(4, comboSexo.getSelectedItem().toString());
-                ps.setInt(5, id_paciente);
+
+                java.util.Date utilStartDate = dateFNacimiento.getDate();
+                java.sql.Date sqlStartDate = new java.sql.Date(utilStartDate.getTime());
+                ps.setDate(5, sqlStartDate);
+                ps.setInt(6, id_paciente);
                 ps.execute();
 
                 cnn.commit();
@@ -937,66 +971,6 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
         }
 
     }
-
-    //retorna true o false dependiendo si los campos obligatorios están vaciós y habilita el botón de guardar no están vacíos
-    public boolean emptyFields() {
-
-        if (txtNombrePaciente.getText().isEmpty() || huellaPaciente == null) {
-            JOptionPane.showMessageDialog(null, "Los campos con asterísco ( * ) son obligatorios", "Hay campos vacíos", JOptionPane.WARNING_MESSAGE);
-            txtNombrePaciente.requestFocus();
-            return false;
-
-        } else {
-            btnSavePOn();
-            return true;
-
-        }
-
-    }
-
-    public void btnAsociateOff() {
-
-        btnAssociate.setEnabled(false);
-    }
-
-    public void btnAsociateOn() {
-
-        btnAssociate.setEnabled(true);
-    }
-
-    public void btnSearchUpdateOff() {
-
-        btnSearchUpdateP.setEnabled(false);
-    }
-
-    public void btnSearchUpdateOn() {
-
-        btnSearchUpdateP.setEnabled(true);
-    }
-
-    public void btnSavePOn() {
-        btnSaveP.setEnabled(true);
-    }
-
-    public void btnSavePOff() {
-        btnSaveP.setEnabled(false);
-    }
-
-    public void btnNewOff() {
-        btnNewP.setEnabled(false);
-    }
-
-    public void btnNewOn() {
-        btnNewP.setEnabled(true);
-    }
-
-    //desactiva los botones de Guardar, Buscar y Actualizar e Identificar dependiendo de los parámetros que se le 
-    public void disableButtons(boolean save, boolean search, boolean identify) {
-        btnSaveP.setEnabled(save);
-        btnSearchUpdateP.setEnabled(search);
-        btnIdentify.setEnabled(identify);
-    }
-
 
     private void btnAssociateMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAssociateMouseEntered
         btnAssociate.setBackground(UIUtils.COLOR_INTERACTIVE_DARKER);

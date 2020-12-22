@@ -25,6 +25,10 @@ public class LoginController implements ActionListener {
     UserDAO udao = new UserDAO();
     User u;
 
+    /**
+     *
+     * @param log
+     */
     public LoginController(LoginUI log) {
         this.log = log;
 
@@ -40,6 +44,10 @@ public class LoginController implements ActionListener {
         });
     }
 
+    /**
+     *
+     * @param e
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == log.loginButton) {
@@ -53,6 +61,10 @@ public class LoginController implements ActionListener {
     }
 
     //CONFIRMAR ACCIÓN DE SALIR
+
+    /**
+     *
+     */
     public void closeApp() {
         Object[] opciones = {"Aceptar", "Cancelar"};
         int eleccion = JOptionPane.showOptionDialog(null, "¿Realmente desea salir de la aplicación?", "Saliendo de STOCKMS",
@@ -65,6 +77,10 @@ public class LoginController implements ActionListener {
     }
     
     //Desconecta la base de datos
+
+    /**
+     *
+     */
     public void turnOffDB(){
     Conexion con = new Conexion();
     Connection access;
@@ -72,6 +88,10 @@ public class LoginController implements ActionListener {
     }
     
     //valida el usuario y contraseña ingresados con la base de datos
+
+    /**
+     *
+     */
     public void validateLogin() {
         String uf = log.getUsernameField();
         String pf = log.getPasswordField();

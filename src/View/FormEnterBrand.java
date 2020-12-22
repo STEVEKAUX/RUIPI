@@ -26,6 +26,11 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
 //Crea la clase FormEnterBrand
+
+/**
+ *
+ * @author lenov
+ */
 public class FormEnterBrand extends javax.swing.JFrame {
 
     //variables globales
@@ -44,12 +49,28 @@ public class FormEnterBrand extends javax.swing.JFrame {
     //Variable que para crear el template de la huella luego de que se hallan creado las caracteriticas
     // necesarias de la huella si no ha ocurrido ningun problema
     private DPFPTemplate template;
+
+    /**
+     *
+     */
     public static String TEMPLATE_PROPERTY = "template";
+
+    /**
+     *
+     */
     public DPFPFeatureSet featuresinscripcion;
+
+    /**
+     *
+     */
     public DPFPFeatureSet featuresverificacion;
     private final FormPatientsManagement fp;
 
     //Inicia la lectura de la huella
+
+    /**
+     *
+     */
     protected void Iniciar() {
         Lector.addDataListener(new DPFPDataAdapter() {
             @Override
@@ -115,6 +136,11 @@ public class FormEnterBrand extends javax.swing.JFrame {
     }
 
     //Procesa la captura de la huella ingresada
+
+    /**
+     *
+     * @param sample
+     */
     public void ProcesarCaptura(DPFPSample sample) {
         // Procesar la muestra de la huella y crear un conjunto de características con el propósito de inscripción.
         featuresinscripcion = extraerCaracteristicas(sample, DPFPDataPurpose.DATA_PURPOSE_ENROLLMENT);
@@ -161,6 +187,13 @@ public class FormEnterBrand extends javax.swing.JFrame {
     }
 
     //Extrae las características de la huella ingresada 
+
+    /**
+     *
+     * @param sample
+     * @param purpose
+     * @return
+     */
     public DPFPFeatureSet extraerCaracteristicas(DPFPSample sample, DPFPDataPurpose purpose) {
         DPFPFeatureExtraction extractor = DPFPGlobal.getFeatureExtractionFactory().createFeatureExtraction();
         try {
@@ -171,11 +204,22 @@ public class FormEnterBrand extends javax.swing.JFrame {
     }
 
     //Crea una imágen a partir de las características de la huella ingresada
+
+    /**
+     *
+     * @param sample
+     * @return
+     */
     public Image CrearImagenHuella(DPFPSample sample) {
         return DPFPGlobal.getSampleConversionFactory().createImage(sample);
     }
 
     //Dibuja la huella en el campo del frame FormEnterBrand
+
+    /**
+     *
+     * @param image
+     */
     public void DibujarHuella(Image image) {
         huellaImg.setIcon(new ImageIcon(
                 image.getScaledInstance(huellaImg.getWidth(), huellaImg.getHeight(), Image.SCALE_DEFAULT)));
@@ -183,23 +227,40 @@ public class FormEnterBrand extends javax.swing.JFrame {
     }
 
     //Muestra por consola el número de huellas necesarias para crear el template
+
+    /**
+     *
+     */
     public void EstadoHuellas() {
         System.out.println("Muestra de Huellas Necesarias para Guardar Template: " + Reclutador.getFeaturesNeeded());
     }
 
     //Detiene la captura de la huella
+
+    /**
+     *
+     */
     public void stop() {
         Lector.stopCapture();
         //EnviarTexto("No se está usando el Lector de Huella Dactilar ");
     }
 
     //Inicia la captura de la huella
+
+    /**
+     *
+     */
     public void start() {
         Lector.startCapture();
         //EnviarTexto("Utilizando el Lector de Huella Dactilar ");
     }
 
     //Constructor de la clase FormEnterBrand
+
+    /**
+     *
+     * @param fp
+     */
     public FormEnterBrand(FormPatientsManagement fp) {
         initComponents();
 
@@ -327,8 +388,8 @@ public class FormEnterBrand extends javax.swing.JFrame {
         dispose();
         fp.isOpen = false;
         pc.clearTable();
-        fp.disableButtons(true, false, false);
-        fp.btnNewOn();
+        pc.disableButtons(true, false, false);
+        pc.btnNewOn();
         fp.lblIndicadorQuery.setText("!HUELLA CARGADA¡ ¿Quieres guardar?");
 
 
@@ -337,10 +398,10 @@ public class FormEnterBrand extends javax.swing.JFrame {
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         fp.isOpen = false;
         if (!fp.isOpen) {
-            fp.disableButtons(false, false, false);
+            pc.disableButtons(false, false, false);
             huella = null;
         }
-        fp.btnNewOn();
+        pc.btnNewOn();
         stop();
         fp.lblIndicadorQuery.setText("¡EL LECTOR SE CERRÓ! Asocia una huella u oprime 'Nuevo' para reiniciar el formulario.");
 

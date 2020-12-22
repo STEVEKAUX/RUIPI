@@ -53,11 +53,26 @@ public class FormIdentify extends javax.swing.JFrame {
     //Variable que para crear el template de la huella luego de que se hallan creado las caracteriticas
     // necesarias de la huella si no ha ocurrido ningun problema
     private DPFPTemplate template;
+
+    /**
+     *
+     */
     public static String TEMPLATE_PROPERTY = "template";
+
+    /**
+     *
+     */
     public DPFPFeatureSet featuresinscripcion;
+
+    /**
+     *
+     */
     public DPFPFeatureSet featuresverificacion;
     private final FormPatientsManagement fp;
 
+    /**
+     *
+     */
     protected void Iniciar() {
         Lector.addDataListener(new DPFPDataAdapter() {
             @Override
@@ -122,6 +137,10 @@ public class FormIdentify extends javax.swing.JFrame {
         });
     }
 
+    /**
+     *
+     * @param sample
+     */
     public void ProcesarCaptura(DPFPSample sample) {
         // Procesar la muestra de la huella y crear un conjunto de características con el propósito de inscripción.
         featuresinscripcion = extraerCaracteristicas(sample, DPFPDataPurpose.DATA_PURPOSE_ENROLLMENT);
@@ -166,6 +185,12 @@ public class FormIdentify extends javax.swing.JFrame {
         }
     }
 
+    /**
+     *
+     * @param sample
+     * @param purpose
+     * @return
+     */
     public DPFPFeatureSet extraerCaracteristicas(DPFPSample sample, DPFPDataPurpose purpose) {
         DPFPFeatureExtraction extractor = DPFPGlobal.getFeatureExtractionFactory().createFeatureExtraction();
         try {
@@ -175,30 +200,52 @@ public class FormIdentify extends javax.swing.JFrame {
         }
     }
 
+    /**
+     *
+     * @param sample
+     * @return
+     */
     public Image CrearImagenHuella(DPFPSample sample) {
         return DPFPGlobal.getSampleConversionFactory().createImage(sample);
     }
 
+    /**
+     *
+     * @param image
+     */
     public void DibujarHuella(Image image) {
         huellaImg.setIcon(new ImageIcon(
                 image.getScaledInstance(huellaImg.getWidth(), huellaImg.getHeight(), Image.SCALE_DEFAULT)));
         repaint();
     }
 
+    /**
+     *
+     */
     public void EstadoHuellas() {
         System.out.println("Muestra de Huellas Necesarias para Guardar Template " + Reclutador.getFeaturesNeeded());
     }
 
+    /**
+     *
+     */
     public void stop() {
         Lector.stopCapture();
         //EnviarTexto("No se está usando el Lector de Huella Dactilar ");
     }
 
+    /**
+     *
+     */
     public void start() {
         Lector.startCapture();
         //EnviarTexto("Utilizando el Lector de Huella Dactilar ");
     }
 
+    /**
+     *
+     * @param fp
+     */
     public FormIdentify(FormPatientsManagement fp) {
         initComponents();
 
@@ -207,7 +254,7 @@ public class FormIdentify extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         this.setResizable(false);
         this.fp = fp;
-        fp.btnSearchUpdateOff();
+        pc.btnSearchUpdateOff();
         pc.clearTable();
 
         //Establecemos el icono del proyecto en la barra de tareas y superior del Frame  
@@ -308,12 +355,15 @@ public class FormIdentify extends javax.swing.JFrame {
 
     }//GEN-LAST:event_formWindowClosing
 
+    /**
+     *
+     */
     public void closing() {
         fp.isOpen = false;
         if (!fp.isOpen) {
-            fp.disableButtons(false, false, true);
+            pc.disableButtons(false, false, true);
         }
-        fp.btnNewOn();
+        pc.btnNewOn();
         stop();
 
     }
@@ -372,16 +422,16 @@ public class FormIdentify extends javax.swing.JFrame {
 
                     fp.findP(id);
                     pc.clearTable();
-                    fp.btnSearchUpdateOff();
+                    pc.btnSearchUpdateOff();
                     JOptionPane.showMessageDialog(null, "El paciente '" + nombre + "' está registrado en RUIPI", "Paciente identificado", JOptionPane.INFORMATION_MESSAGE);
                     fp.lblIndicadorQuery.setText("PUEDES OBSERVAR O ACTUALIZAR LOS DATOS DE ESTE PACIENTE. Para actualizar, debes ASOCIAR su huella nuevamente.");
                     existe = true;
                     closing();
                     dispose();
 
-                    fp.disableButtons(false, false, true);
-                    fp.btnNewOn();
-                    fp.btnAsociateOn();
+                    pc.disableButtons(false, false, true);
+                    pc.btnNewOn();
+                    pc.btnAsociateOn();
                 }
             }
 

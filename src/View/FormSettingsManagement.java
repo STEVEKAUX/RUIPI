@@ -1,7 +1,10 @@
 
 package View;
 
-
+/**
+ *
+ * @author lenov
+ */
 public class FormSettingsManagement extends javax.swing.JInternalFrame {
 
     /**

@@ -8,6 +8,11 @@ import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
 
 //Crea la clase Toaster
+
+/**
+ *
+ * @author lenov
+ */
 public class Toaster {
 
     //Declara las constantes de la clase
@@ -18,11 +23,21 @@ public class Toaster {
     private final JPanel panelToToastOn;
 
     //Constructor de la clase TOaster
+
+    /**
+     *
+     * @param panelToToastOn
+     */
     public Toaster(JPanel panelToToastOn) {
         this.panelToToastOn = panelToToastOn;
     }
 
     //Muestra un toaster de tipo error
+
+    /**
+     *
+     * @param messages
+     */
     public void error(String... messages) {
         for (String s : messages) {
             toast(s, new Color(181, 59, 86));
@@ -30,6 +45,11 @@ public class Toaster {
     }
 
     //Muestra un toaster de tipo success
+
+    /**
+     *
+     * @param messages
+     */
     public void success(String... messages) {
         for (String s : messages) {
             toast(s, new Color(33, 181, 83));
@@ -37,6 +57,11 @@ public class Toaster {
     }
 
     //muestra un toaster de tipo info
+
+    /**
+     *
+     * @param messages
+     */
     public void info(String... messages) {
         for (String s : messages) {
             toast(s, new Color(13, 116, 181));
@@ -44,6 +69,11 @@ public class Toaster {
     }
 
     //muestra un toaster de tipo warm
+
+    /**
+     *
+     * @param messages
+     */
     public void warn(String... messages) {
         for (String s : messages) {
             toast(s, new Color(181, 147, 10));

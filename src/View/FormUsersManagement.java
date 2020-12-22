@@ -1,9 +1,15 @@
 
 package View;
 
-
+/**
+ *
+ * @author lenov
+ */
 public class FormUsersManagement extends javax.swing.JInternalFrame {
 
+    /**
+     *
+     */
     public FormUsersManagement() {
         initComponents();
     }

@@ -3,6 +3,7 @@ package Controller;
 import Model.Conexion;
 import View.FormClinicalHistoryManagement;
 import View.FormPatientsManagement;
+import static View.FormPatientsManagement.pc;
 import View.FormSettingsManagement;
 import View.FormUsersManagement;
 import View.Home;
@@ -17,6 +18,10 @@ import java.util.logging.Logger;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 
+/**
+ *
+ * @author lenov
+ */
 public class HomeController implements ActionListener {
 
     //Declaración de variables
@@ -26,6 +31,11 @@ public class HomeController implements ActionListener {
     Connection access;
 
     //Constructor de HomeController
+
+    /**
+     *
+     * @param h
+     */
     public HomeController(Home h) {
         this.h = h;
 
@@ -36,6 +46,10 @@ public class HomeController implements ActionListener {
         this.h.btnUsuarios.addActionListener(this);
     }
 
+    /**
+     *
+     * @param e
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == h.btnUsuarios) {
@@ -49,6 +63,7 @@ public class HomeController implements ActionListener {
         }
         if (e.getSource() == h.btnPacientes) {
             fp = new FormPatientsManagement();
+            pc.disableButtons(false, true, true);
             windowCentered(fp);
             try {
                 fp.setMaximum(true);
@@ -81,6 +96,10 @@ public class HomeController implements ActionListener {
 
     }
 
+    /**
+     *
+     * @param frame
+     */
     public void windowCentered(JInternalFrame frame) {
         h.jDesktopPane1.add(frame);
 
@@ -90,6 +109,9 @@ public class HomeController implements ActionListener {
         frame.show();
     }
 
+    /**
+     *
+     */
     public void close() {
         Object[] opciones = {"Aceptar", "Cancelar"};
         int eleccion = JOptionPane.showOptionDialog(null, "¿Realmente desea salir de la aplicación?", "Saliendo de RUIPI",

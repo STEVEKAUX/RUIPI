@@ -3,6 +3,11 @@ package Model;
 import java.sql.*;
 
 //Crea la clase UserDAO
+
+/**
+ *
+ * @author lenov
+ */
 public class UserDAO extends Conexion {
 
     //Crea las variables globales
@@ -15,6 +20,14 @@ public class UserDAO extends Conexion {
     //Se encarga de validar que el usuario exista en la base de datos, y carga los campos seleccionados en la query
     //a las variebles de la clase User.java
     //recibe como parámetro el nombre de usuario y contraseña ingresadas en el módulo de login.
+
+    /**
+     *
+     * @param username
+     * @param password
+     * @return
+     * @throws SQLException
+     */
     public User userValidator(String username, String password) throws SQLException {
 
         User user = new User();
@@ -71,6 +84,11 @@ public class UserDAO extends Conexion {
     
 //    int newPassword = newPassword();
 //    System.out.print(newPassword);
+
+    /**
+     *
+     * @return
+     */
 
     public int newPassword() {
         double num;

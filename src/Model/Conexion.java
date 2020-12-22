@@ -3,6 +3,11 @@ package Model;
 import java.sql.*;
 
 //Crea la clase Conexion
+
+/**
+ *
+ * @author lenov
+ */
 public class Conexion {
     //Declara las constantes de la clase
 
@@ -13,9 +18,15 @@ public class Conexion {
             + "JDBCCompliantTimezoneSHift=true&useLegacyDatetimeCode=false&"
             + "serverTimezone=UTC";
 
+    /**
+     *
+     */
     public static Connection con = null;
     //Constructor de la clase
 
+    /**
+     *
+     */
     public Conexion() {
         try {
             //Obtener el driver
@@ -34,11 +45,19 @@ public class Conexion {
     }
     //Obtiene la conexión
 
+    /**
+     *
+     * @return
+     */
     public Connection getConnection() {
         return con;
     }
     //Desconecta la base de datos
 
+    /**
+     *
+     * @return
+     */
     public Conexion disconnect() {
         con = null;
         if (con == null) {

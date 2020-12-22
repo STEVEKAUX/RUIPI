@@ -5,6 +5,11 @@ import java.awt.*;
 import java.awt.geom.RoundRectangle2D;
 
 //Crea la claase TextFieldPassword
+
+/**
+ *
+ * @author lenov
+ */
 public class TextFieldPassword extends JPasswordField {
 
     //Declaración de las variables y constantes de la clase TextFieldPassword
@@ -12,6 +17,10 @@ public class TextFieldPassword extends JPasswordField {
     private Color borderColor = UIUtils.COLOR_OUTLINE;
 
     //Constructor de la clase TextFieldPassword
+
+    /**
+     *
+     */
     public TextFieldPassword() {
         setOpaque(false);
         setBackground(UIUtils.COLOR_BACKGROUND);
@@ -24,6 +33,11 @@ public class TextFieldPassword extends JPasswordField {
     }
 
     //Se encarga de pintar el componente del campo de texto de contraseña
+
+    /**
+     *
+     * @param g
+     */
     @Override
     protected void paintComponent(Graphics g) {
         Graphics2D g2 = UIUtils.get2dGraphics(g);
@@ -33,6 +47,11 @@ public class TextFieldPassword extends JPasswordField {
     }
 
     //Se encarga de pintar el borde del componente del campo de texto de contraseña
+
+    /**
+     *
+     * @param g
+     */
     @Override
     protected void paintBorder(Graphics g) {
         Graphics2D g2 = UIUtils.get2dGraphics(g);
@@ -41,6 +60,13 @@ public class TextFieldPassword extends JPasswordField {
     }
 
     //Se encarga de pintar el contenido del campo de texto de contraseña
+
+    /**
+     *
+     * @param x
+     * @param y
+     * @return
+     */
     @Override
     public boolean contains(int x, int y) {
         if (shape == null || !shape.getBounds().equals(getBounds())) {
@@ -50,6 +76,11 @@ public class TextFieldPassword extends JPasswordField {
     }
 
     //Establece el color del borde del campo de texto de contraseña
+
+    /**
+     *
+     * @param color
+     */
     public void setBorderColor(Color color) {
         borderColor = color;
         repaint();

@@ -1,7 +1,10 @@
 
 package View;
 
-
+/**
+ *
+ * @author lenov
+ */
 public class NewJFrame extends javax.swing.JFrame {
 
     /**

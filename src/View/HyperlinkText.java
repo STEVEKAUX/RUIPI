@@ -9,9 +9,22 @@ import static View.UIUtils.*;
 import static java.awt.Cursor.*;
 
 //Crea la clase HyperlinkText que extiende de JLabel
+
+/**
+ *
+ * @author lenov
+ */
 public class HyperlinkText extends JLabel {
 
     //Constructor de la clase HyperlinkTExt
+
+    /**
+     *
+     * @param hyperlinkText
+     * @param xPos
+     * @param yPos
+     * @param hyperlinkAction
+     */
     public HyperlinkText(String hyperlinkText, int xPos, int yPos, Runnable hyperlinkAction) {
         super(hyperlinkText);
         setForeground(COLOR_OUTLINE);
