@@ -19,20 +19,34 @@ import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 
 /**
+ **<h2>Clase HomeController</h2>
+ * <br>
+ * <p>
+ * Se encarga de ejecutar la lógica de los eventos del click desencadenados por
+ * el usuario en la vista {@link Home}.</p>
+ * <br>
  *
- * @author lenov
+ * @author Daniel Felipe Lozada Ramirez Email: dflozada2@misena.edu.co
+ * @author Edgar Steve Pava Email: Espava60@misena.edu.co
+ * @version 1.1.0
+ * @since 2020
+ * @see ActionListener
+ * @see Home
  */
 public class HomeController implements ActionListener {
 
-    //Declaración de variables
+    /**
+     * Variables y constantes de la clase {@link  HomeController}.
+     *
+     */
     private final Home h;
     private FormPatientsManagement fp;
     Conexion con = new Conexion();
     Connection access;
 
-    //Constructor de HomeController
-
     /**
+     * <h2>Método Constructor de HomeController</h2>
+     * <br>
      *
      * @param h
      */
@@ -47,7 +61,14 @@ public class HomeController implements ActionListener {
     }
 
     /**
-     *
+     * <h2>Método actionPerformed(ActionEvent e)</h2>
+     * <br>
+     * <p>
+     * Sobreescribe el método {@code actionPerformed(ActionEvent e)} para
+     * dotarlo del comportamiento necesario para desencadenar los eventos del
+     * click del botón en la vista {@link Home}.</p>
+     * @see Home
+     * @see ActionEvent
      * @param e
      */
     @Override
@@ -97,6 +118,12 @@ public class HomeController implements ActionListener {
     }
 
     /**
+     * <h2>Método {@code windowCentered(JInternalFrame frame)}</h2>
+     * <br>
+     * <p>
+     * Se encarga de centrar los frames de la aplicación RUIPI respecto altamaño
+     * de la ventana del equipo del usuario.</p>
+     * <br>
      *
      * @param frame
      */
@@ -110,7 +137,13 @@ public class HomeController implements ActionListener {
     }
 
     /**
-     *
+     * <h2>Método {@code close()}</h2>
+     * <br>
+     * <p>
+     * Se encarga de validar el cierre de sesión del usuario actualmente
+     * logueado, en caso de que el usuario oprima "Aceptar" cerrará la conexión
+     * a la base de datos de la aplicación RUIPI y redirigirá al frame {@link LoginUI}</p>
+     * <br>
      */
     public void close() {
         Object[] opciones = {"Aceptar", "Cancelar"};

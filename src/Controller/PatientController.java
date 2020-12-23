@@ -4,6 +4,7 @@ import Model.UserDAO;
 import Model.Patient;
 import Model.User;
 import View.FormEnterBrand;
+import View.FormIdentify;
 import View.FormPatientsManagement;
 import static View.FormPatientsManagement.pc;
 import View.UIUtils;
@@ -17,26 +18,35 @@ import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 
 //Crea la clase PatientController
-
 /**
+ * <h2>Clase PatientController</h2>
+ * <br>
+ * <p>
+ * Se encarga de ejecutar la lógica de los eventos del click desencadenados por
+ * el usuario en la vista {@link FormPatientsManagement}.</p>
+ * <br>
  *
- * @author lenov
+ * @author Daniel Felipe Lozada Ramirez Email: dflozada2@misena.edu.co
+ * @author Edgar Steve Pava Email: Espava60@misena.edu.co
+ * @version 1.1.0
+ * @since 2020
+ * @see ActionListener
+ * @see FormPatientsManagement
  */
 public class PatientController implements ActionListener {
 
-    //Declara las variables globales
-    private final UserDAO udao;
-    private final User u;
-
     /**
+     * Variables y constantes de la clase {@link  PatientController}.
      *
      */
+    private final UserDAO udao;
+    private final User u;
     public final FormPatientsManagement fp;
     private final Patient p;
 
-    //Contructor de la clase PatientController
-
     /**
+     * <h2>Método Constructor de {@link  PatientController}</h2>
+     * <br>
      *
      * @param u
      * @param udao
@@ -65,10 +75,16 @@ public class PatientController implements ActionListener {
         });
     }
 
-    //Se encarga de responder a los eventos del click de los botones del FormPatientsManagement
-
     /**
+     * <h2>Método actionPerformed(ActionEvent e)</h2>
+     * <br>
+     * <p>
+     * Sobreescribe el método {@code actionPerformed(ActionEvent e)} para
+     * dotarlo del comportamiento necesario para desencadenar los eventos del
+     * click del botón en la vista {@link FormPatientsManagement}.</p>
      *
+     * @see FormPatientsManagement
+     * @see ActionEvent
      * @param e
      */
     @Override
@@ -102,10 +118,15 @@ public class PatientController implements ActionListener {
         }
     }
 
-    //Método del botón Asociar Huella se encarga de crear la instancia del lector de huellas que asocia la huella del paciente
-
     /**
-     *
+     * <h2>Método {@code asociate()}</h2>
+     * <br>
+     * <p>
+     * Método del botón "Asociar Huella" que se encarga de crear una instancia
+     * del lector de huellas que asocia la huella dactilar del paciente. Solo se
+     * podrá instancir un lector de huellas a la vez, sea {@link FormEnterBrand}
+     * ó {@link FormIdentify}.</p>
+     * <br>
      */
     public void asociate() {
 
@@ -124,11 +145,16 @@ public class PatientController implements ActionListener {
 
     }
 
-    //Se encarga de realizar la inserción o la actualización de los datos del paciente
-    //siempre y cuando los campos no estén vaciós dependiendo si es una búsqueda o una inserción de paciente
-
+    //
     /**
-     *
+     * <h2>Método {@code saveP()}</h2>
+     * <br>
+     * <p>
+     * Se encarga de realizar la inserción o la actualización de los datos del
+     * paciente siempre y cuando los campos obligatorios marcados con asterísco
+     * (*) no estén vaciós y dependiendo si es una búsqueda o la inserción de un
+     * nuevo paciente.</p>
+     * <br>
      */
     public void saveP() {
 
@@ -152,11 +178,16 @@ public class PatientController implements ActionListener {
         }
     }
 
-    //retorna true o false dependiendo si los campos obligatorios están vaciós y habilita el botón de guardar no están vacíos
-
     /**
+     * <h2>Método {@code emptyFields()}</h2>
+     * <br>
+     * <p>
+     * Retorna true o false dependiendo si los campos obligatorios marcados con
+     * asterísco (*) están vaciós y habilita el botón de "Guardar".
+     * </p>
+     * <br>
      *
-     * @return
+     * @return boolean
      */
     public boolean emptyFields() {
 
@@ -173,10 +204,14 @@ public class PatientController implements ActionListener {
 
     }
 
-    //Limpia todos los campos del formulario y lo reinicia
-
     /**
-     *
+     * <h2>Método {@code clearFields()}</h2>
+     * <br>
+     * <p>
+     * Limpia todos los campos del formulario {@link FormPatientsManagement} y
+     * lo reinicia.
+     * </p>
+     * <br>
      */
     public void clearFields() {
 
@@ -206,10 +241,14 @@ public class PatientController implements ActionListener {
         disableButtons(false, true, true);
     }
 
-    //limpia los campos de la tabla de pacientes
-
     /**
-     *
+     * <h2>Método {@code clearTable()}</h2>
+     * <br>
+     * <p>
+     * Limpia los campos de la tabla del formulario
+     * {@link FormPatientsManagement}.
+     * </p>
+     * <br>
      */
     public void clearTable() {
         int rows = fp.tableP.getRowCount();
@@ -218,15 +257,20 @@ public class PatientController implements ActionListener {
         }
     }
 
-    //Establece la fecha del calendario con la fecha actual
-
     /**
-     *
+     * <h2>Método {@code actualDate()}</h2>
+     * <br>
+     * <p>
+     * Establece la fecha del calendario para "Fecha de Nacimiento" con la fecha
+     * actual y evita que se ingresen fechas no válidas cuyo año date del 1899 o
+     * antes y fechas posteriores a la actual.
+     * </p>
+     * <br>
      */
     public void actualDate() {
 
         Calendar cal = Calendar.getInstance();
-        cal.add(Calendar.YEAR, -120);//15 year before
+        cal.add(Calendar.YEAR, -120);
         Date min = cal.getTime();
 
         Date max = new Date();//actual date
@@ -236,10 +280,14 @@ public class PatientController implements ActionListener {
         fp.dateFNacimiento.setSelectableDateRange(min, max);
     }
 
-    //Cambia el color de fondo del JDateChooser
-
+    //
     /**
-     *
+     * <h2>Método {@code setBgcDataChooser()}</h2>
+     * <br>
+     * <p>
+     * Cambia el color de fondo del JDateChooser "Fecha de Nacimiento".
+     * </p>
+     * <br>
      */
     public void setBgcDateChooser() {
         for (Component c : fp.dateFNacimiento.getComponents()) {
@@ -247,95 +295,128 @@ public class PatientController implements ActionListener {
         }
     }
 
-    //Cambia el color de fondo del JComboBox
-
     /**
-     *
+     * <h2>Método {@code setBgcComboBox()}</h2>
+     * <br>
+     * <p>
+     * Cambia el color de fondo del JComboBox.
+     * </p>
+     * <br>
      */
     public void setBgcComboBox() {
         fp.comboPyDT.setBackground(UIUtils.COLOR_BACKGROUND);
         fp.comboPyDT.setForeground(UIUtils.COLOR_INTERACTIVE);
     }
 
-    //Desactiva el botón de asociar huella
-
     /**
-     *
+     * <h2>Método {@code btnAsociateOff()}</h2>
+     * <br>
+     * <p>
+     * Desactiva el botón de "Asociar Huella".
+     * </p>
+     * <br>
      */
     public void btnAsociateOff() {
 
         fp.btnAssociate.setEnabled(false);
     }
 
-    //Desactiva el botón de
-
     /**
-     *
+     * <h2>Método {@code btnAsociateOn()}</h2>
+     * <br>
+     * <p>
+     * Activa el botón de "Asociar Huella".
+     * </p>
+     * <br>
      */
     public void btnAsociateOn() {
 
         fp.btnAssociate.setEnabled(true);
     }
 
-    //Desactiva el botón de Buscar y Actualizar
-
     /**
-     *
+     * <h2>Método {@code btnSearchUpdateOff()}</h2>
+     * <br>
+     * <p>
+     * Desactiva el botón de "Buscar y Actualizar".
+     * </p>
+     * <br>
      */
     public void btnSearchUpdateOff() {
 
         fp.btnSearchUpdateP.setEnabled(false);
     }
 
-    //Activa el botón de Buscar y Actualizar
-
     /**
-     *
+     * <h2>Método {@code btnSearchUpdateOn()}</h2>
+     * <br>
+     * <p>
+     * Activa el botón de "Buscar y Actualizar".
+     * </p>
+     * <br>
      */
     public void btnSearchUpdateOn() {
 
         fp.btnSearchUpdateP.setEnabled(true);
     }
 
-    //Activa el botón de Guardar
-
     /**
-     *
-     */
-    public void btnSavePOn() {
-        fp.btnSaveP.setEnabled(true);
-    }
-
-    //Desactiva el botón de Guardar
-
-    /**
-     *
+     * <h2>Método {@code btnSavePOff()}</h2>
+     * <br>
+     * <p>
+     * Desactiva el botón de "Guardar".
+     * </p>
+     * <br>
      */
     public void btnSavePOff() {
         fp.btnSaveP.setEnabled(false);
     }
 
-    //Activa el botón de Nuevo
-
     /**
-     *
+     * <h2>Método {@code btnSavePOn()}</h2>
+     * <br>
+     * <p>
+     * Activa el botón de "Guardar".
+     * </p>
+     * <br>
      */
-    public void btnNewOn() {
-        fp.btnNewP.setEnabled(true);
+    public void btnSavePOn() {
+        fp.btnSaveP.setEnabled(true);
     }
 
-    ////Desactiva el botón de Nuevo
-
     /**
-     *
+     * <h2>Método {@code btnNewOff()}</h2>
+     * <br>
+     * <p>
+     * Desactiva el botón de "Nuevo".
+     * </p>
+     * <br>
      */
     public void btnNewOff() {
         fp.btnNewP.setEnabled(false);
     }
 
-    //Desactiva los botones de Guardar, Buscar y Actualizar e Identificar dependiendo de los parámetros que se le 
+    /**
+     * <h2>Método {@code btnNewOn()}</h2>
+     * <br>
+     * <p>
+     * Activa el botón de "Nuevo".
+     * </p>
+     * <br>
+     */
+    public void btnNewOn() {
+        fp.btnNewP.setEnabled(true);
+    }
 
     /**
+     * <h2>Método
+     * {@code disableButtons(boolean save, boolean search, boolean identify)}</h2>
+     * <br>
+     * <p>
+     * Desactiva los botones de Guardar, Buscar y Actualizar e Identificar
+     * dependiendo de los parámetros boleanos que se le pasen.
+     * </p>
+     * <br>
      *
      * @param save
      * @param search
@@ -347,17 +428,22 @@ public class PatientController implements ActionListener {
         fp.btnIdentify.setEnabled(identify);
     }
 
-    //Al dar doble click en un campo de la tabla se carban los datos en el formulario para su actualización
-
     /**
+     * <h2>Método {@code editRowTable(java.awt.event.MouseEvent evt)}</h2>
+     * <br>
+     * <p>
+     * Al dar doble click en un campo de la tabla se cargan los datos del
+     * paciente o fila seleccionada, en caso de que uno de los datos sea null
+     * entonces establece un campo vacío o el index del combobox en 0, según sea
+     * el caso en el formulario {@link FormPatientsManagement} para su
+     * actualización.</p>
+     * <br>
      *
      * @param evt
      */
     public void editRowTable(java.awt.event.MouseEvent evt) {
         if (evt.getClickCount() == 2) {
-            //al dar dobleclick en una fila, carga los datos de la tabla en el formulario,
-            //en caso de que uno de los datos sea null entonces establece un campo vacío
-            //o el index del combobox en 0, según sea el caso
+
             try {
                 fp.txtIdPaciente.setText((fp.tableP.getValueAt(fp.tableP.getSelectedRow(), 0).toString()));
             } catch (Exception e) {

@@ -17,15 +17,33 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Daniel Felipe Lozada Ramirez Dev <felipe_lozada04102@elpoli.edu.co>
+ **<h2>Clase LoginController</h2>
+ * <br>
+ * <p>
+ * Se encarga de ejecutar la lógica de los eventos del click desencadenados por
+ * el usuario en la vista {@link LoginUI}.</p>
+ * <br>
+ *
+ * @author Daniel Felipe Lozada Ramirez Email: dflozada2@misena.edu.co
+ * @author Edgar Steve Pava Email: Espava60@misena.edu.co
+ * @version 1.1.0
+ * @since 2020
+ * @see ActionListener
+ * @see LoginUI
  */
 public class LoginController implements ActionListener {
 
+    /**
+     * Variables y constantes de la clase {@link  LoginController}.
+     *
+     */
     private final LoginUI log;
     UserDAO udao = new UserDAO();
     User u;
 
     /**
+     * <h2>Método Constructor de LoginController</h2>
+     * <br>
      *
      * @param log
      */
@@ -45,7 +63,15 @@ public class LoginController implements ActionListener {
     }
 
     /**
+     * <h2>Método actionPerformed(ActionEvent e)</h2>
+     * <br>
+     * <p>
+     * Sobreescribe el método {@code actionPerformed(ActionEvent e)} para
+     * dotarlo del comportamiento necesario para desencadenar los eventos del
+     * click del botón en la vista {@link LoginUI}.</p>
      *
+     * @see LoginUI
+     * @see ActionEvent
      * @param e
      */
     @Override
@@ -60,10 +86,13 @@ public class LoginController implements ActionListener {
         }
     }
 
-    //CONFIRMAR ACCIÓN DE SALIR
-
     /**
-     *
+     * <h2>Método {@code closeApp()}</h2>
+     * <br>
+     * <p>
+     * Se encarga de cerrar la ejecución de la aplicación y terminar la conexión
+     * con la base de datos en caso de que el usuario oprima "Aceptar".</p>
+     * <br>
      */
     public void closeApp() {
         Object[] opciones = {"Aceptar", "Cancelar"};
@@ -75,22 +104,29 @@ public class LoginController implements ActionListener {
         } else {
         }
     }
-    
-    //Desconecta la base de datos
 
     /**
-     *
+     * <h2>Método {@code turnOffDB()}</h2>
+     * <br>
+     * <p>
+     * Se encarga de desconectar la bse de datos.</p>
+     * <br>
      */
-    public void turnOffDB(){
-    Conexion con = new Conexion();
-    Connection access;
+    public void turnOffDB() {
+        Conexion con = new Conexion();
+        Connection access;
         access = (Connection) con.disconnect();
     }
-    
-    //valida el usuario y contraseña ingresados con la base de datos
 
     /**
-     *
+     * <h2>Método {@code validateLogin()}</h2>
+     * <br>
+     * <p>
+     * Se encarga de validar el nombre de usuario y contraseña ingresados en los
+     * campos de texto correspondientes con la base de datos, en caso de
+     * coinsidir estos con los datos almacenados en la base de datos permitirá
+     * al usuario acceder al menú principal de la aplicación.</p>
+     * <br>
      */
     public void validateLogin() {
         String uf = log.getUsernameField();
@@ -106,11 +142,11 @@ public class LoginController implements ActionListener {
             } catch (SQLException ex) {
                 Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
             }
-          
-            if (u.getUsername() != null && u.getPassword() != null) {   
-                 System.out.println("Validado");  
+
+            if (u.getUsername() != null && u.getPassword() != null) {
+                System.out.println("Validado");
                 Home home = new Home();
-                
+
                 home.setVisible(true);
                 home.lblUsername.setText(uf);
                 switch (u.getId_tipo_usuario()) {
@@ -120,7 +156,7 @@ public class LoginController implements ActionListener {
                     case 2:
                         home.lblUserType.setText("Médico");
                         break;
-                        case 3:
+                    case 3:
                         home.lblUserType.setText("Recepción");
                         break;
                     default: {

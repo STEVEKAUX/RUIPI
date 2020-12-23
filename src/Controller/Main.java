@@ -7,7 +7,6 @@ import Model.UserDAO;
 import View.FormPatientsManagement;
 import View.LoginUI;
 
-//Crea la clase con principal Main con el método Main de la aplicación
 
 /**
  * <h1>Registro Único de Identificación de Pacientes Indígenas. RUIPI</h1>
@@ -19,15 +18,18 @@ import View.LoginUI;
  * pertenecientes a comunidades vulnerables que carecen de documento de identidad.</p>
  * <br>
  * 
- * @author Daniel Felipe Lozada Ramirez Email: dflozada2@misena.edu.co ,
- *         Edgar Steve Pava Email: Espava60@misena
+ * @author Daniel Felipe Lozada Ramirez Email: dflozada2@misena.edu.co
+ * @author Edgar Steve Pava Email: Espava60@misena.edu.co
  * @version 1.1.0
  * @since 2020
  */
 public class Main {
 
     /**
-     *
+     *<h2>Métoo Main</h2>
+     * <br>
+     * <p>Inicia la aplicación RUIPI según las instrucciones que se le dan en el cuerpo del método<p>
+     * <br>
      * @param args
      */
     public static void main(String[] args) {
