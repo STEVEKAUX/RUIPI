@@ -1,14 +1,22 @@
 package Model;
 
-//Crea la clase User
-
 /**
+ * <span>Descripción:</span>
+ * <p>
+ * Extiende de {@link Person}. Estructura la información del Paciente respecto a
+ * la "Entiidad Usuario" de la base de datos.</p>
  *
- * @author lenov
+ * @author Daniel Felipe Lozada Ramirez Email: dflozada2@misena.edu.co
+ * @author Edgar Steve Pava Email: Espava60@misena.edu.co
+ * @version 1.1.0
+ * @since 2020
  */
-public class User {
+public class User extends Person {
 
-    //Declaración de variables globales de User
+    /**
+     * Variables y constantes de la clase {@link User}.
+     *
+     */
     private int idUsuario;
     private String username;
     private String password;
@@ -17,404 +25,220 @@ public class User {
     private String ultimaSesion;
     private int id_empresa;
     private int id_tipo_usuario;
-    
-    private int id_persona;
-    private String nombreU;
-    private String apellidoU;
-    private String emailU;
-    private String tipoDocumentoU;
-    private int numeroDocumentoU;
-    private int celularU;
-    private String fechaNaciemientoU;
-    private String ciudadOrigenU;
-    private String departamentoOrigenU;
-    private String direccionU;
-    
-    
-    
+
     private String nombre_tipo_usuario;
 
-    //Constructor vacío de la clase User
-
     /**
-     *
+     * <p>
+     * Método Constructor de User</p>
      */
     public User() {
-    }
-
-    //Constructor de Paciente
-
-    /**
-     *
-     * @param idUsuario
-     * @param username
-     * @param password
-     * @param cargo
-     * @param area
-     * @param ultimaSesion
-     * @param Empresa_id_empresa
-     * @param Tipo_id_tipo_usuario
-     * @param id_persona
-     * @param nombreUsuario
-     * @param apellidoUsuario
-     * @param emailUsuario
-     * @param tipoDocumentoU
-     * @param numeroDocumentoU
-     * @param celularU
-     * @param fechaNaciemientoU
-     * @param ciudadOrigenU
-     * @param departamentoOrigenU
-     * @param direccionU
-     * @param nombre_tipo_usuario
-     */
-    public User(int idUsuario, String username, String password, String cargo, String area,
-            String ultimaSesion, int Empresa_id_empresa, int Tipo_id_tipo_usuario,
-            int id_persona, String nombreUsuario, String apellidoUsuario, String emailUsuario, String tipoDocumentoU,
-            int numeroDocumentoU, int celularU, String fechaNaciemientoU, String ciudadOrigenU, String departamentoOrigenU,
-            String direccionU, String nombre_tipo_usuario) {
-        
-        this.idUsuario = idUsuario;
-        this.username = username;
-        this.password = password;
-        this.cargo = cargo;
-        this.area = area;
-        this.ultimaSesion = ultimaSesion;
-        this.id_empresa = Empresa_id_empresa;
-        this.id_tipo_usuario = Tipo_id_tipo_usuario;
-        
-        this.id_persona = id_persona;
-        this.nombreU = nombreUsuario;
-        this.apellidoU = apellidoUsuario;
-        this.emailU = emailUsuario;
-        this.tipoDocumentoU = tipoDocumentoU;
-        this.numeroDocumentoU = numeroDocumentoU;
-        this.celularU = celularU;
-        this.fechaNaciemientoU = fechaNaciemientoU;
-        this.ciudadOrigenU = ciudadOrigenU;
-        this.departamentoOrigenU = departamentoOrigenU;
-        this.direccionU = direccionU;
-        this.nombre_tipo_usuario = nombre_tipo_usuario;
+        super();
     }
 
     /**
+     * <span>Descripción:</span>
+     * <p>
+     * Obtiene el ID del Usuario</p>
      *
-     * @return
+     * @return idUsuario - Retorna un int como ID del Usuario
      */
     public int getIdUsuario() {
         return idUsuario;
     }
 
     /**
+     * <span>Descripción:</span>
+     * <p>
+     * Establece el ID del Usuario</p>
      *
-     * @param idUsuario
+     * @param idUsuario Recibe un int como ID del Usuario
      */
     public void setIdUsuario(int idUsuario) {
         this.idUsuario = idUsuario;
     }
 
     /**
+     * <span>Descripción:</span>
+     * <p>
+     * Obtiene el Nombre de Usuario del Usuario</p>
      *
-     * @return
+     * @return username - Retorna un String como Nombre de Usuario del Usuario
      */
     public String getUsername() {
         return username;
     }
 
     /**
+     * <span>Descripción:</span>
+     * <p>
+     * Establece el Nombre de Usuario del Usuario</p>
      *
-     * @param username
+     * @param username Recibe un String como Nombre de Usuario del Usuario
      */
     public void setUsername(String username) {
         this.username = username;
     }
 
     /**
+     * <span>Descripción:</span>
+     * <p>
+     * Obtiene la contraseña del Usuario</p>
      *
-     * @return
+     * @return password - Retorna un String como Password del Usuario
      */
     public String getPassword() {
         return password;
     }
 
     /**
+     * <span>Descripción:</span>
+     * <p>
+     * Establece la contraseña del Usuario</p>
      *
-     * @param password
+     * @param password Recibe un String como Password del Usuario
      */
     public void setPassword(String password) {
         this.password = password;
     }
 
     /**
+     * <span>Descripción:</span>
+     * <p>
+     * Obtiene el cargo del Usuario</p>
      *
-     * @return
+     * @return cargo - Retorna un String como Cargo del usuario
      */
     public String getCargo() {
         return cargo;
     }
 
     /**
+     * <span>Descripción:</span>
+     * <p>
+     * Establece el cargo del Usuario</p>
      *
-     * @param cargo
+     * @param cargo Recibe un String como Cargo del usuario
      */
     public void setCargo(String cargo) {
         this.cargo = cargo;
     }
 
     /**
+     * <span>Descripción:</span>
+     * <p>
+     * Obtiene el area del Usuario</p>
      *
-     * @return
+     * @return area - Retorna un String como Area del Usuario
      */
     public String getArea() {
         return area;
     }
 
     /**
+     * <span>Descripción:</span>
+     * <p>
+     * Establece el area del Usuario</p>
      *
-     * @param area
+     * @param area Recibe un String como Area del Usuario
      */
     public void setArea(String area) {
         this.area = area;
     }
 
     /**
+     * <span>Descripción:</span>
+     * <p>
+     * Obtiene la Última Sesión del Usuario</p>
      *
-     * @return
+     * @return ultimaSesion - Retorna un String como la Última Sesión del
+     * Usuario
      */
     public String getUltimaSesion() {
         return ultimaSesion;
     }
 
     /**
+     * <span>Descripción:</span>
+     * <p>
+     * Establece la Última Sesión del Usuario</p>
      *
-     * @param ultimaSesion
+     * @param ultimaSesion Recibe un String como la Última Sesión del Usuario
      */
     public void setUltimaSesion(String ultimaSesion) {
         this.ultimaSesion = ultimaSesion;
     }
 
     /**
+     * <span>Descripción:</span>
+     * <p>
+     * Obtiene el ID de la empresa a la que pertenece el Usuario</p>
      *
-     * @return
+     * @return id_empresa - Retorena un int como ID de la empresa a la que
+     * pertenece el Usuario
      */
     public int getId_empresa() {
         return id_empresa;
     }
 
     /**
+     * <span>Descripción:</span>
+     * <p>
+     * Establece el ID de la empresa a la que pertenece el Usuario</p>
      *
-     * @param id_empresa
+     * @param id_empresa Recibe un int como ID de la empresa a la que pertenece
+     * el Usuario
      */
     public void setId_empresa(int id_empresa) {
         this.id_empresa = id_empresa;
     }
 
     /**
+     * <span>Descripción:</span>
+     * <p>
+     * Obtiene el ID del Tipo de Usuario del Usuario</p>
      *
-     * @return
+     * @return id_tipo_usuario - Retorna un int como el ID del Tipo de Usuario
+     * del Usuario
      */
     public int getId_tipo_usuario() {
         return id_tipo_usuario;
     }
 
     /**
+     * <span>Descripción:</span>
+     * <p>
+     * Establece el ID del Tipo de Usuario del Usuario</p>
      *
-     * @param id_tipo_usuario
+     * @param id_tipo_usuario Recibe un int como el ID del Tipo de Usuario del
+     * Usuario
      */
     public void setId_tipo_usuario(int id_tipo_usuario) {
         this.id_tipo_usuario = id_tipo_usuario;
     }
 
     /**
+     * <span>Descripción:</span>
+     * <p>
+     * Obtiene el Nombre del Tipo de Usuario del Usuario</p>
      *
-     * @return
-     */
-    public int getId_persona() {
-        return id_persona;
-    }
-
-    /**
-     *
-     * @param id_persona
-     */
-    public void setId_persona(int id_persona) {
-        this.id_persona = id_persona;
-    }
-
-    /**
-     *
-     * @return
-     */
-    public String getNombreU() {
-        return nombreU;
-    }
-
-    /**
-     *
-     * @param nombreU
-     */
-    public void setNombreU(String nombreU) {
-        this.nombreU = nombreU;
-    }
-
-    /**
-     *
-     * @return
-     */
-    public String getApellidoU() {
-        return apellidoU;
-    }
-
-    /**
-     *
-     * @param apellidoU
-     */
-    public void setApellidoU(String apellidoU) {
-        this.apellidoU = apellidoU;
-    }
-
-    /**
-     *
-     * @return
-     */
-    public String getEmailU() {
-        return emailU;
-    }
-
-    /**
-     *
-     * @param emailU
-     */
-    public void setEmailU(String emailU) {
-        this.emailU = emailU;
-    }
-
-    /**
-     *
-     * @return
-     */
-    public String getTipoDocumentoU() {
-        return tipoDocumentoU;
-    }
-
-    /**
-     *
-     * @param tipoDocumentoU
-     */
-    public void setTipoDocumentoU(String tipoDocumentoU) {
-        this.tipoDocumentoU = tipoDocumentoU;
-    }
-
-    /**
-     *
-     * @return
-     */
-    public int getNumeroDocumentoU() {
-        return numeroDocumentoU;
-    }
-
-    /**
-     *
-     * @param numeroDocumentoU
-     */
-    public void setNumeroDocumentoU(int numeroDocumentoU) {
-        this.numeroDocumentoU = numeroDocumentoU;
-    }
-
-    /**
-     *
-     * @return
-     */
-    public int getCelularU() {
-        return celularU;
-    }
-
-    /**
-     *
-     * @param celularU
-     */
-    public void setCelularU(int celularU) {
-        this.celularU = celularU;
-    }
-
-    /**
-     *
-     * @return
-     */
-    public String getFechaNaciemientoU() {
-        return fechaNaciemientoU;
-    }
-
-    /**
-     *
-     * @param fechaNaciemientoU
-     */
-    public void setFechaNaciemientoU(String fechaNaciemientoU) {
-        this.fechaNaciemientoU = fechaNaciemientoU;
-    }
-
-    /**
-     *
-     * @return
-     */
-    public String getCiudadOrigenU() {
-        return ciudadOrigenU;
-    }
-
-    /**
-     *
-     * @param ciudadOrigenU
-     */
-    public void setCiudadOrigenU(String ciudadOrigenU) {
-        this.ciudadOrigenU = ciudadOrigenU;
-    }
-
-    /**
-     *
-     * @return
-     */
-    public String getDepartamentoOrigenU() {
-        return departamentoOrigenU;
-    }
-
-    /**
-     *
-     * @param departamentoOrigenU
-     */
-    public void setDepartamentoOrigenU(String departamentoOrigenU) {
-        this.departamentoOrigenU = departamentoOrigenU;
-    }
-
-    /**
-     *
-     * @return
-     */
-    public String getDireccionU() {
-        return direccionU;
-    }
-
-    /**
-     *
-     * @param direccionU
-     */
-    public void setDireccionU(String direccionU) {
-        this.direccionU = direccionU;
-    }
-
-    /**
-     *
-     * @return
+     * @return nombre_tipo_usuario - Retorna un String como el Nombre del Tipo
+     * de Usuario del Usuario
      */
     public String getNombre_tipo_usuario() {
         return nombre_tipo_usuario;
     }
 
     /**
+     * <span>Descripción:</span>
+     * <p>
+     * Establece el Nombre del Tipo de Usuario del Usuario</p>
      *
-     * @param nombre_tipo_usuario
+     * @param nombre_tipo_usuario Recibe un String como el Nombre del Tipo de
+     * Usuario del Usuario
      */
     public void setNombre_tipo_usuario(String nombre_tipo_usuario) {
         this.nombre_tipo_usuario = nombre_tipo_usuario;
     }
 
-   
 }

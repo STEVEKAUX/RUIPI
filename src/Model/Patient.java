@@ -1,440 +1,274 @@
 package Model;
 
-//Crea la clase Patient
-
 /**
+ * <span>Descripción:</span>
+ * <p>
+ * Extiende de {@link Person}. Estructura la información del Paciente respecto a la "Entidad Paciente" de la
+ * base de datos.</p>
  *
- * @author lenov
+ * @author Daniel Felipe Lozada Ramirez Email: dflozada2@misena.edu.co
+ * @author Edgar Steve Pava Email: Espava60@misena.edu.co
+ * @version 1.1.0
+ * @since 2020
  */
-public class Patient {
+public class Patient extends Person{
 
-    //Declaración de variables de la clase Patient
+    /**
+     * Variables y constantes de la clase {@link Patient}.
+     *
+     */
     private int idPaciente;
     private String rh;
-    private boolean gestante;
+    private String gestante;
     private String sexo;
     private String etnia;
     private String comunidad;
     private String municipio;
     private int Persona_id_persona;
-    
-    private int idPersona;
-    private String nombreP;
-    private String apellidoP;
-    private String emailP;
-    private String tipoDocumentoP;
-    private int numeroDocumentoP;
-    private String celularP;
-    private String fechaNacimientoP;
-    private String ciudadOrigenP;
-    private String departamentoOrigenP;
-    private String direccionP;
     private String programaPyDT;
-    
-    private int edad;
-   
 
-    //Constructor vacío de la clase Patient
+    private int edad;
 
     /**
-     *
+     * <p>
+     * Método Constructor de Patient</p>
      */
     public Patient() {
+        super();
     }
 
-    //Constructor de la clase Patient
-
     /**
+     * <span>Descripción:</span>
+     * <p>
+     * Obtiene el ID del Paciente</p>
      *
-     * @param idPaciente
-     * @param rh
-     * @param gestante
-     * @param sexo
-     * @param etnia
-     * @param comunidad
-     * @param municipio
-     * @param Persona_id_persona
-     * @param idPersona
-     * @param nombreP
-     * @param apellidoP
-     * @param emailP
-     * @param tipoDocumentoP
-     * @param numeroDocumentoP
-     * @param celularP
-     * @param fechaNacimientoP
-     * @param ciudadOrigenP
-     * @param departamentoOrigenP
-     * @param direccionP
-     * @param edad
-     * @param programaPyDT
+     * @return idPaciente - Retorna un int como ID del Paciente
      */
-
-    public Patient(int idPaciente, String rh, boolean gestante, String sexo, String etnia,
-            String comunidad, String municipio, int Persona_id_persona, int idPersona, String nombreP,
-            String apellidoP, String emailP, String tipoDocumentoP, int numeroDocumentoP, String celularP,
-            String fechaNacimientoP, String ciudadOrigenP, String departamentoOrigenP, String direccionP,
-            int edad, String programaPyDT) {
-        
-        this.idPaciente = idPaciente;
-        this.rh = rh;
-        this.gestante = gestante;
-        this.sexo = sexo;
-        this.etnia = etnia;
-        this.comunidad = comunidad;
-        this.municipio = municipio;
-        this.Persona_id_persona = Persona_id_persona;
-        this.idPersona = idPersona;
-        this.nombreP = nombreP;
-        this.apellidoP = apellidoP;
-        this.emailP = emailP;
-        this.tipoDocumentoP = tipoDocumentoP;
-        this.numeroDocumentoP = numeroDocumentoP;
-        this.celularP = celularP;
-        this.fechaNacimientoP = fechaNacimientoP;
-        this.ciudadOrigenP = ciudadOrigenP;
-        this.departamentoOrigenP = departamentoOrigenP;
-        this.direccionP = direccionP;
-        this.edad = edad;
-        this.programaPyDT = programaPyDT;
-    }
-   
-    //Setters y Getteres
-
-    /**
-     *
-     * @return
-     */
-
     public int getIdPaciente() {
         return idPaciente;
     }
 
     /**
+     * <span>Descripción:</span>
+     * <p>
+     * Establece el ID del Paciente</p>
      *
-     * @param idPaciente
+     * @param idPaciente Recibe un int como ID del Paciente
      */
     public void setIdPaciente(int idPaciente) {
         this.idPaciente = idPaciente;
     }
 
     /**
+     * <span>Descripción:</span>
+     * <p>
+     * Obtiene el RH del Paciente</p>
      *
-     * @return
+     * @return rh - Retorna un String como RH del Paciente
      */
     public String getRh() {
         return rh;
     }
 
     /**
+     * <span>Descripción:</span>
+     * <p>
+     * Establece el RH del Paciente</p>
      *
-     * @param rh
+     * @param rh Recibe un String como RH del Paciente
      */
     public void setRh(String rh) {
         this.rh = rh;
     }
 
     /**
+     * <span>Descripción:</span>
+     * <p>
+     * Obtiene el dato del Paciente correspondiente si está en Gestación</p>
      *
-     * @return
+     * @return gestante - Retorna un String que indica si el Paciente es
+     * Gestante
      */
-    public boolean isGestante() {
+    public String getGestante() {
         return gestante;
     }
 
     /**
+     * <span>Descripción:</span>
+     * <p>
+     * Establece el dato del Paciente correspondiente si está en Gestación</p>
      *
-     * @param gestante
+     * @param gestante Recibe un String que indica si el Paciente es Gestante
      */
-    public void setGestante(boolean gestante) {
+    public void setGestante(String gestante) {
         this.gestante = gestante;
     }
 
     /**
+     * <span>Descripción:</span>
+     * <p>
+     * Obtiene el Sexo del Paciente</p>
      *
-     * @return
+     * @return sexo - Retorna un String como Sexo del Paciente
      */
     public String getSexo() {
         return sexo;
     }
 
     /**
+     * <span>Descripción:</span>
+     * <p>
+     * Establece el Sexo del Paciente</p>
      *
-     * @param sexo
+     * @param sexo Recibe un String como Sexo del Paciente
      */
     public void setSexo(String sexo) {
         this.sexo = sexo;
     }
 
     /**
+     * <span>Descripción:</span>
+     * <p>
+     * Obtiene la Etnia del Paciente</p>
      *
-     * @return
+     * @return etnia Retorna un String como Etnia a la cual pertenece el
+     * Paciente
      */
     public String getEtnia() {
         return etnia;
     }
 
     /**
+     * <span>Descripción:</span>
+     * <p>
+     * Establece la Etnia del Paciente</p>
      *
-     * @param etnia
+     * @param etnia Recibe un String como Etnia a la cual pertenece el Paciente
      */
     public void setEtnia(String etnia) {
         this.etnia = etnia;
     }
 
     /**
+     * <span>Descripción:</span>
+     * <p>
+     * Obtiene la Comunidad del Paciente</p>
      *
-     * @return
+     * @return comunidad - Retorna un String como Comunidad a la cual pertenece
+     * el Paciente
      */
     public String getComunidad() {
         return comunidad;
     }
 
     /**
+     * <span>Descripción:</span>
+     * <p>
+     * Establece la Comunidad del Paciente</p>
      *
-     * @param comunidad
+     * @param comunidad Recibe un String como Comunidad a la cual pertenece el
+     * Paciente
      */
     public void setComunidad(String comunidad) {
         this.comunidad = comunidad;
     }
 
     /**
+     * <span>Descripción:</span>
+     * <p>
+     * Obtiene el Municipio del Paciente</p>
      *
-     * @return
+     * @return municipio- Retorna un String como Municipio a la cual pertenece
+     * el Paciente
      */
     public String getMunicipio() {
         return municipio;
     }
 
     /**
+     * <span>Descripción:</span>
+     * <p>
+     * Establece el Municipio del Paciente</p>
      *
-     * @param municipio
+     * @param municipio Recibe un String como Municipio a la cual pertenece el
+     * Paciente
      */
     public void setMunicipio(String municipio) {
         this.municipio = municipio;
     }
 
     /**
+     * <span>Descripción:</span>
+     * <p>
+     * Obtiene el ID que relaciona Las entidades Paciente y Persona en la Base
+     * de Datos</p>
      *
-     * @return
+     * @return Persona_id_persona - Retorna un int como el ID que relaciona Las
+     * entidades Paciente y Persona en la Base de Datos
      */
     public int getPersona_id_persona() {
         return Persona_id_persona;
     }
 
     /**
+     * <span>Descripción:</span>
+     * <p>
+     * Establece el ID que relaciona Las entidades Paciente y Persona en la Base
+     * de Datos</p>
      *
-     * @param Persona_id_persona
+     * @param Persona_id_persona Recibe un int como el ID que relaciona Las
+     * entidades Paciente y Persona en la Base de Datos
      */
     public void setPersona_id_persona(int Persona_id_persona) {
         this.Persona_id_persona = Persona_id_persona;
     }
 
     /**
+     * <span>Descripción:</span>
+     * <p>
+     * Obtiene la Edad del Paciente</p>
      *
-     * @return
-     */
-    public int getIdPersona() {
-        return idPersona;
-    }
-
-    /**
-     *
-     * @param idPersona
-     */
-    public void setIdPersona(int idPersona) {
-        this.idPersona = idPersona;
-    }
-
-    /**
-     *
-     * @return
-     */
-    public String getNombreP() {
-        return nombreP;
-    }
-
-    /**
-     *
-     * @param nombreP
-     */
-    public void setNombreP(String nombreP) {
-        this.nombreP = nombreP;
-    }
-
-    /**
-     *
-     * @return
-     */
-    public String getApellidoP() {
-        return apellidoP;
-    }
-
-    /**
-     *
-     * @param apellidoP
-     */
-    public void setApellidoP(String apellidoP) {
-        this.apellidoP = apellidoP;
-    }
-
-    /**
-     *
-     * @return
-     */
-    public String getEmailP() {
-        return emailP;
-    }
-
-    /**
-     *
-     * @param emailP
-     */
-    public void setEmailP(String emailP) {
-        this.emailP = emailP;
-    }
-
-    /**
-     *
-     * @return
-     */
-    public String getTipoDocumentoP() {
-        return tipoDocumentoP;
-    }
-
-    /**
-     *
-     * @param tipoDocumentoP
-     */
-    public void setTipoDocumentoP(String tipoDocumentoP) {
-        this.tipoDocumentoP = tipoDocumentoP;
-    }
-
-    /**
-     *
-     * @return
-     */
-    public int getNumeroDocumentoP() {
-        return numeroDocumentoP;
-    }
-
-    /**
-     *
-     * @param numeroDocumentoP
-     */
-    public void setNumeroDocumentoP(int numeroDocumentoP) {
-        this.numeroDocumentoP = numeroDocumentoP;
-    }
-
-    /**
-     *
-     * @return
-     */
-    public String getCelularP() {
-        return celularP;
-    }
-
-    /**
-     *
-     * @param celularP
-     */
-    public void setCelularP(String celularP) {
-        this.celularP = celularP;
-    }
-
-    /**
-     *
-     * @return
-     */
-    public String getFechaNacimientoP() {
-        return fechaNacimientoP;
-    }
-
-    /**
-     *
-     * @param fechaNacimientoP
-     */
-    public void setFechaNacimientoP(String fechaNacimientoP) {
-        this.fechaNacimientoP = fechaNacimientoP;
-    }
-
-    /**
-     *
-     * @return
-     */
-    public String getCiudadOrigenP() {
-        return ciudadOrigenP;
-    }
-
-    /**
-     *
-     * @param ciudadOrigenP
-     */
-    public void setCiudadOrigenP(String ciudadOrigenP) {
-        this.ciudadOrigenP = ciudadOrigenP;
-    }
-
-    /**
-     *
-     * @return
-     */
-    public String getDepartamentoOrigenP() {
-        return departamentoOrigenP;
-    }
-
-    /**
-     *
-     * @param departamentoOrigenP
-     */
-    public void setDepartamentoOrigenP(String departamentoOrigenP) {
-        this.departamentoOrigenP = departamentoOrigenP;
-    }
-
-    /**
-     *
-     * @return
-     */
-    public String getDireccionP() {
-        return direccionP;
-    }
-
-    /**
-     *
-     * @param direccionP
-     */
-    public void setDireccionP(String direccionP) {
-        this.direccionP = direccionP;
-    }
-
-    /**
-     *
-     * @return
+     * @return edad - Retorna un int como Edad del Paciente
      */
     public int getEdad() {
         return edad;
     }
 
     /**
+     * <span>Descripción:</span>
+     * <p>
+     * Establece la Edad del Paciente</p>
      *
-     * @param edad
+     * @param edad Recibe un int como Edad del Paciente
      */
     public void setEdad(int edad) {
         this.edad = edad;
     }
 
     /**
+     * <span>Descripción:</span>
+     * <p>
+     * Obtiene el Programa de Prevención y Detección Temprana de Enfermedades al
+     * que tiene acceso el Paciente</p>
      *
-     * @return
+     * @return programaPyDT -Retorna un un String como Programa de Prevención y
+     * Detección Temprana de enfermedades al que tiene acceso el Paciente
      */
     public String getProgramaPyDT() {
         return programaPyDT;
     }
 
     /**
-     *
-     * @param programaPyDT
+     * <span>Descripción:</span>
+     * <p>
+     * Establece el Programa de Prevención y Detección Temprana de Enfermedades al
+     * que tiene acceso el Paciente</p>
+     * 
+     * @param programaPyDT Recibe un String como Programa de Prevención y
+     * Detección Temprana de enfermedades al que tiene acceso el Paciente
      */
     public void setProgramaPyDT(String programaPyDT) {
         this.programaPyDT = programaPyDT;
     }
-    
+
 }

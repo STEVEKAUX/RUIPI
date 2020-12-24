@@ -24,6 +24,9 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
     /**
      *
      */
+    int idPersona; String nombre; String apellido; String email; String tipoDocumento;
+            int numeroDocumento; String celular; String fechaNacimiento; String ciudadOrigen;
+            String departamentoOrigen; String direccion;
     public ByteArrayInputStream huellaPaciente;
     Integer sizeHuella;
 
@@ -70,10 +73,10 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
         User u = new User();
         UserDAO uDao = new UserDAO();
         Patient p = new Patient();
-        
+
         //relación con el controlador
         pc = new PatientController(u, uDao, this, p);
-        
+
         lblIndicadorQuery.setText("PUEDES BUSCAR, IDENTIFICAR O REGISTRAR UN NUEVO PACIENTE.");
         pc.actualDate();
         dateFNacimiento.getDateEditor().setEnabled(false);
@@ -312,7 +315,7 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
         btnSearchUpdateP.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         btnSearchUpdateP.setForeground(new java.awt.Color(37, 51, 61));
         btnSearchUpdateP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/search_20px.png"))); // NOI18N
-        btnSearchUpdateP.setText("Buscar y Actualizar");
+        btnSearchUpdateP.setText("Buscar un Paciente");
         btnSearchUpdateP.setBorder(null);
         btnSearchUpdateP.setFocusable(false);
         btnSearchUpdateP.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -684,13 +687,12 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
 
     //Se encarga de realizar la búsequeda de un paciente por nombre o coinsidencia de letras que contiene su nombre,
     //una vez encontado el paciente, se llenan los campos con sus datos y se activa la consulta para actualizar datos tipoQuery= UPDATE
-
     /**
      *
      */
-    public void searchUpdate() {
+    public void search() {
         pc.clearTable();
-
+        
         String nombreBuscar = JOptionPane.showInputDialog(null, "Ingresa un nombre o parte de él", "Búsqueda de pacientes", QUESTION_MESSAGE);
 
         if (nombreBuscar != null) {
@@ -754,7 +756,6 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
     }
 
     //Se encarga de instanciár un objeto de tipo FormIdentify y asegurarse de que solo se abra una instancia del lector a la vez
-
     /**
      *
      */
@@ -788,7 +789,6 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
 
     //Encuentra al paciente, recibe el id del paciente y establece los datos del paciente en los campos 
     //de texto luego de cargarlos al modelo
-
     /**
      *
      * @param id
@@ -850,7 +850,6 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
     }
 
     //Obtiene el tamaño de la huella
-
     /**
      *
      * @return
@@ -860,7 +859,6 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
     }
 
     //Establece el tamaño de la huela
-
     /**
      *
      * @param size
@@ -870,7 +868,6 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
     }
 
     //Establece la variabl que controla la consulta para definir si se trata de un INSERT(true) o un UPDATE(false)
-
     /**
      *
      */
@@ -880,7 +877,6 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
     }
 
     //Realiza la inserciónn de un nuevo registro a la base de datos siempre y cuando no hayan campos obligatorios vacíos
-
     /**
      *
      */
@@ -923,7 +919,6 @@ public final class FormPatientsManagement extends javax.swing.JInternalFrame {
     }
 
     //Realiza la actualización de un paciente buscado o identificado cuyos datos estén cargados en el modelo y los campos del formulario de pacientes
-
     /**
      *
      */

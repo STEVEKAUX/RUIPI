@@ -2,15 +2,23 @@ package Model;
 
 import java.sql.*;
 
-//Crea la clase Conexion
-
 /**
+ * <span>Descripción:</span>
+ * <p>
+ * Se encarga de generar la conexión y desconexión a la base de datos usando el
+ * JDBC.</p>
  *
- * @author lenov
+ * @author Daniel Felipe Lozada Ramirez Email: dflozada2@misena.edu.co
+ * @author Edgar Steve Pava Email: Espava60@misena.edu.co
+ * @version 1.1.0
+ * @since 2020
  */
 public class Conexion {
-    //Declara las constantes de la clase
 
+    /**
+     * Variables y constantes de la clase {@link Conexion}.
+     *
+     */
     private static final String DBNAME = "ruipidatabase";
     private static final String USER = "root";
     private static final String PASSWORD = "dflr.com";
@@ -18,20 +26,15 @@ public class Conexion {
             + "JDBCCompliantTimezoneSHift=true&useLegacyDatetimeCode=false&"
             + "serverTimezone=UTC";
 
-    /**
-     *
-     */
     public static Connection con = null;
-    //Constructor de la clase
 
     /**
-     *
+     * <span>Descripción:</span>
+     * <p>Se encarga de construir instancias de la clase Conexion</p>
      */
     public Conexion() {
         try {
-            //Obtener el driver
             Class.forName("com.mysql.cj.jdbc.Driver");
-            //Obtener la conexion
             con = DriverManager.getConnection(URL, USER, PASSWORD);
             if (con != null) {
                 System.out.println("¡Conexión Exitosa a : " + DBNAME + "!");
@@ -43,20 +46,24 @@ public class Conexion {
             System.out.println("¡Ocurre una SQLException: " + e.getMessage() + "!");
         }
     }
-    //Obtiene la conexión
 
     /**
+     * <span>Descripción:</span>
+     * <p>
+     * Obtiene la conexión.</p>
      *
-     * @return
+     * @return con - Retorna un objeto de tipo {@code Conexion} con el estado de la conexión
      */
     public Connection getConnection() {
         return con;
     }
-    //Desconecta la base de datos
 
     /**
+     * <span>Descripción:</span>
+     * <p>
+     * Desconecta la base de datos.</p>
      *
-     * @return
+     * @return con - Retorna un objeto de tipo {@code Conexion} con el estado de la conexión una vez ha sido terminada
      */
     public Conexion disconnect() {
         con = null;

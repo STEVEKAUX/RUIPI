@@ -17,12 +17,10 @@ import javax.swing.JOptionPane;
 
 /**
  *
- **<h2>Clase LoginController</h2>
- * <br>
+ * <span>Descripción:</span>
  * <p>
- * Se encarga de ejecutar la lógica de los eventos del click desencadenados por
+ * Implementa {@link ActionListener}. Se encarga de ejecutar la lógica de los eventos del click desencadenados por
  * el usuario en la vista {@link LoginUI}.</p>
- * <br>
  *
  * @author Daniel Felipe Lozada Ramirez Email: dflozada2@misena.edu.co
  * @author Edgar Steve Pava Email: Espava60@misena.edu.co
@@ -42,10 +40,9 @@ public class LoginController implements ActionListener {
     User u;
 
     /**
-     * <h2>Método Constructor de LoginController</h2>
-     * <br>
+     * <p>Método Constructor de LoginController</p>
      *
-     * @param log
+     * @param log Recibe un objeto de la clase {@link LoginUI}
      */
     public LoginController(LoginUI log) {
         this.log = log;
@@ -63,8 +60,7 @@ public class LoginController implements ActionListener {
     }
 
     /**
-     * <h2>Método actionPerformed(ActionEvent e)</h2>
-     * <br>
+     * <span>Descripción:</span>
      * <p>
      * Sobreescribe el método {@code actionPerformed(ActionEvent e)} para
      * dotarlo del comportamiento necesario para desencadenar los eventos del
@@ -72,7 +68,7 @@ public class LoginController implements ActionListener {
      *
      * @see LoginUI
      * @see ActionEvent
-     * @param e
+     * @param e Recibe un objeto de tipo ActionEvent
      */
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -87,12 +83,10 @@ public class LoginController implements ActionListener {
     }
 
     /**
-     * <h2>Método {@code closeApp()}</h2>
-     * <br>
+     * <span>Descripción:</span>
      * <p>
      * Se encarga de cerrar la ejecución de la aplicación y terminar la conexión
      * con la base de datos en caso de que el usuario oprima "Aceptar".</p>
-     * <br>
      */
     public void closeApp() {
         Object[] opciones = {"Aceptar", "Cancelar"};
@@ -106,11 +100,9 @@ public class LoginController implements ActionListener {
     }
 
     /**
-     * <h2>Método {@code turnOffDB()}</h2>
-     * <br>
+     * <span>Descripción:</span>
      * <p>
      * Se encarga de desconectar la bse de datos.</p>
-     * <br>
      */
     public void turnOffDB() {
         Conexion con = new Conexion();
@@ -119,14 +111,12 @@ public class LoginController implements ActionListener {
     }
 
     /**
-     * <h2>Método {@code validateLogin()}</h2>
-     * <br>
+     * <span>Descripción:</span>
      * <p>
      * Se encarga de validar el nombre de usuario y contraseña ingresados en los
      * campos de texto correspondientes con la base de datos, en caso de
      * coinsidir estos con los datos almacenados en la base de datos permitirá
      * al usuario acceder al menú principal de la aplicación.</p>
-     * <br>
      */
     public void validateLogin() {
         String uf = log.getUsernameField();

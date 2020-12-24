@@ -2,7 +2,7 @@ package View;
 
 /**
  *
- * @author Daniel Felipe Lozada Ramirez Dev <felipe_lozada04102@elpoli.edu.co>
+ * 
  */
 public class FormClinicalHistoryManagement extends javax.swing.JInternalFrame {
 

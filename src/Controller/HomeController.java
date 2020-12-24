@@ -19,12 +19,10 @@ import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 
 /**
- **<h2>Clase HomeController</h2>
- * <br>
+ * <span>Descripción:</span>
  * <p>
- * Se encarga de ejecutar la lógica de los eventos del click desencadenados por
+ * Implementa {@link ActionListener}. Se encarga de ejecutar la lógica de los eventos del click desencadenados por
  * el usuario en la vista {@link Home}.</p>
- * <br>
  *
  * @author Daniel Felipe Lozada Ramirez Email: dflozada2@misena.edu.co
  * @author Edgar Steve Pava Email: Espava60@misena.edu.co
@@ -36,7 +34,7 @@ import javax.swing.JOptionPane;
 public class HomeController implements ActionListener {
 
     /**
-     * Variables y constantes de la clase {@link  HomeController}.
+     * Variables y constantes de la clase {@link HomeController}.
      *
      */
     private final Home h;
@@ -45,10 +43,9 @@ public class HomeController implements ActionListener {
     Connection access;
 
     /**
-     * <h2>Método Constructor de HomeController</h2>
-     * <br>
+     * <p>Método Constructor de HomeController</p>
      *
-     * @param h
+     * @param h Recibe un objeto de la clase {@link Home}
      */
     public HomeController(Home h) {
         this.h = h;
@@ -61,15 +58,15 @@ public class HomeController implements ActionListener {
     }
 
     /**
-     * <h2>Método actionPerformed(ActionEvent e)</h2>
-     * <br>
+     * <span>Descripción:</span>
      * <p>
      * Sobreescribe el método {@code actionPerformed(ActionEvent e)} para
      * dotarlo del comportamiento necesario para desencadenar los eventos del
      * click del botón en la vista {@link Home}.</p>
+     * 
      * @see Home
      * @see ActionEvent
-     * @param e
+     * @param e Recibe un objeto del tipo ActionEvent
      */
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -118,14 +115,12 @@ public class HomeController implements ActionListener {
     }
 
     /**
-     * <h2>Método {@code windowCentered(JInternalFrame frame)}</h2>
-     * <br>
+     * <span>Descripción:</span>
      * <p>
      * Se encarga de centrar los frames de la aplicación RUIPI respecto altamaño
      * de la ventana del equipo del usuario.</p>
-     * <br>
      *
-     * @param frame
+     * @param frame Recibe un objeto de tipo JInternalFrame
      */
     public void windowCentered(JInternalFrame frame) {
         h.jDesktopPane1.add(frame);
@@ -137,13 +132,11 @@ public class HomeController implements ActionListener {
     }
 
     /**
-     * <h2>Método {@code close()}</h2>
-     * <br>
+     * <span>Descripción:</span>
      * <p>
      * Se encarga de validar el cierre de sesión del usuario actualmente
      * logueado, en caso de que el usuario oprima "Aceptar" cerrará la conexión
      * a la base de datos de la aplicación RUIPI y redirigirá al frame {@link LoginUI}</p>
-     * <br>
      */
     public void close() {
         Object[] opciones = {"Aceptar", "Cancelar"};
