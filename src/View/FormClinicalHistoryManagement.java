@@ -1,13 +1,23 @@
 package View;
 
 /**
+ * <span>Descripción:</span>
+ * <p>
+ * Se encarga de crear la vista del módulo de Gestión de Historias Clínicas de
+ * los Pacientes.
+ * </p>
  *
- * 
+ * @author Daniel Felipe Lozada Ramirez Email: dflozada2@misena.edu.co
+ * @author Edgar Steve Pava Email: Espava60@misena.edu.co
+ * @version 1.1.0
+ * @since 2020
+ *
  */
 public class FormClinicalHistoryManagement extends javax.swing.JInternalFrame {
 
     /**
-     * Creates new form FormClinicalHistoryManagement
+     * <p>
+     * Método Constructor de {@link FormClinicalHistoryManagement}</p>
      */
     public FormClinicalHistoryManagement() {
         initComponents();

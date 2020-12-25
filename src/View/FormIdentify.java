@@ -33,11 +33,22 @@ import javax.swing.SwingUtilities;
 import java.sql.ResultSet;
 
 /**
+ * <span>Descripción:</span>
+ * <p>
+ * Se encarga de crear la vista del módulo de Identificar Pacientes.
+ * </p>
  *
- * @author lenov
+ * @author Daniel Felipe Lozada Ramirez Email: dflozada2@misena.edu.co
+ * @author Edgar Steve Pava Email: Espava60@misena.edu.co
+ * @version 1.1.0
+ * @since 2020
  */
 public class FormIdentify extends javax.swing.JFrame {
 
+    /**
+     * Variables y constantes de la clase {@link FormIdentify}.
+     *
+     */
     //Varible que permite iniciar el dispositivo de lector de huella conectado
     // con sus distintos metodos.
     private DPFPCapture Lector = DPFPGlobal.getCaptureFactory().createCapture();
@@ -53,22 +64,32 @@ public class FormIdentify extends javax.swing.JFrame {
     //Variable que para crear el template de la huella luego de que se hallan creado las caracteriticas
     // necesarias de la huella si no ha ocurrido ningun problema
     private DPFPTemplate template;
-
-    /**
-     *
-     */
     public static String TEMPLATE_PROPERTY = "template";
-
-    /**
-     *
-     */
     public DPFPFeatureSet featuresinscripcion;
-
-    /**
-     *
-     */
     public DPFPFeatureSet featuresverificacion;
     private final FormPatientsManagement fp;
+
+    /**
+     * <p>
+     * Método Constructor de FormIdentify</p>
+     * 
+     * @param fp Recibe un Objeto de tipo {@link FormPatientsManagement}
+     */
+    public FormIdentify(FormPatientsManagement fp) {
+        initComponents();
+
+        Iniciar();
+        start();
+        setLocationRelativeTo(null);
+        this.setResizable(false);
+        this.fp = fp;
+        pc.btnSearchUpdateOff();
+        pc.clearTable();
+
+        //Establecemos el icono del proyecto en la barra de tareas y superior del Frame  
+        this.setIconImage(new ImageIcon(getClass().getResource("/icon.png")).getImage());
+        this.setTitle("RUIPI Lector de Huellas");
+    }
 
     /**
      *
@@ -231,7 +252,6 @@ public class FormIdentify extends javax.swing.JFrame {
      */
     public void stop() {
         Lector.stopCapture();
-        //EnviarTexto("No se está usando el Lector de Huella Dactilar ");
     }
 
     /**
@@ -239,27 +259,6 @@ public class FormIdentify extends javax.swing.JFrame {
      */
     public void start() {
         Lector.startCapture();
-        //EnviarTexto("Utilizando el Lector de Huella Dactilar ");
-    }
-
-    /**
-     *
-     * @param fp
-     */
-    public FormIdentify(FormPatientsManagement fp) {
-        initComponents();
-
-        Iniciar();
-        start();
-        setLocationRelativeTo(null);
-        this.setResizable(false);
-        this.fp = fp;
-        pc.btnSearchUpdateOff();
-        pc.clearTable();
-
-        //Establecemos el icono del proyecto en la barra de tareas y superior del Frame  
-        this.setIconImage(new ImageIcon(getClass().getResource("/icon.png")).getImage());
-        this.setTitle("RUIPI Lector de Huellas");
     }
 
     /**
@@ -395,11 +394,11 @@ public class FormIdentify extends javax.swing.JFrame {
         Connection cnn = cn.getConnection();
         try {
             PreparedStatement ps = cnn.prepareStatement("SELECT pe.id_persona, pe.nombre, pe.apellido,"
-                            + " pe.email, pe.tipo_documento, pe.numero_documento, pe.celular, pe.fecha_nacimiento,"
-                            + " pe.ciudad_origen, pe.departamento_origen, pe.direccion,"
-                            + " pa.id_paciente, pa.huella, pa.rh, pa.gestante, pa.sexo, pa.etnia, pa.comunidad, pa.municipio,"
-                            + " pa.fecha_registro, pa.id_persona, pa.id_programaPyDT"
-                            + " FROM Persona AS pe INNER JOIN Paciente AS pa ON pe.id_persona=pa.id_persona");
+                    + " pe.email, pe.tipo_documento, pe.numero_documento, pe.celular, pe.fecha_nacimiento,"
+                    + " pe.ciudad_origen, pe.departamento_origen, pe.direccion,"
+                    + " pa.id_paciente, pa.huella, pa.rh, pa.gestante, pa.sexo, pa.etnia, pa.comunidad, pa.municipio,"
+                    + " pa.fecha_registro, pa.id_persona, pa.id_programaPyDT"
+                    + " FROM Persona AS pe INNER JOIN Paciente AS pa ON pe.id_persona=pa.id_persona");
 
             ResultSet rs = ps.executeQuery();
             boolean existe = false;

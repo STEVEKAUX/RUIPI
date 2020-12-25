@@ -1,7 +1,5 @@
-
 package View;
 
-//imports
 import Controller.HomeController;
 import Model.Conexion;
 import java.awt.Graphics;
@@ -9,20 +7,30 @@ import java.sql.Connection;
 import javax.swing.ImageIcon;
 
 /**
+ * <span>Descripción:</span>
+ * <p>
+ * Se encarga de crear la vista del módulo de Menú Principal de la aplicación
+ * RUIPI.
+ * </p>
  *
- * @author lenov
+ * @author Daniel Felipe Lozada Ramirez Email: dflozada2@misena.edu.co
+ * @author Edgar Steve Pava Email: Espava60@misena.edu.co
+ * @version 1.1.0
+ * @since 2020
  */
 public class Home extends javax.swing.JFrame {
 
-    // global variables
+    /**
+     * Variables y constantes de la clase {@link Home}.
+     *
+     */
     Conexion con = new Conexion();
     Connection access;
     UIUtils utils = new UIUtils();
 
-    // Home Constructror
-
     /**
-     *
+     * <p>
+     * Método Constructor de Home</p>
      */
     public Home() {
         initComponents();
@@ -30,11 +38,10 @@ public class Home extends javax.swing.JFrame {
         this.setResizable(true);
         setLocationRelativeTo(null);
 
-
         this.setIconImage(new ImageIcon(getClass().getResource("/icon.png")).getImage());
         this.setTitle("RUIPI Menú Principal");
-        
-        HomeController hc= new HomeController(this);
+
+        HomeController hc = new HomeController(this);
 
     }
 
@@ -322,7 +329,7 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_btnHistoriaCMouseEntered
 
     private void btnHistoriaCMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHistoriaCMouseExited
-         btnHistoriaC.setBackground(UIUtils.COLOR_BACKGROUND);
+        btnHistoriaC.setBackground(UIUtils.COLOR_BACKGROUND);
     }//GEN-LAST:event_btnHistoriaCMouseExited
 
     /**

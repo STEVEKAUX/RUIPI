@@ -1,6 +1,6 @@
 package Model;
 
-//Crea la clase ProgramasDP
+//Crea la clase ProgramaPyDT
 /**
  * <span>Descripción:</span>
  * <p>
@@ -13,6 +13,6 @@ package Model;
  * @version 1.1.0
  * @since 2020
  */
-public class ProgramasDP {
+public class ProgramaPyDT {
 
 }

@@ -25,14 +25,23 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
-//Crea la clase FormEnterBrand
-
 /**
+ * <span>Descripción:</span>
+ * <p>
+ * Se encarga de crear la vista del módulo de Asociar Huella de los Pacientes.
+ * </p>
  *
- * @author lenov
+ * @author Daniel Felipe Lozada Ramirez Email: dflozada2@misena.edu.co
+ * @author Edgar Steve Pava Email: Espava60@misena.edu.co
+ * @version 1.1.0
+ * @since 2020
  */
 public class FormEnterBrand extends javax.swing.JFrame {
 
+    /**
+     * Variables y constantes de la clase {@link FormEnterBrand}.
+     *
+     */
     //variables globales
     //Varible que permite iniciar el dispositivo de lector de huella conectado
     // con sus distintos metodos.
@@ -49,25 +58,33 @@ public class FormEnterBrand extends javax.swing.JFrame {
     //Variable que para crear el template de la huella luego de que se hallan creado las caracteriticas
     // necesarias de la huella si no ha ocurrido ningun problema
     private DPFPTemplate template;
-
-    /**
-     *
-     */
     public static String TEMPLATE_PROPERTY = "template";
-
-    /**
-     *
-     */
     public DPFPFeatureSet featuresinscripcion;
-
-    /**
-     *
-     */
     public DPFPFeatureSet featuresverificacion;
     private final FormPatientsManagement fp;
 
-    //Inicia la lectura de la huella
+    /**
+     * <p>
+     * Método Constructor de FormEnterBrand</p>
+     * 
+     * @param fp Recibe un Objeto de tipo {@link FormPatientsManagement}
+     */
+    public FormEnterBrand(FormPatientsManagement fp) {
+        initComponents();
 
+        Iniciar();
+        start();
+        setLocationRelativeTo(null);
+        this.setResizable(false);
+        this.fp = fp;
+
+        //Establecemos el icono del proyecto en la barra de tareas y superior del Frame  
+        this.setIconImage(new ImageIcon(getClass().getResource("/icon.png")).getImage());
+        this.setTitle("RUIPI Lector de Huellas");
+
+    }
+    
+    //Inicia la lectura de la huella
     /**
      *
      */
@@ -136,7 +153,6 @@ public class FormEnterBrand extends javax.swing.JFrame {
     }
 
     //Procesa la captura de la huella ingresada
-
     /**
      *
      * @param sample
@@ -187,7 +203,6 @@ public class FormEnterBrand extends javax.swing.JFrame {
     }
 
     //Extrae las características de la huella ingresada 
-
     /**
      *
      * @param sample
@@ -204,7 +219,6 @@ public class FormEnterBrand extends javax.swing.JFrame {
     }
 
     //Crea una imágen a partir de las características de la huella ingresada
-
     /**
      *
      * @param sample
@@ -215,7 +229,6 @@ public class FormEnterBrand extends javax.swing.JFrame {
     }
 
     //Dibuja la huella en el campo del frame FormEnterBrand
-
     /**
      *
      * @param image
@@ -227,7 +240,6 @@ public class FormEnterBrand extends javax.swing.JFrame {
     }
 
     //Muestra por consola el número de huellas necesarias para crear el template
-
     /**
      *
      */
@@ -236,7 +248,6 @@ public class FormEnterBrand extends javax.swing.JFrame {
     }
 
     //Detiene la captura de la huella
-
     /**
      *
      */
@@ -246,7 +257,6 @@ public class FormEnterBrand extends javax.swing.JFrame {
     }
 
     //Inicia la captura de la huella
-
     /**
      *
      */
@@ -255,27 +265,6 @@ public class FormEnterBrand extends javax.swing.JFrame {
         //EnviarTexto("Utilizando el Lector de Huella Dactilar ");
     }
 
-    //Constructor de la clase FormEnterBrand
-
-    /**
-     *
-     * @param fp
-     */
-    public FormEnterBrand(FormPatientsManagement fp) {
-        initComponents();
-
-        Iniciar();
-        start();
-        setLocationRelativeTo(null);
-        this.setResizable(false);
-        this.fp = fp;
-
-        //Establecemos el icono del proyecto en la barra de tareas y superior del Frame  
-//        
-        this.setIconImage(new ImageIcon(getClass().getResource("/icon.png")).getImage());
-        this.setTitle("RUIPI Lector de Huellas");
-
-    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -418,7 +407,7 @@ public class FormEnterBrand extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     /**
-     * @return the template devuelve el template creado a partir de las
+     * @return template - Retorna el template creado a partir de las
      * caracteríssticas de la huella
      */
     public DPFPTemplate getTemplate() {
@@ -426,7 +415,7 @@ public class FormEnterBrand extends javax.swing.JFrame {
     }
 
     /**
-     * @param template the template to set establece el template de la huella
+     * @param template Recibe el template de la huella
      */
     public void setTemplate(DPFPTemplate template) {
         this.template = template;
