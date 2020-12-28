@@ -1,13 +1,20 @@
 package View;
 
+
 import java.awt.*;
 import java.util.HashMap;
 
-//Crea la clase UIUtils
-
 /**
+ * <span>Descripción:</span> 
+ * <p>
+ * Define todas las constantes a ser utilizadas para la vista 
+ * .</p>
+ * 
  *
- * @author lenov
+ * @author Daniel Felipe Lozada Ramirez Email: dflozada2@misena.edu.co
+ * @author Edgar Steve Pava Email: Espava60@misena.edu.co
+ * @version 1.1.0
+ * @since 2020
  */
 public class UIUtils {
 
@@ -17,85 +24,22 @@ public class UIUtils {
      *
      */
     public static final Font FONT_GENERAL_UI = new Font("Segoe UI", Font.PLAIN, 20);
-
-    /**
-     *
-     */
     public static final Font FONT_FORGOT_PASSWORD = new Font("Segoe UI", Font.PLAIN, 12);
-
-    /**
-     *
-     */
     public static final Color COLOR_OUTLINE = new Color(103, 112, 120);
-
-    /**
-     *
-     */
     public static final Color COLOR_BACKGROUND = new Color(37, 51, 61);
-
-    /**
-     *
-     */
     public static final Color COLOR_BACKGROUND_SOFT = new Color(47,61,71);
-
-    /**
-     *
-     */
     public static final Color COLOR_INTERACTIVE = new Color(108, 216, 158);
-
-    /**
-     *
-     */
     public static final Color COLOR_INTERACTIVE_DARKER = new Color(87, 171, 127);
-
-    /**
-     *
-     */
     public static final Color COLOR_INTERACTIVE2 = new Color(252, 87, 118);
-
-    /**
-     *
-     */
     public static final Color COLOR_INTERACTIVE_DARKER2 = new Color(231, 42, 87);
-
-    /**
-     *
-     */
     public static final Color OFFWHITE = new Color(229, 229, 229);
-
-    /**
-     *
-     */
     public static final String BUTTON_TEXT_LOGIN = "Iniciar sesión";
-
-    /**
-     *
-     */
     public static final String BUTTON_TEXT_EXIT = "Salir";
-
-    /**
-     *
-     */
     public static final String BUTTON_TEXT_FORGOT_PASS = "¿Olvidó su contraseña?";
-
-    /**
-     *
-     */
     public static final String BUTTON_TEXT_REGISTER = "Registrarse";
-
-    /**
-     *
-     */
     public static final String PLACEHOLDER_TEXT_USERNAME = "Nombre de usuario";
-
-    /**
-     *
-     */
     public static final String PLACEHOLDER_TEXT_PASSWORD = "contraseña";
-
-    /**
-     *
-     */
+    
     public static final int ROUNDNESS = 8;
 
     //Obtiene las propiedades gráficas de un componente gráfico
@@ -106,6 +50,17 @@ public class UIUtils {
      * @return
      */
     public static Graphics2D get2dGraphics(Graphics g) {
+        
+        /**
+     * <span>Descripción:</span>
+     * <p>
+     * Provee un manejo coordinado y controlado sobre texto, imágenes
+     * y geometría en 2d.
+     * </p>
+      *
+     * @return g2
+     */
+        
         Graphics2D g2 = (Graphics2D) g;
         g2.addRenderingHints(new HashMap<RenderingHints.Key, Object>() {
             {

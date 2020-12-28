@@ -21,7 +21,7 @@ public class Conexion {
      */
     private static final String DBNAME = "ruipidatabase";
     private static final String USER = "root";
-    private static final String PASSWORD = "dflr.com";
+    private static final String PASSWORD = "VIVVIIIXVII.";
     private static final String URL = "jdbc:mysql://localhost/" + DBNAME + "?useUnicode=true&use"
             + "JDBCCompliantTimezoneSHift=true&useLegacyDatetimeCode=false&"
             + "serverTimezone=UTC";
