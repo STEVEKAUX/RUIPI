@@ -3,7 +3,7 @@ package View;
 /**
  * <span>Descripción:</span>
  * <p>
- * Se encarga de crear la vista del módulo de inicio sesión
+ * Es la encargada de crear la vista del módulo de inicio sesión
  * .</p>
  *
  * @author Daniel Felipe Lozada Ramirez Email: dflozada2@misena.edu.co
