@@ -22,6 +22,7 @@ public class PatientDAO extends Conexion {
      * Variables y constantes de la clase {@link PatientDAO}.
      *
      */
+   
     Connection conn;
 
     PreparedStatement ps;

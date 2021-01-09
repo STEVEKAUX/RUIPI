@@ -11,12 +11,14 @@ package Model;
  * @version 1.1.0
  * @since 2020
  */
+
 public class Patient extends Person{
 
     /**
      * Variables y constantes de la clase {@link Patient}.
      *
      */
+    
     private int idPaciente;
     private String rh;
     private String gestante;
@@ -26,13 +28,13 @@ public class Patient extends Person{
     private String municipio;
     private int Persona_id_persona;
     private String programaPyDT;
-
     private int edad;
 
     /**
      * <p>
      * Método Constructor de Patient</p>
      */
+    
     public Patient() {
         super();
     }
@@ -44,6 +46,7 @@ public class Patient extends Person{
      *
      * @return idPaciente - Retorna un int como ID del Paciente
      */
+    
     public int getIdPaciente() {
         return idPaciente;
     }
@@ -55,6 +58,7 @@ public class Patient extends Person{
      *
      * @param idPaciente Recibe un int como ID del Paciente
      */
+    
     public void setIdPaciente(int idPaciente) {
         this.idPaciente = idPaciente;
     }
@@ -66,6 +70,7 @@ public class Patient extends Person{
      *
      * @return rh - Retorna un String como RH del Paciente
      */
+    
     public String getRh() {
         return rh;
     }
@@ -77,6 +82,7 @@ public class Patient extends Person{
      *
      * @param rh Recibe un String como RH del Paciente
      */
+    
     public void setRh(String rh) {
         this.rh = rh;
     }
@@ -100,6 +106,7 @@ public class Patient extends Person{
      *
      * @param gestante Recibe un String que indica si el Paciente es Gestante
      */
+    
     public void setGestante(String gestante) {
         this.gestante = gestante;
     }

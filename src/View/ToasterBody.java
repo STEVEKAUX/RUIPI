@@ -1,4 +1,4 @@
-package View;
+    package View;
 
 
 import javax.swing.*;
@@ -19,10 +19,10 @@ import java.awt.*;
 
 class ToasterBody extends JPanel {
 
-    //Declaración de constantes y variables globales de ToasterBody
     
     /**
-     *
+     * Declaración de constantes y variables globales de ToasterBody
+     * 
      */
     
     private static final int TOAST_PADDING = 15;
@@ -36,8 +36,7 @@ class ToasterBody extends JPanel {
     private int yPos;
     private final JPanel panelToToastOn;
 
-    //Constructor de la clase ToasterBody
-   
+     
      /**
      * <p>
      * Método Constructor del visualizador</p>

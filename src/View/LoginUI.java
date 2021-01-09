@@ -1,5 +1,17 @@
 package View;
 
+/**
+ * <span>Descripción:</span>
+ * <p>
+ * Se encarga de crear la vista del módulo de inicio sesión
+ * .</p>
+ *
+ * @author Daniel Felipe Lozada Ramirez Email: dflozada2@misena.edu.co
+ * @author Edgar Steve Pava Email: Espava60@misena.edu.co
+ * @version 1.1.0
+ * @since 2020
+ */
+
 import Controller.LoginController;
 import Model.Conexion;
 import Model.UserDAO;

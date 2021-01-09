@@ -18,10 +18,8 @@ import java.util.HashMap;
  */
 public class UIUtils {
 
-    //Declaración de constantes y objetos de la clase UIUtils
-
     /**
-     *
+     * Declaración de constantes y objetos de la clase UIUtils
      */
     public static final Font FONT_GENERAL_UI = new Font("Segoe UI", Font.PLAIN, 20);
     public static final Font FONT_FORGOT_PASSWORD = new Font("Segoe UI", Font.PLAIN, 12);
@@ -49,6 +47,7 @@ public class UIUtils {
      * @param g
      * @return
      */
+    
     public static Graphics2D get2dGraphics(Graphics g) {
         
         /**
